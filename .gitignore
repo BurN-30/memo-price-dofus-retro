@@ -1,5 +1,9 @@
 # Données utilisateur — ne jamais commit
 config.json
+.env
+.env.*
+secrets.*
+*.key
 
 # Assets téléchargés au premier lancement (cf. serve.py bootstrap)
 icons/
@@ -24,5 +28,8 @@ __pycache__/
 .venv/
 venv/
 
-# Logs
+# Logs et backups
 *.log
+*.bak
+*.tmp
+*~
