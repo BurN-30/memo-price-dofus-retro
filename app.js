@@ -1751,7 +1751,7 @@
 
   for (const el of document.querySelectorAll('[data-close]')) {
     el.addEventListener('click', () => {
-      closePick(); closeFolderModal(); closeBulk(); closeOcr(); closeSettings(); closeRecipe(); closeChangelog();
+      closePick(); closeFolderModal(); closeBulk(); closeOcr(); closeSettings(); closeRecipe(); closeChangelog(); closeUpdateModal();
     });
   }
   // Overlays : pour OCR, on minimise plutôt que de tuer la session si du contenu existe
@@ -1775,7 +1775,7 @@
       else $ocrModal.hidden = true;
       return;
     }
-    closePick(); closeFolderModal(); closeBulk(); closeSettings(); closeRecipe(); closeChangelog();
+    closePick(); closeFolderModal(); closeBulk(); closeSettings(); closeRecipe(); closeChangelog(); closeUpdateModal();
   });
 
   document.getElementById('btn-export').addEventListener('click', exportData);
@@ -1791,9 +1791,124 @@
   const $btnChangelog = document.getElementById('btn-changelog');
   let changelogLoaded = false;
 
+  let APP_VERSION = '?';
   fetch('version.json').then(r => r.json()).then(v => {
-    $btnChangelog.textContent = 'v' + (v.version || '?');
+    APP_VERSION = v.version || '?';
+    $btnChangelog.textContent = 'v' + APP_VERSION;
   }).catch(() => { $btnChangelog.textContent = 'v?'; });
+
+  // Vérifie une update au démarrage (silencieux, en différé)
+  let updateInfo = null;
+  setTimeout(async () => {
+    try {
+      const r = await fetch('/api/check-update');
+      const j = await r.json();
+      if (j.has_update) {
+        updateInfo = j;
+        document.getElementById('update-dot').hidden = false;
+      }
+    } catch {}
+  }, 3000);
+
+  document.getElementById('update-dot').addEventListener('click', e => {
+    e.stopPropagation();
+    if (updateInfo) openUpdateModal();
+  });
+
+  const $updateModal = document.getElementById('modal-update');
+  const $updateBody = document.getElementById('update-body');
+
+  function openUpdateModal() {
+    if (!updateInfo) return;
+    const u = updateInfo;
+    const commits = u.commits || [];
+    const dirtyHtml = u.dirty
+      ? `<div class="danger-box">
+          <b>Modifs locales détectées</b> dans le repo. L'auto-update est bloqué pour éviter d'écraser ton travail.<br>
+          Soit tu commit / stash tes modifs, soit tu fais l'update à la main : <code>git stash && git pull && git stash pop</code>.
+        </div>`
+      : '';
+    $updateBody.innerHTML = `
+      <div class="row1">
+        <span class="ver">v${APP_VERSION} · ${escapeHtml(u.local || '?')}</span>
+        <span class="arrow">→</span>
+        <span class="ver new">${escapeHtml(u.remote || '?')} (${u.commit_count} commit${u.commit_count>1?'s':''})</span>
+      </div>
+      <div class="commits">
+        ${commits.length
+          ? commits.map(c => `<div class="commit"><span class="sha">${escapeHtml(c.sha)}</span><span class="subj" title="${escapeHtml(c.subject)} · ${escapeHtml(c.author)}">${escapeHtml(c.subject)}</span></div>`).join('')
+          : '<div style="color:var(--text-mute)">(détail des commits indisponible)</div>'}
+      </div>
+      <div class="warn">
+        <b>Conseil sécurité :</b> avant d'accepter, jette un œil au diff complet sur GitHub —
+        <a href="${escapeHtml(u.compare_url)}" target="_blank" rel="noopener">voir les modifs sur GitHub</a>.
+        L'auto-update lance un <code>git pull</code> puis redémarre le serveur. Tes prix
+        (<code>localStorage</code>) et ta clé NIM (<code>config.json</code>) ne sont pas touchés.
+      </div>
+      ${dirtyHtml}
+      <div class="actions">
+        <button class="btn-mini" data-close>Plus tard</button>
+        <button id="update-apply" class="btn-primary" ${u.dirty ? 'disabled' : ''}>Mettre à jour maintenant</button>
+      </div>
+    `;
+    $updateModal.hidden = false;
+    for (const el of $updateBody.querySelectorAll('[data-close]')) {
+      el.addEventListener('click', () => $updateModal.hidden = true);
+    }
+    document.getElementById('update-apply').addEventListener('click', performUpdate);
+  }
+  function closeUpdateModal() { $updateModal.hidden = true; }
+  $updateModal.addEventListener('click', e => { if (e.target === $updateModal) closeUpdateModal(); });
+
+  const $restartOverlay = document.getElementById('restart-overlay');
+  const $restartTitle = document.getElementById('restart-title');
+  const $restartStatus = document.getElementById('restart-status');
+
+  async function performUpdate() {
+    closeUpdateModal();
+    $restartOverlay.querySelector('.restart-card').classList.remove('error', 'success');
+    $restartTitle.textContent = 'Mise à jour en cours…';
+    $restartStatus.textContent = 'git pull sur le repo local…';
+    $restartOverlay.hidden = false;
+    try {
+      const r = await fetch('/api/update', { method: 'POST' });
+      const j = await r.json();
+      if (!r.ok || !j.ok) {
+        $restartOverlay.querySelector('.restart-card').classList.add('error');
+        $restartTitle.textContent = 'Échec de la mise à jour';
+        $restartStatus.textContent = j.error || 'Erreur inconnue';
+        document.querySelector('.restart-hint').textContent = 'Tu peux fermer cet écran (F5) et réessayer manuellement.';
+        return;
+      }
+      $restartStatus.textContent = 'Pull réussi · redémarrage du serveur…';
+      // Attend la connection retour
+      setTimeout(waitForServerThenReload, 1500);
+    } catch (e) {
+      // Le serveur peut avoir déjà redémarré et coupé la connection — c'est OK
+      $restartStatus.textContent = 'Serveur en redémarrage… (connection coupée, attente du retour)';
+      setTimeout(waitForServerThenReload, 1000);
+    }
+  }
+
+  async function waitForServerThenReload(attempt = 0) {
+    if (attempt > 40) {
+      $restartOverlay.querySelector('.restart-card').classList.add('error');
+      $restartTitle.textContent = 'Le serveur ne répond plus';
+      $restartStatus.textContent = "Relance lancer.bat manuellement, puis recharge cette page.";
+      return;
+    }
+    try {
+      const r = await fetch('/api/health', { cache: 'no-store' });
+      if (r.ok) {
+        $restartOverlay.querySelector('.restart-card').classList.add('success');
+        $restartTitle.textContent = 'Mise à jour OK';
+        $restartStatus.textContent = 'Rechargement de la page…';
+        setTimeout(() => location.reload(), 800);
+        return;
+      }
+    } catch {}
+    setTimeout(() => waitForServerThenReload(attempt + 1), 700);
+  }
 
   function mdToHtml(md) {
     // mini-parseur markdown : titres, listes, gras, code, liens, blockquote

@@ -14,8 +14,10 @@ import socketserver
 import json
 import os
 import re
+import subprocess
 import sys
 import threading
+import time
 import urllib.request
 import urllib.error
 import webbrowser
@@ -129,6 +131,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return self.handle_get_config()
         if path == '/api/health':
             return self.write_json({'ok': True})
+        if path == '/api/check-update':
+            return self.handle_check_update()
         return super().do_GET()
 
     def do_POST(self):
@@ -137,6 +141,8 @@ class Handler(http.server.SimpleHTTPRequestHandler):
             return self.handle_set_config()
         if path == '/api/ocr':
             return self.handle_ocr()
+        if path == '/api/update':
+            return self.handle_update()
         self.send_error(404, 'Unknown endpoint')
 
     def read_json(self, max_mb=20):
@@ -241,10 +247,89 @@ class Handler(http.server.SimpleHTTPRequestHandler):
         print(f"[OCR] OK · model={used_model}{' (fallback)' if fallback_used else ''} · name='{parsed.get('name','?')}'", flush=True)
         return self.write_json({'ok': True, 'data': parsed, 'model': used_model, 'fallback_used': fallback_used, 'primary': primary})
 
+    def handle_check_update(self):
+        if not is_git_clone():
+            return self.write_json({'git': False, 'has_update': False, 'reason': 'pas un clone git (téléchargé en zip ?)'})
+        rc, _, err = run_git(['fetch', '--quiet'], timeout=30)
+        if rc != 0:
+            return self.write_json({'git': True, 'has_update': False, 'error': f'git fetch: {err[:200]}'})
+        rc1, local, _ = run_git(['rev-parse', 'HEAD'])
+        rc2, remote, _ = run_git(['rev-parse', 'origin/HEAD'])
+        if rc1 != 0 or rc2 != 0:
+            return self.write_json({'git': True, 'has_update': False, 'error': 'rev-parse failed'})
+        if local == remote:
+            return self.write_json({'git': True, 'has_update': False, 'local': local[:8], 'remote': remote[:8]})
+        _, log_out, _ = run_git(['log', '--pretty=format:%h|%s|%an|%ci', f'{local}..{remote}'])
+        commits = []
+        for line in log_out.splitlines():
+            parts = line.split('|', 3)
+            if len(parts) == 4:
+                commits.append({'sha': parts[0], 'subject': parts[1], 'author': parts[2], 'date': parts[3]})
+        rc3, status_out, _ = run_git(['status', '--porcelain'])
+        dirty = bool(status_out.strip()) if rc3 == 0 else False
+        return self.write_json({
+            'git': True,
+            'has_update': True,
+            'local': local[:8],
+            'remote': remote[:8],
+            'commits': commits,
+            'commit_count': len(commits),
+            'dirty': dirty,
+            'compare_url': f'https://github.com/BurN-30/memo-price-dofus-retro/compare/{local[:8]}...{remote[:8]}'
+        })
+
+    def handle_update(self):
+        if not is_git_clone():
+            return self.write_json({'error': "pas un clone git, impossible d'auto-update"}, 400)
+        rc, status_out, _ = run_git(['status', '--porcelain'])
+        if rc == 0 and status_out.strip():
+            return self.write_json({
+                'error': "modifs locales non-committées — l'auto-update pourrait écraser ton travail",
+                'dirty_files': status_out.splitlines()[:20]
+            }, 409)
+        rc, out, err = run_git(['pull', '--ff-only'], timeout=60)
+        if rc != 0:
+            return self.write_json({'error': f'git pull a échoué : {err or out}'}, 500)
+        print(f"[update] git pull OK :\n{out}", flush=True)
+        self.write_json({'ok': True, 'output': out, 'restart_in': 1.0})
+        threading.Timer(0.8, restart_self).start()
+
 
 class ThreadedServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
     daemon_threads = True
     allow_reuse_address = True
+
+
+def is_git_clone():
+    return os.path.isdir(os.path.join(ROOT, '.git'))
+
+
+def run_git(args, timeout=30):
+    """Exécute git avec args (list). Retourne (returncode, stdout, stderr)."""
+    try:
+        proc = subprocess.run(
+            ['git'] + args,
+            cwd=ROOT, capture_output=True, text=True, timeout=timeout,
+            encoding='utf-8', errors='replace'
+        )
+        return proc.returncode, (proc.stdout or '').strip(), (proc.stderr or '').strip()
+    except subprocess.TimeoutExpired:
+        return -1, '', 'timeout'
+    except FileNotFoundError:
+        return -1, '', 'git not installed'
+    except Exception as e:
+        return -1, '', str(e)
+
+
+def restart_self():
+    """Remplace le process en cours par un nouveau (relance serve.py)."""
+    print("[update] redémarrage du serveur…", flush=True)
+    time.sleep(0.3)
+    try:
+        os.execv(sys.executable, [sys.executable] + sys.argv)
+    except Exception as e:
+        print(f"[update] échec exec : {e}", flush=True)
+        sys.exit(42)  # fallback : code spécial que lancer.bat pourrait reprendre
 
 
 def bootstrap_assets():

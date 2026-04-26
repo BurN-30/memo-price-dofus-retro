@@ -4,10 +4,29 @@ Petit outil local pour mémoriser les prix HDV de Dofus Retro entre les sessions
 Excel-like dark mode, dossiers de farm, OCR sur capture HDV via NVIDIA NIM,
 calcul de coût de craft.
 
+> [!IMPORTANT]
+> **100 % local, pas de partage.** L'app tourne sur ta machine, point. Il n'y a
+> ni backend mutualisé ni base de prix communautaire : tu ne vois que les
+> prix que **toi tu rentres** (au clavier, via OCR, ou collés en bulk). Idem
+> pour tes potes : chacun a sa propre base. Si tu veux échanger des prix avec
+> eux, passe par `export` / `import` JSON dans la sidebar.
+>
+> Tes données (prix, dossiers, préférences) vivent uniquement dans le
+> `localStorage` de ton browser. Ta clé NIM, si tu en mets une, reste dans
+> `config.json` côté serveur — jamais envoyée nulle part sauf à NIM lui-même
+> au moment d'un OCR.
+
+## Prérequis
+
+- **[Python 3.8+](https://www.python.org/downloads/)** — c'est tout côté
+  serveur. Pas de `pip install`, on utilise uniquement la stdlib.
+- **Un browser moderne** (Chrome, Firefox, Edge, Brave, …).
+- **Optionnel — clé NVIDIA NIM** si tu veux activer l'OCR sur captures HDV.
+  Création gratuite en 2 min, voir [Configurer l'OCR](#configurer-locr-optionnel).
+
 > [!NOTE]
-> Pas de backend partagé, pas de compte. Tes prix vivent dans ton browser
-> (`localStorage`) et n'en bougent pas. La clé NIM, si tu en utilises une,
-> reste en local dans `config.json`.
+> Pas besoin de Node.js, npm, Docker, base de données ou autre. C'est du
+> HTML/CSS/JS vanilla servi par un serveur Python de ~250 lignes.
 
 ## Démarrer en 30 secondes
 
@@ -153,13 +172,43 @@ memo-price-dofus-retro/
 └── mob-icons/    ← idem
 ```
 
-## Crédits
+## Remerciements
 
-- Données et icônes via [Dofus Retro Tools](https://dofusretrotools.com).
-  Tout le crédit du travail d'agrégation leur revient.
-- Items, monstres et univers Dofus appartiennent à [Ankama](https://www.ankama.com/).
-- Projet non-officiel, non affilié.
+Ce projet n'existerait littéralement pas sans le travail de **[YAKUZA](https://x.com/Le__YAKUZA)**
+et de l'équipe derrière **[Dofus Retro Tools](https://dofusretrotools.com)**.
+
+Toutes les données utilisées par Memo Price viennent de leur API publique :
+
+- les **1492 ressources** avec leur niveau, type, pods, descriptions,
+- les **2203 items craftables** avec leurs recettes complètes,
+- les **1451 monstres** du bestiaire,
+- les **icônes SVG** de tout ce beau monde.
+
+Sans cette base de données soigneusement maintenue et exposée publiquement,
+il aurait fallu des semaines pour scraper et nettoyer tout ça à la main. Donc
+gros merci à eux — si vous jouez à Dofus Retro, allez voir leur site, ils
+font un boulot dingue (carte interactive, simulateur de drop, encyclopédie,
+profils membres, etc.). Bien plus complet que cette petite app.
+
+- Site : [dofusretrotools.com](https://dofusretrotools.com)
+- Twitter / X : [@Le__YAKUZA](https://x.com/Le__YAKUZA)
+- Twitch : [twitch.tv/proyakuza](https://www.twitch.tv/proyakuza)
+
+Le code créateur Dofus officiel de YAKUZA est `YAKUZA` — pensez à le
+spammer en jeu si vous voulez le soutenir gratuitement.
+
+### Aussi merci à
+
+- **[Ankama](https://www.ankama.com/)** pour Dofus, l'univers, et les sprites
+  des items / monstres / ressources qui transitent ici.
+- **[NVIDIA](https://build.nvidia.com)** qui héberge gratuitement les modèles
+  vision utilisés pour l'OCR des fiches HDV.
+
+Projet non-officiel, non affilié à Ankama ni à Dofus Retro Tools.
+Si YAKUZA ou Ankama souhaitent que ce projet soit retiré, ouvrez une issue
+ou contactez-moi, je m'exécuterai sans soucis.
 
 ## Licence
 
 MIT — voir [`LICENSE`](./LICENSE).
+Les données et icônes Dofus restent propriété de leurs ayants droit.

@@ -15,7 +15,7 @@
     <span class="logo">⟡</span>
     <div class="brand-text">
       <h1>Memo Price</h1>
-      <span class="sub">Dofus Retro · <button class="link-version" id="btn-changelog" title="Voir le changelog">v—</button></span>
+      <span class="sub">Dofus Retro · <button class="link-version" id="btn-changelog" title="Voir le changelog">v—</button><span class="update-dot" id="update-dot" hidden title="Mise à jour disponible — clique"></span></span>
     </div>
     <button id="btn-collapse" class="btn-collapse" title="Réduire la sidebar">‹</button>
   </header>
@@ -247,6 +247,27 @@ kriptonite 30/u
     <div class="changelog-body" id="changelog-body">
       <div style="color:var(--text-mute);text-align:center;padding:30px">Chargement…</div>
     </div>
+  </div>
+</div>
+
+<!-- Modal: update -->
+<div id="modal-update" class="modal" hidden>
+  <div class="modal-card">
+    <header>
+      <h3>Mise à jour disponible</h3>
+      <button class="btn-close" data-close>×</button>
+    </header>
+    <div class="update-body" id="update-body"></div>
+  </div>
+</div>
+
+<!-- Overlay: restart in progress -->
+<div id="restart-overlay" class="restart-overlay" hidden>
+  <div class="restart-card">
+    <div class="restart-spinner"></div>
+    <h3 id="restart-title">Mise à jour en cours…</h3>
+    <p id="restart-status">Récupération des changements depuis GitHub.</p>
+    <p class="restart-hint">La page se rechargera automatiquement quand le serveur sera relancé.</p>
   </div>
 </div>
 
