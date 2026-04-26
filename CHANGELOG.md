@@ -2,6 +2,20 @@
 
 Toutes les modifs notables de Memo Price. Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.3.0] — 2026-04-26
+
+### Ajouté
+- **Section « Crafts suivis »** dans la sidebar : nouveau dossier spécial qui liste les items que tu suis avec coût ingrédients computé live, prix HDV éditable inline, et marge nette colorée (vert/rouge).
+- Coût d'un craft préfixé `~` et dans une couleur différente quand au moins un prix d'ingrédient est manquant — l'estimation est mise en évidence comme telle.
+- Header colonnes en SMALL CAPS sur la vue crafts (`ITEM · QTÉ · COÛT INGRÉDIENTS · PRIX HDV · MARGE`).
+- Foot de la modale Craft restructuré en 3 blocs (Coût ingrédients, Prix HDV, Marge nette) avec gros chiffres mono dorés/cuivre + sub-text d'avertissement si estimation incomplète.
+- Bouton « suivre ce craft » / « mettre à jour » / « retirer du suivi » dans la modale Craft.
+- Stats globales sur la vue Crafts : `coût total → HDV total (marge totale)`.
+
+### Modifié
+- README en préambule : mention explicite « 100% local, pas de partage » + section « Prérequis » mise en avant + tutoriel détaillé pour récupérer une clé NIM.
+- Section « Remerciements » conséquente créditant YAKUZA et l'équipe Dofus Retro Tools (auteurs de la base de données utilisée).
+
 ## [0.2.0] — 2026-04-26
 
 ### Ajouté

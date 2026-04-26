@@ -1665,23 +1665,198 @@ input, select, button { font-family: inherit; color: inherit; }
 
 .recipe-foot {
   display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 16px;
+  align-items: flex-start;
+  gap: 22px;
+  padding: 14px 18px;
   background: var(--bg-elev);
   border-top: 1px solid var(--line);
+  flex-wrap: wrap;
 }
-.recipe-foot .label { font-size: 12px; color: var(--text-mute); text-transform: uppercase; letter-spacing: .06em; }
-.recipe-foot .total {
+.recipe-foot .ft-block { display: flex; flex-direction: column; gap: 2px; min-width: 90px; }
+.recipe-foot .ft-block .lbl {
+  font-size: 10px;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-weight: 600;
+}
+.recipe-foot .ft-block .val {
   font-family: 'JetBrains Mono', monospace;
   font-weight: 800;
   font-size: 22px;
+  line-height: 1.1;
   color: var(--gold);
 }
-.recipe-foot .total.partial { color: var(--accent); }
-.recipe-foot .warn-msg { font-size: 11px; color: var(--danger); margin-left: 8px; }
+.recipe-foot .ft-block .val.approx { color: var(--accent); }
+.recipe-foot .ft-block .val.margin.pos { color: var(--good); }
+.recipe-foot .ft-block .val.margin.neg { color: var(--danger); }
+.recipe-foot .ft-block .sub {
+  font-size: 10px;
+  color: var(--text-mute);
+  font-family: 'JetBrains Mono', monospace;
+}
+.recipe-foot .ft-block .sub.warn { color: var(--danger); }
+.recipe-foot .hdv-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 1px;
+}
+.recipe-foot .hdv-row input {
+  width: 110px;
+  background: var(--bg-elev2);
+  border: 1px solid var(--line);
+  color: var(--gold);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 18px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  text-align: right;
+  outline: none;
+}
+.recipe-foot .hdv-row input:focus { border-color: var(--accent); }
+.recipe-foot .hdv-row .unit { font-size: 11px; color: var(--text-mute); }
 .recipe-foot .spacer { flex: 1; }
-.recipe-foot .info { font-size: 11px; color: var(--text-mute); font-family: 'JetBrains Mono', monospace; }
+.recipe-foot .ft-actions { display: flex; gap: 8px; align-items: flex-end; padding-top: 14px; }
+
+/* ---------- CRAFTS VIEW ---------- */
+.grid.crafts-grid { padding: 0; }
+.crafts-head {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 100px 130px 150px 110px 70px;
+  gap: 12px;
+  padding: 10px 14px 8px;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--text-mute);
+  font-weight: 700;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg-row);
+}
+.crafts-head .ch-name { padding-left: 56px; }
+.crafts-head .ch-cost,
+.crafts-head .ch-hdv,
+.crafts-head .ch-margin { text-align: right; }
+.crafts-head .ch-qty { text-align: center; }
+
+.craft-row {
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) 100px 130px 150px 110px 70px;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 14px;
+  height: 56px;
+  border-bottom: 1px solid var(--line-soft);
+  background: var(--bg-row);
+  transition: background .1s;
+}
+.craft-row:nth-child(even) { background: var(--bg-row-alt); }
+.craft-row:hover { background: var(--bg-hover); }
+.craft-row .img {
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--bg-elev2);
+  border-radius: 8px;
+  border: 1px solid var(--line);
+}
+.craft-row .img img { width: 32px; height: 32px; object-fit: contain; }
+.craft-row .info { min-width: 0; overflow: hidden; }
+.craft-row .info .nm {
+  font-weight: 600;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.craft-row .info .meta {
+  font-size: 11px;
+  color: var(--text-mute);
+  letter-spacing: .04em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.craft-row .qty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: var(--bg-elev2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+}
+.craft-row .qty button {
+  background: transparent;
+  border: none;
+  color: var(--text-soft);
+  width: 22px; height: 22px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: inherit;
+}
+.craft-row .qty button:hover { color: var(--accent); background: rgba(212,154,92,.1); }
+.craft-row .qty .v {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--text);
+  min-width: 22px;
+  text-align: center;
+  font-size: 12px;
+}
+.craft-row .cost {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  color: var(--gold);
+  text-align: right;
+  font-size: 14px;
+}
+.craft-row .cost.approx { color: var(--accent-3); cursor: help; }
+.craft-row .hdv-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  justify-content: flex-end;
+}
+.craft-row .hdv-input {
+  background: var(--bg-elev2);
+  border: 1px solid var(--line);
+  color: var(--gold);
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 5px 8px;
+  border-radius: var(--radius-sm);
+  width: 90px;
+  text-align: right;
+  outline: none;
+}
+.craft-row .hdv-input:focus { border-color: var(--accent); }
+.craft-row .hdv-cell .unit { font-size: 10px; color: var(--text-mute); }
+.craft-row .margin {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+  font-size: 14px;
+  text-align: right;
+  color: var(--text-mute);
+}
+.craft-row .margin.pos { color: var(--good); }
+.craft-row .margin.neg { color: var(--danger); }
+.craft-row .act { display: flex; gap: 4px; justify-content: flex-end; }
+.craft-row .act button {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--text-mute);
+  width: 26px; height: 26px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+}
+.craft-row .act button:hover { color: var(--accent); border-color: var(--line); background: var(--bg-elev2); }
+.craft-row .act button[data-craft-remove]:hover { color: var(--danger); border-color: var(--danger); }
 
 .hint { margin: 8px 18px 0; font-size: 11px; color: var(--text-mute); line-height: 1.5; }
 .hint code { background: var(--bg-elev2); padding: 1px 5px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); }

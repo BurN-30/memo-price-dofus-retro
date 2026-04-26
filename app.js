@@ -15,8 +15,19 @@
   const itemIconUrl = it => `item-icons/${it.cat}-${it.pic}.svg`;
   const itemIconUrlByPic = (cat, pic) => `item-icons/${cat}-${pic}.svg`;
 
-  // Résout un ingredient.id (ingredientId du JSON) vers une entité du catalogue
-  // (resource ou item). Retourne {kind, it, name, iconUrl, level, type}
+  function computeCraftCost(itemId, qty = 1) {
+    const item = ITEMS_BY_ID.get(itemId);
+    if (!item || !Array.isArray(item.ing)) return { cost: 0, missing: 0, total: 0 };
+    let cost = 0, missing = 0;
+    for (const ing of item.ing) {
+      const r = resolveIngredient(ing);
+      const p = r.priceableId != null ? getPrice(r.priceableId) : null;
+      if (p == null) missing++;
+      else cost += p * (ing.n * qty);
+    }
+    return { cost, missing, total: item.ing.length };
+  }
+
   function resolveIngredient(ing) {
     // priorité 1 : resource (par id)
     const res = BY_ID.get(ing.id);
@@ -137,7 +148,8 @@
       prices,
       folders: SEED_FOLDERS.map(f => ({ ...f, items: [...f.items] })),
       currentFolderId: 'all',
-      hiddenHints: {}
+      hiddenHints: {},
+      crafts: []
     };
   }
 
@@ -148,6 +160,7 @@
       const s = JSON.parse(raw);
       if (!s.prices || !s.folders) return defaultState();
       if (!s.hiddenHints) s.hiddenHints = {};
+      if (!Array.isArray(s.crafts)) s.crafts = [];
       // migration: prices stored as plain numbers → objets {value, updatedAt}
       const now = Date.now();
       for (const [id, v] of Object.entries(s.prices)) {
@@ -295,6 +308,7 @@
     const allCount = Object.keys(state.prices).length;
     let html = '';
     html += folderRow('all', '◇', 'Tous mes prix', allCount, true);
+    html += folderRow('crafts', '⚒', 'Crafts suivis', state.crafts.length, true);
     for (const f of state.folders) {
       html += folderRow(f.id, f.icon, f.name, f.items.length, false);
     }
@@ -327,10 +341,13 @@
 
   function renderHeader() {
     const f = getCurrentFolder();
-    document.getElementById('folder-icon').innerHTML = f ? folderIconHtml(f.icon) : '◇';
-    document.getElementById('folder-name').textContent = f ? f.name : 'Tous mes prix';
-    document.getElementById('btn-rename').hidden = !f;
-    document.getElementById('btn-delete-folder').hidden = !f;
+    let icon = '◇', name = 'Tous mes prix';
+    if (currentFolderId === 'crafts') { icon = '⚒'; name = 'Crafts suivis'; }
+    else if (f) { icon = folderIconHtml(f.icon); name = f.name; }
+    document.getElementById('folder-icon').innerHTML = icon;
+    document.getElementById('folder-name').textContent = name;
+    document.getElementById('btn-rename').hidden = !f || currentFolderId === 'crafts';
+    document.getElementById('btn-delete-folder').hidden = !f || currentFolderId === 'crafts';
   }
 
   function renderStats(items) {
@@ -341,6 +358,8 @@
 
   function renderGrid() {
     const $grid = document.getElementById('grid');
+    $grid.classList.remove('crafts-grid');
+    if (currentFolderId === 'crafts') return renderCraftsView();
     const $empty = document.getElementById('empty');
     const search = document.getElementById('search').value.trim().toLowerCase();
     const sort = document.getElementById('sort').value;
@@ -404,6 +423,162 @@
     }).join('');
 
     bindRows();
+  }
+
+  function renderCraftsView() {
+    const $grid = document.getElementById('grid');
+    const $empty = document.getElementById('empty');
+    const search = document.getElementById('search').value.trim().toLowerCase();
+    const sort = document.getElementById('sort').value;
+
+    let crafts = state.crafts.slice();
+    if (search) {
+      crafts = crafts.filter(c => {
+        const it = ITEMS_BY_ID.get(c.itemId);
+        return it && it.name.toLowerCase().includes(search);
+      });
+    }
+
+    const enriched = crafts.map(c => {
+      const it = ITEMS_BY_ID.get(c.itemId);
+      const cc = it ? computeCraftCost(c.itemId, c.qty || 1) : { cost: 0, missing: 0, total: 0 };
+      const hdv = c.hdvPrice;
+      const margin = hdv != null ? hdv - cc.cost : null;
+      return { c, it, cc, hdv, margin };
+    }).filter(x => x.it);
+
+    enriched.sort((a, b) => {
+      switch (sort) {
+        case 'name-desc': return b.it.name.localeCompare(a.it.name, 'fr');
+        case 'price': return (a.cc.cost) - (b.cc.cost);
+        case 'price-desc': return (b.cc.cost) - (a.cc.cost);
+        case 'level': return (a.it.level || 0) - (b.it.level || 0);
+        case 'level-desc': return (b.it.level || 0) - (a.it.level || 0);
+        case 'updated-desc': return (b.c.savedAt || 0) - (a.c.savedAt || 0);
+        default: return a.it.name.localeCompare(b.it.name, 'fr');
+      }
+    });
+
+    // stats
+    const totalCost = enriched.reduce((s, x) => s + x.cc.cost, 0);
+    const totalHdv = enriched.reduce((s, x) => s + (x.hdv || 0), 0);
+    const totalMargin = enriched.reduce((s, x) => s + (x.margin || 0), 0);
+    document.getElementById('stat-count').textContent = enriched.length;
+    document.getElementById('stat-total').textContent = `${fmtKamas(totalCost) || '0'} → ${fmtKamas(totalHdv) || '0'} (${totalMargin >= 0 ? '+' : ''}${fmtKamas(totalMargin) || '0'})`;
+
+    if (!enriched.length) {
+      $grid.innerHTML = '';
+      $empty.hidden = false;
+      $empty.innerHTML = state.crafts.length === 0
+        ? 'Aucun craft suivi. Ouvre <b>craft</b> dans la barre d\'outils pour chercher un item, puis sauvegarde-le.'
+        : 'Aucun résultat.';
+      return;
+    }
+    $empty.hidden = true;
+
+    $grid.classList.add('crafts-grid');
+    $grid.innerHTML = `<div class="crafts-head">
+      <span class="ch-name">ITEM</span>
+      <span class="ch-qty">QTÉ</span>
+      <span class="ch-cost">COÛT INGRÉDIENTS</span>
+      <span class="ch-hdv">PRIX HDV</span>
+      <span class="ch-margin">MARGE</span>
+      <span class="ch-act"></span>
+    </div>` + enriched.map(({ c, it, cc, hdv, margin }) => {
+      const approx = cc.missing > 0;
+      const costStr = (approx ? '~' : '') + (fmtKamas(cc.cost) || '0');
+      const hdvStr = hdv != null ? fmtKamas(hdv) : '';
+      const marginCls = margin == null ? '' : margin > 0 ? 'pos' : margin < 0 ? 'neg' : '';
+      const marginStr = margin == null
+        ? '—'
+        : (approx ? '~' : '') + (margin >= 0 ? '+' : '') + fmtKamas(margin);
+      return `<div class="craft-row" data-craft-item="${c.itemId}">
+        <div class="img" data-tip-item="${c.itemId}">
+          <img src="${itemIconUrl(it)}" alt="" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'ph',textContent:'?'}))">
+        </div>
+        <div class="info" data-tip-item="${c.itemId}">
+          <div class="nm">${escapeHtml(it.name)}</div>
+          <div class="meta">niv ${it.level || '?'}${approx ? ` · <span style="color:var(--accent-3)">${cc.missing} prix manquant${cc.missing>1?'s':''} sur ${cc.total}</span>` : ` · ${cc.total} ingrédients`}</div>
+        </div>
+        <div class="qty">
+          <button data-craft-qty-minus="${c.itemId}">−</button>
+          <span class="v">${c.qty || 1}</span>
+          <button data-craft-qty-plus="${c.itemId}">+</button>
+        </div>
+        <div class="cost ${approx ? 'approx' : ''}" title="${approx ? 'Estimation incomplète : ' + cc.missing + ' prix manquant(s)' : 'Coût exact'}">${costStr}</div>
+        <div class="hdv-cell">
+          <input class="hdv-input" data-craft-hdv="${c.itemId}" value="${hdvStr}" placeholder="—">
+          <span class="unit">/u</span>
+        </div>
+        <div class="margin ${marginCls}">${marginStr}</div>
+        <div class="act">
+          <button data-craft-open="${c.itemId}" title="Voir / éditer la recette">⌗</button>
+          <button data-craft-remove="${c.itemId}" title="Retirer du suivi">×</button>
+        </div>
+      </div>`;
+    }).join('');
+
+    bindCraftRows();
+  }
+
+  function bindCraftRows() {
+    const $grid = document.getElementById('grid');
+    for (const inp of $grid.querySelectorAll('.hdv-input')) {
+      inp.addEventListener('focus', () => inp.select());
+      inp.addEventListener('blur', () => {
+        const id = +inp.dataset.craftHdv;
+        const v = parseKamas(inp.value);
+        const c = state.crafts.find(x => x.itemId === id);
+        if (!c) return;
+        c.hdvPrice = v;
+        c.hdvUpdatedAt = Date.now();
+        saveState();
+        renderCraftsView();
+      });
+      inp.addEventListener('keydown', e => { if (e.key === 'Enter') inp.blur(); });
+    }
+    for (const btn of $grid.querySelectorAll('[data-craft-qty-plus]')) {
+      btn.addEventListener('click', () => updateCraftQty(+btn.dataset.craftQtyPlus, +1));
+    }
+    for (const btn of $grid.querySelectorAll('[data-craft-qty-minus]')) {
+      btn.addEventListener('click', () => updateCraftQty(+btn.dataset.craftQtyMinus, -1));
+    }
+    for (const btn of $grid.querySelectorAll('[data-craft-remove]')) {
+      btn.addEventListener('click', () => {
+        const id = +btn.dataset.craftRemove;
+        const it = ITEMS_BY_ID.get(id);
+        if (!confirm(`Retirer "${it?.name || '#' + id}" du suivi ?`)) return;
+        state.crafts = state.crafts.filter(x => x.itemId !== id);
+        saveState();
+        render();
+      });
+    }
+    for (const btn of $grid.querySelectorAll('[data-craft-open]')) {
+      btn.addEventListener('click', () => {
+        loadRecipe(+btn.dataset.craftOpen);
+        $recipeModal.hidden = false;
+      });
+    }
+  }
+
+  function updateCraftQty(itemId, delta) {
+    const c = state.crafts.find(x => x.itemId === itemId);
+    if (!c) return;
+    const nq = Math.max(1, Math.min(999, (c.qty || 1) + delta));
+    c.qty = nq;
+    saveState();
+    renderCraftsView();
+  }
+
+  function saveCraftFromRecipe(itemId, qty, hdvPrice) {
+    let c = state.crafts.find(x => x.itemId === itemId);
+    if (c) {
+      c.qty = qty;
+      if (hdvPrice != null) { c.hdvPrice = hdvPrice; c.hdvUpdatedAt = Date.now(); }
+    } else {
+      state.crafts.push({ itemId, qty, hdvPrice: hdvPrice ?? null, hdvUpdatedAt: hdvPrice != null ? Date.now() : null, savedAt: Date.now() });
+    }
+    saveState();
   }
 
   function bindRows() {
@@ -1537,6 +1712,13 @@
 
     const headerImg = `<img src="${itemIconUrl(it)}" alt="" onerror="this.replaceWith(Object.assign(document.createElement('span'),{style:'color:var(--text-mute);font-size:24px',textContent:'?'}))">`;
 
+    const savedCraft = state.crafts.find(c => c.itemId === it.id);
+    const savedHdv = savedCraft?.hdvPrice;
+    const hdvStr = savedHdv != null ? fmtKamas(savedHdv) : '';
+    const marginVal = savedHdv != null ? savedHdv - total : null;
+    const marginCls = marginVal == null ? '' : marginVal > 0 ? 'pos' : marginVal < 0 ? 'neg' : '';
+    const approx = missing > 0;
+
     $recipeDetail.innerHTML = `
       <div class="recipe-head">
         <div class="img-w">${headerImg}</div>
@@ -1552,11 +1734,28 @@
       </div>
       <div class="recipe-rows">${rowsHtml}</div>
       <div class="recipe-foot">
-        <span class="label">Coût total</span>
-        <span class="total ${missing > 0 ? 'partial' : ''}">${fmtKamas(total) || '0'}</span>
-        ${missing > 0 ? `<span class="warn-msg">${missing} prix manquant${missing>1?'s':''} (estimation incomplète)</span>` : ''}
+        <div class="ft-block">
+          <div class="lbl">COÛT INGRÉDIENTS</div>
+          <div class="val total ${approx ? 'approx' : ''}">${approx ? '~' : ''}${fmtKamas(total) || '0'}</div>
+          ${approx ? `<div class="sub warn">${missing} manquant${missing>1?'s':''} sur ${it.ing.length}</div>` : ''}
+        </div>
+        <div class="ft-block">
+          <div class="lbl">PRIX HDV (à l'unité)</div>
+          <div class="hdv-row">
+            <input id="recipe-hdv" type="text" value="${hdvStr}" placeholder="—" inputmode="text">
+            <span class="unit">/u</span>
+          </div>
+        </div>
+        <div class="ft-block">
+          <div class="lbl">MARGE NETTE</div>
+          <div class="val margin ${marginCls}">${marginVal == null ? '—' : (approx ? '~' : '') + (marginVal >= 0 ? '+' : '') + fmtKamas(marginVal)}</div>
+          ${marginVal != null && approx ? `<div class="sub warn">estimation</div>` : ''}
+        </div>
         <div class="spacer"></div>
-        <span class="info">${recipeQty > 1 ? `× ${recipeQty} crafts · ` : ''}${it.ing.reduce((s,i)=>s+i.n*recipeQty,0)} items au total</span>
+        <div class="ft-actions">
+          ${savedCraft ? `<button class="btn-mini" id="recipe-untrack">retirer du suivi</button>` : ''}
+          <button class="btn-primary" id="recipe-save">${savedCraft ? 'mettre à jour' : 'suivre ce craft'} →</button>
+        </div>
       </div>
     `;
     $recipeDetail.hidden = false;
@@ -1598,6 +1797,39 @@
         const officialId = +btn.dataset.recipeExplore;
         const item = ITEMS_BY_OFFICIAL.get(officialId);
         if (item) loadRecipe(item.id);
+      });
+    }
+    const $hdv = document.getElementById('recipe-hdv');
+    if ($hdv) {
+      $hdv.addEventListener('focus', () => $hdv.select());
+      $hdv.addEventListener('blur', () => {
+        const v = parseKamas($hdv.value);
+        const c = state.crafts.find(x => x.itemId === recipeCurrentItem.id);
+        if (c) { c.hdvPrice = v; c.hdvUpdatedAt = Date.now(); saveState(); renderRecipe(); }
+        else { renderRecipe(); }  // juste reflow pour montrer la marge live
+      });
+      $hdv.addEventListener('keydown', e => {
+        if (e.key === 'Enter') $hdv.blur();
+      });
+    }
+    const $save = document.getElementById('recipe-save');
+    if ($save) {
+      $save.addEventListener('click', () => {
+        const v = $hdv ? parseKamas($hdv.value) : null;
+        saveCraftFromRecipe(recipeCurrentItem.id, recipeQty, v);
+        renderRecipe();
+        renderFolders();
+        flashStatus(`"${recipeCurrentItem.name}" suivi dans Crafts`);
+      });
+    }
+    const $untrack = document.getElementById('recipe-untrack');
+    if ($untrack) {
+      $untrack.addEventListener('click', () => {
+        if (!confirm(`Retirer "${recipeCurrentItem.name}" des crafts suivis ?`)) return;
+        state.crafts = state.crafts.filter(c => c.itemId !== recipeCurrentItem.id);
+        saveState();
+        renderRecipe();
+        renderFolders();
       });
     }
   }
