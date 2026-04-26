@@ -1,0 +1,28 @@
+# Données utilisateur — ne jamais commit
+config.json
+
+# Assets téléchargés au premier lancement (cf. serve.py bootstrap)
+icons/
+item-icons/
+mob-icons/
+
+# Artefacts intermédiaires
+*-raw.json
+.playwright-mcp/
+
+# OS / éditeur
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+*.swp
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Logs
+*.log

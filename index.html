@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Memo Price · Dofus Retro</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<aside id="sidebar">
+  <header class="brand">
+    <span class="logo">⟡</span>
+    <div class="brand-text">
+      <h1>Memo Price</h1>
+      <span class="sub">Dofus Retro · <button class="link-version" id="btn-changelog" title="Voir le changelog">v—</button></span>
+    </div>
+    <button id="btn-collapse" class="btn-collapse" title="Réduire la sidebar">‹</button>
+  </header>
+
+  <div class="folder-actions">
+    <button id="btn-add-folder" class="btn-ghost" title="Nouveau dossier">+ dossier</button>
+  </div>
+
+  <nav id="folders" class="folders"></nav>
+
+  <footer class="side-foot">
+    <button id="btn-settings" class="btn-mini" title="Réglages (clé NIM, modèle)">⚙ réglages</button>
+    <button id="btn-export" class="btn-mini" title="Exporter mes données">⇩ export</button>
+    <button id="btn-import" class="btn-mini" title="Importer">⇧ import</button>
+    <input type="file" id="file-import" accept="application/json" hidden>
+  </footer>
+</aside>
+
+<main id="main">
+  <header class="topbar">
+    <div class="folder-head">
+      <span id="folder-icon" class="fhead-icon">◇</span>
+      <h2 id="folder-name">Tous mes prix</h2>
+      <button id="btn-rename" class="btn-mini" title="Renommer">✎</button>
+      <button id="btn-delete-folder" class="btn-mini danger" title="Supprimer le dossier" hidden>×</button>
+    </div>
+    <div class="stats">
+      <span class="stat"><b id="stat-count">0</b> items</span>
+      <span class="stat-sep">·</span>
+      <span class="stat">total <b id="stat-total">0 K</b></span>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <div class="search-wrap">
+      <input id="search" type="search" placeholder="Rechercher dans le dossier…" autocomplete="off">
+    </div>
+    <div class="tools">
+      <select id="sort">
+        <option value="name">Nom A-Z</option>
+        <option value="name-desc">Nom Z-A</option>
+        <option value="price-desc">Prix ↓</option>
+        <option value="price">Prix ↑</option>
+        <option value="level">Niveau ↑</option>
+        <option value="level-desc">Niveau ↓</option>
+        <option value="type">Type</option>
+        <option value="updated-desc">Maj récente</option>
+      </select>
+      <button id="btn-bulk" class="btn-secondary" title="Coller du texte (liste de prix)">txt</button>
+      <button id="btn-ocr" class="btn-secondary" title="OCR sur capture HDV (NVIDIA NIM)">OCR</button>
+      <button id="btn-recipe" class="btn-secondary" title="Calculer le coût d'un craft">craft</button>
+      <button id="btn-add-item" class="btn-primary">+ ressource</button>
+    </div>
+  </div>
+
+  <section id="grid" class="grid"></section>
+
+  <p id="empty" class="empty" hidden>Aucune ressource. Clique sur <b>+ ressource</b> pour commencer.</p>
+</main>
+
+<!-- Modal: pick item from catalog -->
+<div id="modal-pick" class="modal" hidden>
+  <div class="modal-card">
+    <header>
+      <h3>Ajouter une ressource</h3>
+      <button class="btn-close" data-close>×</button>
+    </header>
+    <input id="pick-search" type="search" placeholder="Rechercher (1492 ressources)…" autocomplete="off">
+    <div id="pick-results" class="pick-results"></div>
+  </div>
+</div>
+
+<!-- Modal: new/edit folder -->
+<div id="modal-folder" class="modal" hidden>
+  <div class="modal-card">
+    <header>
+      <h3 id="folder-modal-title">Nouveau dossier</h3>
+      <button class="btn-close" data-close>×</button>
+    </header>
+
+    <label>Icône
+      <div class="icon-picker">
+        <div class="icon-current" id="folder-icon-preview">🔨</div>
+        <div class="icon-tabs">
+          <button type="button" data-icon-tab="emoji" class="active">Emoji</button>
+          <button type="button" data-icon-tab="res">Ressource</button>
+          <button type="button" data-icon-tab="mob">Monstre</button>
+        </div>
+        <div class="icon-pane" data-icon-pane="emoji">
+          <input id="folder-icon-input" maxlength="4" placeholder="ou tape un emoji…">
+          <div class="emoji-suggest">
+            <button data-emoji="🔨" type="button">🔨</button>
+            <button data-emoji="🌳" type="button">🌳</button>
+            <button data-emoji="🌲" type="button">🌲</button>
+            <button data-emoji="🪨" type="button">🪨</button>
+            <button data-emoji="🌸" type="button">🌸</button>
+            <button data-emoji="🐲" type="button">🐲</button>
+            <button data-emoji="⚔️" type="button">⚔️</button>
+            <button data-emoji="🍖" type="button">🍖</button>
+            <button data-emoji="🐟" type="button">🐟</button>
+            <button data-emoji="🌾" type="button">🌾</button>
+            <button data-emoji="💎" type="button">💎</button>
+            <button data-emoji="🔥" type="button">🔥</button>
+          </div>
+        </div>
+        <div class="icon-pane" data-icon-pane="res" hidden>
+          <input id="icon-search-res" type="search" placeholder="Rechercher une ressource…">
+          <div class="icon-grid" id="icon-grid-res"></div>
+        </div>
+        <div class="icon-pane" data-icon-pane="mob" hidden>
+          <input id="icon-search-mob" type="search" placeholder="Rechercher un monstre…">
+          <div class="icon-grid" id="icon-grid-mob"></div>
+        </div>
+      </div>
+    </label>
+    <label>Nom
+      <input id="folder-name-input" placeholder="Farm Forgeron">
+    </label>
+    <footer>
+      <button id="folder-save" class="btn-primary">Enregistrer</button>
+    </footer>
+  </div>
+</div>
+
+<!-- Modal: bulk paste -->
+<div id="modal-bulk" class="modal" hidden>
+  <div class="modal-card large">
+    <header>
+      <h3>txt · Coller une liste de prix</h3>
+      <button class="btn-close" data-close>×</button>
+    </header>
+    <div class="bulk-body">
+      <p class="bulk-help">Une ligne par item. Format : <code>nom    prix</code> ou <code>nom prix/u</code>. Les abréviations courantes sont reconnues.</p>
+      <textarea id="bulk-input" placeholder="pollen blop    200/u
+dent or craq    80/u
+pierre rubis    580/u
+kriptonite 30/u
+..."></textarea>
+      <div class="bulk-actions">
+        <span class="bulk-target" id="bulk-target"></span>
+        <div class="spacer"></div>
+        <button id="bulk-analyze" class="btn-primary">Analyser →</button>
+      </div>
+      <div id="bulk-preview" class="bulk-preview" hidden></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: OCR -->
+<div id="modal-ocr" class="modal" hidden>
+  <div class="modal-card large">
+    <header>
+      <h3>OCR · Captures HDV → Prix</h3>
+      <div class="modal-head-actions">
+        <button class="btn-min" id="ocr-minimize" title="Réduire (continue en arrière-plan)">−</button>
+        <button class="btn-close" data-close>×</button>
+      </div>
+    </header>
+    <div class="ocr-body">
+      <div id="ocr-drop" class="ocr-drop">
+        <div class="ocr-drop-inner">
+          <div class="ocr-drop-icon">⤓</div>
+          <div>Dépose <b>une ou plusieurs</b> captures, <b>colle (Ctrl+V)</b>, ou <label class="lnk" for="ocr-file">choisis un/des fichier(s)</label></div>
+          <input type="file" id="ocr-file" accept="image/*" multiple hidden>
+        </div>
+      </div>
+      <div class="ocr-actions">
+        <span id="ocr-status" class="ocr-status">Aucune image en file…</span>
+        <button id="ocr-clear-all" class="btn-mini" hidden>tout vider</button>
+        <button id="ocr-analyze" class="btn-primary" disabled>Analyser →</button>
+      </div>
+      <div id="ocr-queue" class="ocr-queue"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal: settings -->
+<div id="modal-settings" class="modal" hidden>
+  <div class="modal-card small">
+    <header>
+      <h3>⚙ Réglages</h3>
+      <button class="btn-close" data-close>×</button>
+    </header>
+    <label>Clé API NVIDIA NIM
+      <input id="set-nim-key" type="password" placeholder="nvapi-…" autocomplete="off">
+    </label>
+    <p class="hint">Obtiens une clé sur <span class="lnk-static">build.nvidia.com</span>. Stockée en local dans <code>config.json</code>.</p>
+    <label>Modèle vision
+      <select id="set-nim-model-pick" class="set-model-pick">
+        <option value="meta/llama-3.2-11b-vision-instruct">Llama 3.2 11B Vision · rapide (~1s)</option>
+        <option value="meta/llama-3.2-90b-vision-instruct">Llama 3.2 90B Vision · précis (~3-5s)</option>
+        <option value="microsoft/phi-4-multimodal-instruct">Phi 4 Multimodal · alternative</option>
+        <option value="__custom__">[Personnalisé…]</option>
+      </select>
+      <input id="set-nim-model" placeholder="meta/llama-3.2-11b-vision-instruct" style="margin-top:6px" hidden>
+    </label>
+    <p id="set-status" class="hint"></p>
+    <footer>
+      <button id="set-save" class="btn-primary">Enregistrer</button>
+    </footer>
+  </div>
+</div>
+
+<!-- Mini OCR widget (visible quand modal réduit) -->
+<div id="ocr-mini" class="ocr-mini" hidden>
+  <div class="ocr-mini-icon">⌗</div>
+  <div class="ocr-mini-info">
+    <div class="ocr-mini-title">Session OCR</div>
+    <div class="ocr-mini-status" id="ocr-mini-status">…</div>
+  </div>
+  <div class="ocr-mini-bar" id="ocr-mini-bar"></div>
+  <button class="ocr-mini-x" id="ocr-mini-close" title="Fermer (perd les résultats non appliqués)">×</button>
+</div>
+
+<!-- Toast notification -->
+<div id="toast" class="toast" hidden>
+  <span class="toast-icon" id="toast-icon">✓</span>
+  <span class="toast-msg" id="toast-msg"></span>
+  <button class="toast-action" id="toast-action">Voir →</button>
+</div>
+
+<!-- Modal: changelog -->
+<div id="modal-changelog" class="modal" hidden>
+  <div class="modal-card large">
+    <header>
+      <h3>Changelog</h3>
+      <button class="btn-close" data-close>×</button>
+    </header>
+    <div class="changelog-body" id="changelog-body">
+      <div style="color:var(--text-mute);text-align:center;padding:30px">Chargement…</div>
+    </div>
+  </div>
+</div>
+
+<!-- Tooltip -->
+<div id="tip" class="tip" hidden></div>
+
+<!-- Modal: recipe -->
+<div id="modal-recipe" class="modal" hidden>
+  <div class="modal-card large">
+    <header>
+      <h3>Craft · Coût d'une recette</h3>
+      <button class="btn-close" data-close>×</button>
+    </header>
+    <div class="recipe-body">
+      <div class="recipe-search">
+        <input id="recipe-search" type="search" placeholder="Item à crafter (ex: Abranneau Sombre, Baguette en Racine d'Abraknyde Sombre…)" autocomplete="off">
+        <div id="recipe-suggest" class="recipe-suggest" hidden></div>
+      </div>
+      <div id="recipe-detail" class="recipe-detail" hidden></div>
+    </div>
+  </div>
+</div>
+
+<script src="resources.js"></script>
+<script src="items.js"></script>
+<script src="mobs.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
