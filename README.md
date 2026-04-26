@@ -14,15 +14,33 @@ calcul de coût de craft.
 ```bash
 git clone https://github.com/BurN-30/memo-price-dofus-retro.git
 cd memo-price-dofus-retro
-python serve.py
 ```
 
-Au premier lancement, `serve.py` télécharge les icônes (~5 MB, 30 s, une seule
-fois) puis ouvre `http://127.0.0.1:8765/` dans ton browser.
+Puis :
 
-Sur Windows, double-clic `lancer.bat` fait pareil.
+| OS | Lancer | Arrêter |
+|---|---|---|
+| **Windows** | double-clic `lancer.bat` | double-clic `stop.bat` (ou ferme la fenêtre noire) |
+| **macOS / Linux** | `./lancer.sh` | `./stop.sh` (ou Ctrl+C dans le terminal) |
+| **N'importe** | `python serve.py` | Ctrl+C dans le terminal |
 
-**Prérequis :** Python 3.8+ (rien d'autre, juste la stdlib).
+Au premier lancement, `serve.py` télécharge les icônes (~5 MB, 30 s, une
+seule fois) puis ouvre `http://127.0.0.1:8765/` dans ton browser.
+
+**Prérequis :** [Python 3.8+](https://www.python.org/downloads/) (rien
+d'autre, juste la stdlib — pas de `pip install`).
+
+### Important : arrêter le serveur
+
+Le serveur Python tourne en tâche de fond. **Fermer l'onglet du browser
+n'arrête pas le serveur**, il continue à occuper le port 8765.
+
+- **Plus simple** : ferme la fenêtre console (cmd/terminal) qui s'est
+  ouverte au lancement.
+- **Si tu l'as perdue** : Windows → `stop.bat`. macOS/Linux → `./stop.sh`.
+- **Manuel ultime** :
+  - Windows : `netstat -ano | findstr :8765` puis `taskkill /F /PID <id>`
+  - macOS/Linux : `kill $(lsof -ti :8765)`
 
 ## Fonctionnalités
 
