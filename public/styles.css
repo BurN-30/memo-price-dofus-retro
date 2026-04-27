@@ -1354,13 +1354,21 @@ kbd {
   gap: 3px;
   min-width: 0;
 }
+.ocr-lots-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--text-mute);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
 .ocr-lot {
   display: grid;
   grid-template-columns: 38px 1fr;
   gap: 10px;
   font-family: 'JetBrains Mono', monospace;
   font-size: 12px;
-  line-height: 1.3;
+  line-height: 1.4;
 }
 .ocr-lot .q { color: var(--text-mute); }
 .ocr-lot .v { color: var(--text-soft); font-weight: 600; }
@@ -1378,6 +1386,8 @@ kbd {
   text-transform: uppercase;
   letter-spacing: .1em;
   color: var(--text-mute);
+  font-weight: 600;
+  white-space: nowrap;
 }
 .ocr-avg .val {
   font-family: 'JetBrains Mono', monospace;
@@ -1397,24 +1407,26 @@ kbd {
 .ocr-hint {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 11px;
+  gap: 10px;
+  font-size: 11.5px;
   color: var(--text-soft);
-  background: rgba(212,154,92,.05);
-  border: 1px dashed rgba(212,154,92,.3);
+  background: rgba(244,196,120,.06);
+  border: 1px solid rgba(244,196,120,.25);
+  border-left: 3px solid var(--gold);
   border-radius: var(--radius-sm);
-  padding: 7px 11px;
+  padding: 8px 12px;
   margin-bottom: 10px;
   cursor: pointer;
-  letter-spacing: .01em;
-  transition: all .15s;
+  letter-spacing: .005em;
+  line-height: 1.45;
+  transition: background .15s, border-color .15s, color .15s;
 }
 .ocr-hint:hover {
-  background: rgba(212,154,92,.1);
-  border-style: solid;
+  background: rgba(244,196,120,.12);
   color: var(--text);
 }
-.ocr-hint .ic { flex-shrink: 0; opacity: .8; }
+.ocr-hint .ic { flex-shrink: 0; color: var(--gold); display: inline-flex; }
+.ocr-hint .ic svg { display: block; }
 .ocr-hint b { color: var(--gold); font-weight: 700; }
 .ocr-hint .dismiss {
   margin-left: auto;
@@ -1605,11 +1617,19 @@ kbd {
   font-size: 12px;
   outline: none;
 }
+.ocr-prices-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: var(--text-mute);
+  font-weight: 600;
+  margin-top: 14px;
+  margin-bottom: 6px;
+}
 .ocr-prices {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   gap: 8px;
-  margin-top: 10px;
 }
 .ocr-price-card {
   background: var(--bg-elev2);
@@ -1617,16 +1637,34 @@ kbd {
   border-radius: var(--radius-sm);
   padding: 8px 10px;
   cursor: pointer;
-  transition: all .12s;
+  transition: border-color .12s, background .12s, transform .08s;
+  position: relative;
 }
-.ocr-price-card:hover { border-color: var(--accent); }
-.ocr-price-card.selected { border-color: var(--accent); background: rgba(183,140,255,.1); }
+.ocr-price-card:hover { border-color: var(--accent-2); background: var(--bg-hover); }
+.ocr-price-card.selected {
+  border-color: var(--accent);
+  background: rgba(212,154,92,.12);
+  box-shadow: 0 0 0 1px var(--accent) inset;
+}
+.ocr-price-card.selected::after {
+  content: "";
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 12px;
+  height: 12px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23f2c478' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='2.5 6.5 5 9 9.5 3.5'/></svg>");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
 .ocr-price-card .label { font-size: 10px; text-transform: uppercase; letter-spacing: .08em; color: var(--text-mute); }
+.ocr-price-card.selected .label { color: var(--accent-3); }
 .ocr-price-card .val {
   font-family: 'JetBrains Mono', monospace;
   font-size: 16px;
   font-weight: 700;
   color: var(--gold);
+  margin-top: 2px;
 }
 .ocr-confirm-row {
   display: flex;

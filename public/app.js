@@ -1381,12 +1381,13 @@
 
     // résumé top : lot prices (gauche, petit) + prix moyen (droite, gros)
     const lotsHtml = `<div class="ocr-lots">
+      <div class="ocr-lots-label">Prix extraits HDV</div>
       <div class="ocr-lot"><span class="q">x1</span><span class="v">${fmtNum(d.price_x1)}</span></div>
       <div class="ocr-lot"><span class="q">x10</span><span class="v">${fmtNum(d.price_x10)}</span></div>
       <div class="ocr-lot"><span class="q">x100</span><span class="v">${fmtNum(d.price_x100)}</span></div>
     </div>`;
     const avgHtml = `<div class="ocr-avg">
-      <div class="lbl">Prix moyen</div>
+      <div class="lbl">Prix moyen conseillé</div>
       <div class="val">${d.avg_per_unit != null ? fmtNum(d.avg_per_unit) : '—'}</div>
       <div class="u">${d.avg_per_unit != null ? 'kamas/u' : ''}</div>
     </div>`;
@@ -1408,9 +1409,11 @@
         const hintKey = 'x10:' + targetIdForHint;
         if (pct >= 15 && !state.hiddenHints?.[hintKey]) {
           hintHtml = `<div class="ocr-hint" data-hint-key="${escapeHtml(hintKey)}" data-hint-item="${escapeHtml(String(targetIdForHint))}">
-            <span class="ic">›</span>
+            <span class="ic" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 1.5 L7 12.5 M3 8.5 L7 12.5 L11 8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" transform="rotate(-90 7 7)"/></svg>
+            </span>
             <span>vendre en <b>x10</b> rapporte <b>+${pct.toFixed(0)}%</b> par unité (${fmtKamas(Math.round(x10u))}/u en lot vs ${fmtKamas(x1)}/u à l'unité)</span>
-            <span class="dismiss" title="Masquer cette astuce">×</span>
+            <span class="dismiss" title="Masquer cette astuce" aria-label="Masquer">×</span>
           </div>`;
         }
       }
@@ -1448,6 +1451,7 @@
       </div>
       ${hintHtml}
       ${matchHtml}
+      <div class="ocr-prices-label">Choisir le prix de référence</div>
       <div class="ocr-prices">
         ${candidates.map(c => `<div class="ocr-price-card${c.value === q.selectedPrice ? ' selected' : ''}" data-price="${q.id}" data-value="${c.value}">
           <div class="label">${escapeHtml(c.label)}</div>

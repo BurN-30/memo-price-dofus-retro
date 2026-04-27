@@ -2,6 +2,22 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.5.2] — carte résultat OCR refaite · 2026-04-27
+
+### Corrigé
+- **Bug de palette** : la card de prix sélectionnée avait un fond `rgba(183,140,255,.1)` (mauve violet, étranger à la palette Pénates). Remplacé par `rgba(212,154,92,.12)` (cuivre subtle), avec un check SVG doré en haut à droite pour marquer la sélection.
+
+### Ajouté
+- **Labels SMALL CAPS** sur les sections du résultat OCR :
+  - « Prix extraits HDV » au-dessus des rangées x1/x10/x100.
+  - « Prix moyen conseillé » au-dessus du gros chiffre doré (au lieu de simplement « Prix moyen »).
+  - « Choisir le prix de référence » au-dessus des cards x1/x10/x100/Moyen.
+- **Check SVG doré** sur la card de prix sélectionnée (coin haut-droit, plus lisible que la simple bordure).
+
+### Changé
+- **Astuce x10** refondue : encart `border-left` doré à gauche, fond `--gold` à 6% (au lieu du `--accent` à 5%), icône SVG flèche-droite au lieu du `›` Unicode. Plus visible et plus aligné avec le ton « tip / conseil ».
+- **Card de prix au hover** : passe en `--accent-2` + `--bg-hover` (au lieu de juste changer la border).
+
 ## [0.5.1] — glyphes Unicode → SVG inline · 2026-04-27
 
 ### Changé
