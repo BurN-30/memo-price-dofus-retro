@@ -2,6 +2,11 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.5.4] — fix overlap OCR mini-widget vs toast · 2026-04-27
+
+### Corrigé
+- Le widget OCR mini (session OCR en arrière-plan) et le toast de notification étaient tous deux positionnés en `bottom: 20px; right: 20px`. Quand les deux apparaissaient simultanément, le toast cachait le widget OCR. Le widget OCR passe en `bottom-left` (z-index identique 50), le toast reste en `bottom-right` (z-index 60). Plus de chevauchement.
+
 ## [0.5.3] — modale Craft footer dramatique · 2026-04-27
 
 ### Changé
