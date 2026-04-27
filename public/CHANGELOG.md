@@ -2,6 +2,32 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.6.0] — synchronisation entre appareils · 2026-04-27
+
+### Ajouté
+- **Synchronisation cloud entre appareils**, sans inscription, sans email, sans mot de passe.
+- **Identifiant secret 32 caractères** (URL-safe base64) auto-généré à l'activation. Affiché dans Réglages avec bouton « Copier ». Sert d'unique preuve de propriété : aucun autre identifiant requis.
+- **Activation en un clic** : Réglages → « Synchronisation entre appareils » → bouton **Activer la synchronisation**. Le compte est créé instantanément, les données locales sont push initialement.
+- **Récupération sur un autre appareil** : Réglages → coller l'identifiant existant → bouton **Récupérer**. Les données distantes sont pull et remplacent les locales (avec confirmation si des données existent déjà).
+- **Sync auto à chaque modification** (debounce 1.5s) — les prix saisis sur un appareil apparaissent au démarrage suivant sur l'autre.
+- **Badge de statut** en bas de sidebar : ✓ (synchronisé), ⌛ (en cours), ✗ (échec). Tooltip explicite.
+- **Déconnexion** : retire l'identifiant du navigateur courant, conserve les données locales et le compte distant. Reconnexion possible avec l'identifiant.
+- **Suppression du compte** : efface le compte distant définitivement. Les données locales restent.
+- **Avertissement sécurité** explicite à l'activation : conserver l'identifiant en lieu sûr (gestionnaire de mots de passe), sans lui pas de récupération depuis un autre appareil.
+
+### Backend
+- **Cloudflare D1 database** (`penates-sync`, region WEUR) avec tables `users` (id, created_at, last_seen_at) et `user_data` (user_id, blob_json, updated_at).
+- **4 nouveaux endpoints Worker** : `POST /api/account/create`, `POST /api/sync/push`, `GET /api/sync/pull`, `DELETE /api/account/delete`.
+- **Limite blob** : 200 KB par utilisateur (~30-50 KB typique).
+- **Last-write-wins** sur la concurrence : si deux appareils modifient en même temps, la dernière modification gagne (suffisant pour notre usage).
+- Free tier D1 (5 GB stockage, 5M reads/jour, 100k writes/jour) : large pour ~10 000 utilisateurs actifs.
+
+### Sécurité
+- L'identifiant secret est cryptographiquement aléatoire (24 bytes via `crypto.getRandomValues`) → espace ~10^57, bruteforce impossible.
+- Aucune donnée personnelle (PII) collectée : pas d'email, pas d'IP loggée, pas de PnaJ.
+- Rate limit 60 req/min/IP préservé (s'applique aussi aux endpoints sync).
+- Code Worker open source, vérifiable sur le dépôt GitHub.
+
 ## [0.5.6] — onboarding clarifié + multi-device documenté · 2026-04-27
 
 ### Changé

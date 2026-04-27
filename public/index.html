@@ -57,6 +57,7 @@
       <span class="bm-ic" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 12 L7 4 M3.5 7.5 L7 4 L10.5 7.5 M2 1.5 L12 1.5"/></svg></span><span class="bm-lb">import</span>
     </button>
     <input type="file" id="file-import" accept="application/json" hidden>
+    <span id="sync-status-badge" class="sync-badge" hidden title="Synchronisé"></span>
   </footer>
 </aside>
 
@@ -269,6 +270,11 @@ kriptonite 30/u
       <input id="set-nim-model" placeholder="meta/llama-3.2-11b-vision-instruct" style="margin-top:6px" hidden>
     </label>
     <p id="set-status" class="hint"></p>
+
+    <details class="info-help" name="settings-faq" id="sync-details">
+      <summary>Synchronisation entre appareils</summary>
+      <div id="sync-section" class="sync-section"></div>
+    </details>
 
     <details class="info-help" name="settings-faq">
       <summary>À propos de Pénates</summary>

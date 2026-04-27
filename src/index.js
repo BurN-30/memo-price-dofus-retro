@@ -175,6 +175,85 @@ async function handleOcr(request) {
   });
 }
 
+// ---------- Sync (compte = identifiant secret 32 chars URL-safe) ----------
+
+const SYNC_ID_REGEX = /^[A-Za-z0-9_-]{32}$/;
+const MAX_BLOB_SIZE = 200_000; // 200 KB max par user (large vs ~30-50 KB typique)
+
+function generateSyncId() {
+  // 24 bytes random → base64url = 32 chars
+  const bytes = new Uint8Array(24);
+  crypto.getRandomValues(bytes);
+  return btoa(String.fromCharCode(...bytes)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
+}
+
+async function handleAccountCreate(request, env) {
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  if (!checkRateLimit(ip)) return jsonResponse({ error: 'Trop de requêtes. Réessaie dans 1 min.' }, 429);
+  const id = generateSyncId();
+  const now = Date.now();
+  await env.DB.prepare('INSERT INTO users (id, created_at, last_seen_at) VALUES (?, ?, ?)').bind(id, now, now).run();
+  return jsonResponse({ ok: true, id, created_at: now });
+}
+
+async function handleSyncPush(request, env) {
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  if (!checkRateLimit(ip)) return jsonResponse({ error: 'Trop de requêtes. Réessaie dans 1 min.' }, 429);
+  let body;
+  try { body = await request.json(); } catch { return jsonResponse({ error: 'bad json' }, 400); }
+  const id = String(body.id || '');
+  if (!SYNC_ID_REGEX.test(id)) return jsonResponse({ error: 'Identifiant invalide.' }, 400);
+  const blob = body.blob;
+  if (!blob || typeof blob !== 'object') return jsonResponse({ error: 'Blob manquant ou invalide.' }, 400);
+  const blobJson = JSON.stringify(blob);
+  if (blobJson.length > MAX_BLOB_SIZE) return jsonResponse({ error: `Blob trop gros (${blobJson.length} > ${MAX_BLOB_SIZE} octets).` }, 413);
+
+  const userExists = await env.DB.prepare('SELECT id FROM users WHERE id = ?').bind(id).first();
+  if (!userExists) return jsonResponse({ error: 'Identifiant inconnu.' }, 404);
+
+  const now = Date.now();
+  await env.DB.batch([
+    env.DB.prepare(
+      'INSERT INTO user_data (user_id, blob_json, updated_at) VALUES (?, ?, ?) ' +
+      'ON CONFLICT(user_id) DO UPDATE SET blob_json = excluded.blob_json, updated_at = excluded.updated_at'
+    ).bind(id, blobJson, now),
+    env.DB.prepare('UPDATE users SET last_seen_at = ? WHERE id = ?').bind(now, id),
+  ]);
+  return jsonResponse({ ok: true, synced_at: now });
+}
+
+async function handleSyncPull(request, env) {
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  if (!checkRateLimit(ip)) return jsonResponse({ error: 'Trop de requêtes. Réessaie dans 1 min.' }, 429);
+  const url = new URL(request.url);
+  const id = url.searchParams.get('id') || '';
+  if (!SYNC_ID_REGEX.test(id)) return jsonResponse({ error: 'Identifiant invalide.' }, 400);
+
+  const userExists = await env.DB.prepare('SELECT id FROM users WHERE id = ?').bind(id).first();
+  if (!userExists) return jsonResponse({ error: 'Identifiant inconnu.' }, 404);
+
+  const row = await env.DB.prepare('SELECT blob_json, updated_at FROM user_data WHERE user_id = ?').bind(id).first();
+  await env.DB.prepare('UPDATE users SET last_seen_at = ? WHERE id = ?').bind(Date.now(), id).run();
+
+  if (!row) return jsonResponse({ ok: true, blob: null, updated_at: null });
+  let blob;
+  try { blob = JSON.parse(row.blob_json); } catch { return jsonResponse({ error: 'Blob corrompu.' }, 500); }
+  return jsonResponse({ ok: true, blob, updated_at: row.updated_at });
+}
+
+async function handleAccountDelete(request, env) {
+  const ip = request.headers.get('CF-Connecting-IP') || 'unknown';
+  if (!checkRateLimit(ip)) return jsonResponse({ error: 'Trop de requêtes. Réessaie dans 1 min.' }, 429);
+  const url = new URL(request.url);
+  const id = url.searchParams.get('id') || '';
+  if (!SYNC_ID_REGEX.test(id)) return jsonResponse({ error: 'Identifiant invalide.' }, 400);
+  await env.DB.batch([
+    env.DB.prepare('DELETE FROM user_data WHERE user_id = ?').bind(id),
+    env.DB.prepare('DELETE FROM users WHERE id = ?').bind(id),
+  ]);
+  return jsonResponse({ ok: true });
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
@@ -186,6 +265,22 @@ export default {
 
     if (path === '/api/ocr' && request.method === 'POST') {
       return handleOcr(request);
+    }
+
+    if (path === '/api/account/create' && request.method === 'POST') {
+      return handleAccountCreate(request, env);
+    }
+
+    if (path === '/api/account/delete' && request.method === 'DELETE') {
+      return handleAccountDelete(request, env);
+    }
+
+    if (path === '/api/sync/push' && request.method === 'POST') {
+      return handleSyncPush(request, env);
+    }
+
+    if (path === '/api/sync/pull' && request.method === 'GET') {
+      return handleSyncPull(request, env);
     }
 
     if (path.startsWith('/api/')) {

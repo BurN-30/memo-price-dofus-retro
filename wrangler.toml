@@ -7,5 +7,10 @@ compatibility_flags = ["nodejs_compat"]
 directory = "./public"
 binding = "ASSETS"
 
+[[d1_databases]]
+binding = "DB"
+database_name = "penates-sync"
+database_id = "316e3910-9a37-4acb-ba38-ca4b66c350ea"
+
 [observability]
 enabled = true

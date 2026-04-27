@@ -5,6 +5,11 @@
   const STORAGE_KEY_NIM = 'penates.nim_key';
   const STORAGE_KEY_MODEL = 'penates.nim_model';
   const STORAGE_KEY_ONBOARDING = 'penates.onboarding_dismissed';
+  const STORAGE_KEY_SYNC_ID = 'penates.sync_id';
+  const STORAGE_KEY_LAST_SYNCED = 'penates.last_synced_at';
+  const STORAGE_KEY_LOCAL_UPDATED = 'penates.local_updated_at';
+  const SYNC_ID_REGEX = /^[A-Za-z0-9_-]{32}$/;
+  const SYNC_DEBOUNCE_MS = 1500;
   const DEFAULT_MODEL = 'meta/llama-3.2-11b-vision-instruct';
   const iconUrl = it => 'icons/' + (it.img || '').split('/').pop();
 
@@ -13,6 +18,81 @@
   function getNimModel() { return localStorage.getItem(STORAGE_KEY_MODEL) || DEFAULT_MODEL; }
   function setNimModel(m) { localStorage.setItem(STORAGE_KEY_MODEL, m || DEFAULT_MODEL); }
   function hasNimKey() { return !!getNimKey(); }
+
+  // ----- Sync compte (identifiant secret 32 chars) -----
+  function getSyncId() { return localStorage.getItem(STORAGE_KEY_SYNC_ID) || ''; }
+  function setSyncId(id) { localStorage.setItem(STORAGE_KEY_SYNC_ID, id); }
+  function clearSyncId() {
+    localStorage.removeItem(STORAGE_KEY_SYNC_ID);
+    localStorage.removeItem(STORAGE_KEY_LAST_SYNCED);
+    localStorage.removeItem(STORAGE_KEY_LOCAL_UPDATED);
+  }
+  function hasSyncId() { return SYNC_ID_REGEX.test(getSyncId()); }
+  function markLocalUpdated(ts) { localStorage.setItem(STORAGE_KEY_LOCAL_UPDATED, String(ts || Date.now())); }
+  function getLocalUpdated() { return parseInt(localStorage.getItem(STORAGE_KEY_LOCAL_UPDATED) || '0', 10); }
+
+  let _syncPushTimer = null;
+  let _syncStatus = 'idle'; // 'idle' | 'pushing' | 'error'
+  function setSyncStatus(s) { _syncStatus = s; updateSyncStatusBadge(); }
+  function updateSyncStatusBadge() {
+    const $b = document.getElementById('sync-status-badge');
+    if (!$b) return;
+    if (!hasSyncId()) { $b.hidden = true; return; }
+    $b.hidden = false;
+    $b.className = 'sync-badge ' + _syncStatus;
+    $b.textContent = _syncStatus === 'pushing' ? '⌛' : _syncStatus === 'error' ? '✗' : '✓';
+    $b.title = _syncStatus === 'pushing' ? 'Synchronisation en cours…'
+      : _syncStatus === 'error' ? 'Échec de la synchronisation. Réessai au prochain changement.'
+      : 'Synchronisé';
+  }
+
+  async function pushSyncNow() {
+    if (!hasSyncId()) return;
+    setSyncStatus('pushing');
+    try {
+      const r = await fetch('/api/sync/push', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: getSyncId(), blob: state }),
+      });
+      const j = await r.json();
+      if (!r.ok || !j.ok) throw new Error(j.error || ('HTTP ' + r.status));
+      localStorage.setItem(STORAGE_KEY_LAST_SYNCED, String(j.synced_at || Date.now()));
+      setSyncStatus('idle');
+      const $sec = document.getElementById('sync-section');
+      if ($sec && $sec.dataset.rendered === '1') renderSyncSection();
+    } catch (e) {
+      console.warn('[sync] push failed:', e);
+      setSyncStatus('error');
+    }
+  }
+
+  function scheduleSyncPush() {
+    if (!hasSyncId()) return;
+    if (_syncPushTimer) clearTimeout(_syncPushTimer);
+    _syncPushTimer = setTimeout(pushSyncNow, SYNC_DEBOUNCE_MS);
+  }
+
+  async function pullSync(id) {
+    const r = await fetch('/api/sync/pull?id=' + encodeURIComponent(id));
+    const j = await r.json();
+    if (!r.ok || !j.ok) throw new Error(j.error || ('HTTP ' + r.status));
+    return j; // { ok, blob, updated_at }
+  }
+
+  async function createAccount() {
+    const r = await fetch('/api/account/create', { method: 'POST' });
+    const j = await r.json();
+    if (!r.ok || !j.ok) throw new Error(j.error || ('HTTP ' + r.status));
+    return j; // { ok, id, created_at }
+  }
+
+  async function deleteAccount(id) {
+    const r = await fetch('/api/account/delete?id=' + encodeURIComponent(id), { method: 'DELETE' });
+    const j = await r.json();
+    if (!r.ok || !j.ok) throw new Error(j.error || ('HTTP ' + r.status));
+    return j;
+  }
 
   // --- catalog (resources + items)
   const CATALOG = window.RESOURCES || [];
@@ -189,6 +269,8 @@
   function saveState() {
     state.currentFolderId = currentFolderId;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    markLocalUpdated();
+    scheduleSyncPush();
   }
 
   function setPrice(id, value, when) {
@@ -1589,7 +1671,169 @@
       $setModel.value = m;
     }
     $setModal.hidden = false;
+    renderSyncSection();
     setTimeout(() => $setKey.focus(), 50);
+  }
+
+  function renderSyncSection() {
+    const $sec = document.getElementById('sync-section');
+    if (!$sec) return;
+    $sec.dataset.rendered = '1';
+    const id = getSyncId();
+    if (!id) {
+      $sec.innerHTML = `
+        <p class="sync-help">Pas activée. Les données restent dans ce navigateur uniquement.</p>
+        <button id="sync-activate" class="btn-primary sync-activate-btn">Activer la synchronisation</button>
+        <p class="sync-or">ou récupérer un compte existant</p>
+        <div class="sync-recover-row">
+          <input id="sync-recover-input" type="text" placeholder="Coller l'identifiant Pénates" autocomplete="off" maxlength="32" spellcheck="false">
+          <button id="sync-recover-btn" class="btn-secondary">Récupérer</button>
+        </div>
+        <p id="sync-section-msg" class="sync-msg" hidden></p>
+      `;
+      document.getElementById('sync-activate').addEventListener('click', onSyncActivate);
+      document.getElementById('sync-recover-btn').addEventListener('click', onSyncRecover);
+      document.getElementById('sync-recover-input').addEventListener('keydown', e => { if (e.key === 'Enter') onSyncRecover(); });
+    } else {
+      const lastSync = parseInt(localStorage.getItem(STORAGE_KEY_LAST_SYNCED) || '0', 10);
+      const lastSyncStr = lastSync ? new Date(lastSync).toLocaleString('fr-FR', { dateStyle: 'short', timeStyle: 'short' }) : 'jamais';
+      $sec.innerHTML = `
+        <p class="sync-status-line"><span class="sync-status-dot"></span>Synchronisation active. Dernière mise à jour : <b>${lastSyncStr}</b></p>
+        <p class="sync-help">Identifiant à conserver pour synchroniser sur d'autres appareils :</p>
+        <div class="sync-id-row">
+          <input id="sync-id-display" type="text" value="${id}" readonly spellcheck="false">
+          <button id="sync-id-copy" class="btn-secondary">Copier</button>
+        </div>
+        <p class="sync-warn"><b>Important.</b> Conserver cet identifiant en lieu sûr (gestionnaire de mots de passe, notepad). Sans lui, impossible de récupérer les données depuis un autre appareil.</p>
+        <div class="sync-actions-row">
+          <button id="sync-disconnect" class="btn-mini">Déconnecter cet appareil</button>
+          <button id="sync-delete" class="btn-mini danger">Supprimer le compte</button>
+        </div>
+        <p id="sync-section-msg" class="sync-msg" hidden></p>
+      `;
+      document.getElementById('sync-id-copy').addEventListener('click', onSyncCopyId);
+      document.getElementById('sync-disconnect').addEventListener('click', onSyncDisconnect);
+      document.getElementById('sync-delete').addEventListener('click', onSyncDeleteAccount);
+    }
+  }
+
+  function syncShowMsg(text, kind) {
+    const $m = document.getElementById('sync-section-msg');
+    if (!$m) return;
+    $m.textContent = text;
+    $m.className = 'sync-msg ' + (kind || '');
+    $m.hidden = !text;
+  }
+
+  async function onSyncActivate() {
+    const $btn = document.getElementById('sync-activate');
+    if (!$btn) return;
+    $btn.disabled = true;
+    syncShowMsg('Création du compte…');
+    try {
+      const j = await createAccount();
+      setSyncId(j.id);
+      markLocalUpdated();
+      await pushSyncNow();
+      renderSyncSection();
+      syncShowMsg('✓ Synchronisation activée. Conserver l\'identifiant !', 'success');
+    } catch (e) {
+      $btn.disabled = false;
+      syncShowMsg('Erreur : ' + e.message, 'error');
+    }
+  }
+
+  async function onSyncRecover() {
+    const $inp = document.getElementById('sync-recover-input');
+    const id = ($inp.value || '').trim();
+    if (!SYNC_ID_REGEX.test(id)) {
+      syncShowMsg('Identifiant invalide (32 caractères alphanumériques attendus).', 'error');
+      return;
+    }
+    syncShowMsg('Récupération…');
+    try {
+      const j = await pullSync(id);
+      if (j.blob && j.updated_at) {
+        if (!confirm('Remplacer les données actuelles de ce navigateur par celles du compte récupéré ?')) {
+          syncShowMsg('Annulé.', '');
+          return;
+        }
+        state = j.blob;
+        currentFolderId = state.currentFolderId || 'all';
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        markLocalUpdated(j.updated_at);
+        localStorage.setItem(STORAGE_KEY_LAST_SYNCED, String(j.updated_at));
+      }
+      setSyncId(id);
+      renderSyncSection();
+      render();
+      syncShowMsg('✓ Compte récupéré.', 'success');
+    } catch (e) {
+      syncShowMsg('Erreur : ' + e.message, 'error');
+    }
+  }
+
+  async function onSyncCopyId() {
+    const $btn = document.getElementById('sync-id-copy');
+    try {
+      await navigator.clipboard.writeText(getSyncId());
+      const old = $btn.textContent;
+      $btn.textContent = '✓ Copié';
+      setTimeout(() => { $btn.textContent = old; }, 1500);
+    } catch {
+      const $inp = document.getElementById('sync-id-display');
+      $inp.select();
+      document.execCommand('copy');
+    }
+  }
+
+  function onSyncDisconnect() {
+    if (!confirm('Déconnecter ce navigateur du compte ?\n\nLes données restent ici (en local) mais ne se synchroniseront plus. Le compte distant n\'est pas supprimé : vous pouvez vous reconnecter avec l\'identifiant.')) return;
+    clearSyncId();
+    renderSyncSection();
+    updateSyncStatusBadge();
+  }
+
+  async function onSyncDeleteAccount() {
+    if (!confirm('Supprimer définitivement le compte distant ?\n\nL\'identifiant ne servira plus à rien et les données distantes seront effacées. Les données locales de ce navigateur restent intactes.')) return;
+    const id = getSyncId();
+    syncShowMsg('Suppression…');
+    try {
+      await deleteAccount(id);
+      clearSyncId();
+      renderSyncSection();
+      updateSyncStatusBadge();
+    } catch (e) {
+      syncShowMsg('Erreur : ' + e.message, 'error');
+    }
+  }
+
+  // Au démarrage : si syncId existe, pull et adopter si plus récent que local
+  async function trySyncOnStartup() {
+    if (!hasSyncId()) return;
+    try {
+      const j = await pullSync(getSyncId());
+      const localTs = getLocalUpdated();
+      if (j.blob && j.updated_at && j.updated_at > localTs) {
+        // Cloud plus récent → on adopte sans confirmation au démarrage (last-write-wins).
+        // Conservation des prix existants : seulement si le local n'avait jamais été modifié.
+        state = j.blob;
+        currentFolderId = state.currentFolderId || 'all';
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        markLocalUpdated(j.updated_at);
+        localStorage.setItem(STORAGE_KEY_LAST_SYNCED, String(j.updated_at));
+        render();
+      } else if (!j.blob || (j.updated_at && localTs > j.updated_at)) {
+        // Local plus récent ou cloud vide → push notre local
+        await pushSyncNow();
+      } else {
+        localStorage.setItem(STORAGE_KEY_LAST_SYNCED, String(j.updated_at || Date.now()));
+      }
+      setSyncStatus('idle');
+    } catch (e) {
+      console.warn('[sync] startup pull failed:', e);
+      setSyncStatus('error');
+    }
   }
   function closeSettings() { $setModal.hidden = true; }
 
@@ -2142,4 +2386,6 @@
   if ($onboarding && !hasNimKey() && !localStorage.getItem(STORAGE_KEY_ONBOARDING)) {
     $onboarding.hidden = false;
   }
+  updateSyncStatusBadge();
+  trySyncOnStartup();
 })();
