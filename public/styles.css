@@ -376,7 +376,7 @@ kbd {
   background: var(--bg-elev);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: 36px 44px 28px;
+  padding: 28px 36px 22px;
   max-width: 600px;
   width: 100%;
   max-height: calc(100vh - 40px);
@@ -384,6 +384,10 @@ kbd {
   text-align: center;
   box-shadow: 0 24px 60px rgba(0,0,0,.7), 0 0 32px rgba(139,58,47,.15);
 }
+.onboarding-card .logo-large { display: inline-block; margin-bottom: 10px; }
+.onboarding-card h2 { font-size: 22px; }
+.onboarding-card .onboarding-tagline { margin-bottom: 12px; }
+.onboarding-card .onboarding-intro { margin-bottom: 14px; font-size: 12.5px; }
 .onboarding-card .logo-large {
   display: inline-block;
   margin-bottom: 14px;

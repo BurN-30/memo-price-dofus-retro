@@ -2,6 +2,13 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.4.9] — onboarding compact (zéro scroll) · 2026-04-27
+
+### Changé
+- **Tous les dropdowns d'onboarding raccourcis** pour rentrer dans une viewport standard (1080p, 900p) sans avoir à scroller, même quand un est ouvert. Plus dense, moins verbeux.
+- **Padding et marges resserrés** sur la card d'onboarding (28×36 au lieu de 36×44, h2 22px, intro 12.5px). Le contenu rentre maintenant en hauteur.
+- **Phrasé condensé** dans tous les dropdowns : suppression des doubles formulations, raccourcis acceptés (~, /, ex., niv).
+
 ## [0.4.8] — rédaction « Pourquoi Pénates ? » · 2026-04-27
 
 ### Changé

@@ -326,44 +326,42 @@ kriptonite 30/u
     <p class="onboarding-intro">Outil minimaliste pour mémoriser les prix HDV de Dofus Retro entre les sessions. Les données restent dans le navigateur, personne d'autre n'y accède.</p>
 
     <details class="info-help" name="onboarding-faq">
-      <summary>Pourquoi Pénates ? (l'histoire derrière le projet et le nom)</summary>
-      <p><b>Le projet</b> est parti d'une particularité de Dofus Retro 1.29 : l'HDV n'affiche pas de prix moyen sur les items, contrairement à d'autres versions du jeu. Évaluer une vente juste oblige donc à comparer plusieurs annonces, à retenir de tête, ou à griffonner sur un coin de papier. Pénates remplace ce griffonnage : un bloc-note dédié, en plus pratique, avec catalogue intégré, calcul de coût de craft, OCR sur captures HDV, suivi de marges, et dossiers de farm.</p>
-      <p><b>Le nom</b> vient de la mythologie romaine. Les <i>Pénates</i> sont les divinités protectrices du foyer, des provisions, et des biens domestiques. Le terme désigne aussi, par extension, ce qui appartient à un foyer (« regagner ses pénates »). Le rapprochement avec un memo de prix vient de là : garder chez soi le savoir des prix, comme on garderait ses provisions.</p>
-      <p><b>Le clin d'œil Dofus.</b> Les <i>Pénates du Corbac</i> sont une zone du jeu en 1.29, qui abrite la Bibliothèque du Maître Corbac (donjon niveau 110). Selon le lore, ce lieu hébergeait jadis la <b>Confrérie des Pénates</b>, un ordre dédié à la préservation de la connaissance. Le boss du donjon, <i>Maître Corbac</i>, est un jeu de mots transparent sur Maître Corbeau de La Fontaine, qui perd son fromage faute d'en connaître la valeur. Mémoriser ses prix, c'est ne pas finir comme lui.</p>
-      <p class="info-help-note">Projet open source, sans collecte de données, sans publicité. Si quelqu'un trouve ça utile, tant mieux. Si ça inspire un meilleur outil, encore mieux.</p>
+      <summary>Pourquoi Pénates ? (le projet et le nom)</summary>
+      <p><b>Le projet.</b> Dofus Retro 1.29 n'affiche pas de prix moyen sur l'HDV, contrairement à d'autres versions. Évaluer une vente juste oblige donc à comparer, retenir, ou griffonner. Pénates remplace ce griffonnage : un bloc-note avec catalogue intégré, calcul de coût de craft, OCR, dossiers de farm, marges.</p>
+      <p><b>Le nom.</b> Dans la mythologie romaine, les <i>Pénates</i> sont les divinités protectrices du foyer, des provisions et des biens domestiques (« regagner ses pénates »). Garder chez soi la connaissance des prix, comme on garderait ses provisions.</p>
+      <p><b>Le clin d'œil Dofus.</b> Les <i>Pénates du Corbac</i>, en 1.29, abritent la Bibliothèque du Maître Corbac (donjon niv 110). Le lore dit qu'y siégeait jadis la <b>Confrérie des Pénates</b>, ordre voué à la préservation du savoir. Le boss <i>Maître Corbac</i> renvoie à Maître Corbeau de La Fontaine, qui perd son fromage faute d'en connaître la valeur. Mémoriser ses prix, c'est ne pas finir comme lui.</p>
+      <p class="info-help-note">Projet open source, sans collecte de données, sans publicité.</p>
     </details>
 
     <details class="info-help" name="onboarding-faq">
       <summary>L'OCR, qu'est-ce que c'est ?</summary>
-      <p>L'OCR (<i>Optical Character Recognition</i>) est une technologie qui extrait automatiquement le texte présent sur une image.</p>
-      <p>Dans le cas de Pénates, l'app reçoit une capture d'écran d'une fiche d'item à l'HDV. Un modèle d'IA de vision identifie le nom, le niveau, et les prix x1/x10/x100 affichés, puis remplit automatiquement ces champs dans l'app sans saisie manuelle.</p>
-      <p class="info-help-note"><b>L'IA est utilisée uniquement pour cette lecture des captures HDV.</b> Pas de génération de texte, pas d'analyse des données utilisateur, pas de suggestion automatique. Sans clé NIM, l'app fonctionne pareil, les prix sont simplement saisis à la main.</p>
+      <p>L'OCR (<i>Optical Character Recognition</i>) est une technologie qui lit automatiquement le texte d'une image. Dans Pénates : une capture d'écran d'une fiche d'item HDV est envoyée à un modèle d'IA de vision qui identifie nom, niveau, prix x1/x10/x100, puis remplit ces champs dans l'app sans saisie manuelle.</p>
+      <p class="info-help-note"><b>L'IA n'est utilisée que pour ça.</b> Pas de génération de texte, pas d'analyse des données utilisateur, pas de suggestion. Sans clé NIM, l'app fonctionne pareil, les prix sont saisis à la main.</p>
     </details>
 
     <details class="info-help" name="onboarding-faq">
       <summary>Quoi capturer, et comment (sans rien installer)</summary>
-      <p><b>Ce qu'il faut capturer</b> : la fenêtre d'un item dans l'HDV de Dofus, avec les 3 colonnes de prix (x1, x10, x100) lisibles. Pas besoin de tout l'écran, seulement la fiche.</p>
-      <p><b>Comment capturer</b>, en utilisant les outils intégrés au système d'exploitation :</p>
+      <p><b>Capturer la fiche d'un item à l'HDV</b>, avec les 3 colonnes de prix (x1, x10, x100) lisibles. Pas besoin de tout l'écran.</p>
       <ul class="capture-list">
-        <li><b>Windows 10/11</b> : <kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>, sélectionner la zone, puis <kbd>Ctrl</kbd>+<kbd>V</kbd> sur la zone de drop.</li>
-        <li><b>macOS</b> : <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd>, sélectionner la zone, puis glisser le fichier généré sur la zone de drop.</li>
-        <li><b>Linux</b> : <kbd>Print Screen</kbd> ou outil intégré (gnome-screenshot, KSnip), même flow.</li>
+        <li><b>Windows 10/11</b> : <kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>, sélectionner, puis <kbd>Ctrl</kbd>+<kbd>V</kbd> sur la zone de drop.</li>
+        <li><b>macOS</b> : <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd>, sélectionner, puis glisser le fichier généré.</li>
+        <li><b>Linux</b> : <kbd>Print</kbd> ou gnome-screenshot, KSnip, même flow.</li>
       </ul>
-      <p class="info-help-note">Pénates accepte trois modes d'entrée : drag-drop d'image, coller (<kbd>Ctrl</kbd>+<kbd>V</kbd>), sélection de fichier. Pas besoin de logiciel tiers (ShareX, etc.).</p>
+      <p class="info-help-note">Modes acceptés : drag-drop, coller (<kbd>Ctrl</kbd>+<kbd>V</kbd>), fichier. Pas besoin d'un logiciel tiers (ShareX, etc.).</p>
     </details>
 
     <details class="nim-help" name="onboarding-faq">
-      <summary>Activer l'OCR : récupérer une clé NVIDIA NIM (gratuit, environ 5 min)</summary>
-      <p class="nim-help-warning"><b>Vérification téléphone requise.</b> NVIDIA exige un numéro de téléphone pour activer l'API. Les serveurs NVIDIA sont parfois saturés. Si la vérification SMS échoue, réessayer plus tard.</p>
+      <summary>Activer l'OCR : récupérer une clé NVIDIA NIM (gratuit, ~5 min)</summary>
+      <p class="nim-help-warning"><b>Téléphone requis.</b> NVIDIA exige un numéro pour activer l'API. Serveurs parfois saturés : si le SMS échoue, réessayer plus tard.</p>
       <ol>
-        <li>Aller sur <a href="https://build.nvidia.com/?modal=signin" target="_blank" rel="noopener noreferrer">build.nvidia.com</a>, saisir un email pour se connecter ou créer un compte.</li>
-        <li>Confirmer l'email (code reçu par mail), puis <b>vérifier le numéro de téléphone</b> (SMS avec code).</li>
-        <li>Créer un compte NVIDIA Cloud. Le nom du compte n'a pas d'importance (par exemple <code>perso</code>).</li>
-        <li>Ouvrir <a href="https://build.nvidia.com/settings/api-keys" target="_blank" rel="noopener noreferrer">build.nvidia.com/settings/api-keys</a> puis cliquer <b>Generate API Key</b>.</li>
-        <li>Donner un nom à la clé (par exemple <code>penates</code>), valider. Copier la clé <code>nvapi-…</code> affichée, <b>elle ne se ré-affiche pas</b>.</li>
-        <li>Revenir ici, cliquer <b>J'ai une clé</b> ci-dessous, coller la clé dans Réglages.</li>
+        <li>Aller sur <a href="https://build.nvidia.com/?modal=signin" target="_blank" rel="noopener noreferrer">build.nvidia.com</a>, saisir un email.</li>
+        <li>Confirmer l'email (code reçu) + <b>vérifier le numéro</b> (SMS).</li>
+        <li>Créer le compte NVIDIA Cloud (nom au choix, ex. <code>perso</code>).</li>
+        <li>Ouvrir <a href="https://build.nvidia.com/settings/api-keys" target="_blank" rel="noopener noreferrer">/settings/api-keys</a> puis <b>Generate API Key</b>.</li>
+        <li>Nom au choix (ex. <code>penates</code>), copier la clé <code>nvapi-…</code> (elle ne se ré-affiche pas).</li>
+        <li>Revenir ici, cliquer <b>J'ai une clé</b>, coller la clé.</li>
       </ol>
-      <p class="nim-help-note">Quota gratuit environ 1000 OCR par mois, aucune carte de crédit demandée. <b>Sécurité</b> : la clé est stockée uniquement dans le navigateur (<code>localStorage</code>), Pénates ne la voit pas, sauf le temps d'un OCR pour la transmettre à NIM (jamais stockée serveur). Code source <a href="https://github.com/BurN-30/memo-price-dofus-retro" target="_blank" rel="noopener noreferrer">consultable sur GitHub</a>.</p>
+      <p class="nim-help-note">Quota ~1000 OCR/mois, aucune CB. Clé stockée en <code>localStorage</code>, jamais sur le serveur Pénates. <a href="https://github.com/BurN-30/memo-price-dofus-retro" target="_blank" rel="noopener noreferrer">Code source consultable</a>.</p>
     </details>
     <div class="onboarding-actions">
       <button type="button" id="onb-go-settings" class="btn-primary">J'ai une clé → Réglages</button>
