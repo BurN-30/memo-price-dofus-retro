@@ -2,6 +2,11 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.4.6] — onboarding plus large · 2026-04-27
+
+### Changé
+- **Card d'onboarding élargie** : `max-width` 480px → 600px, padding horizontal 38 → 44px. Évite les lignes qui se chevauchent dans les dropdowns ouverts (ex. listes des étapes NIM, raccourcis clavier capture).
+
 ## [0.4.5] — dropdowns mutuellement exclusifs · 2026-04-27
 
 ### Ajouté
