@@ -2,6 +2,12 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.4.7] — animation dropdowns · 2026-04-27
+
+### Ajouté
+- **Animation d'ouverture/fermeture des dropdowns** : transition fluide block-size 0 → auto + fade opacity (280ms ease) via `::details-content` + `interpolate-size: allow-keywords` (technique CSS moderne 2024). Plus de coupe brusque.
+- **Fallback `@supports not (interpolate-size)`** : sur les browsers sans support, ouverture instantanée comme avant (pas d'animation cassée).
+
 ## [0.4.6] — onboarding plus large · 2026-04-27
 
 ### Changé

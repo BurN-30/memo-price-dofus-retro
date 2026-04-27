@@ -1,4 +1,6 @@
 :root {
+  /* Permet d'animer height/block-size entre 0 et auto sur les browsers modernes */
+  interpolate-size: allow-keywords;
   /* Palette marron sombre — bois, cuivre, parchemin */
   --bg: #14100c;
   --bg-2: #1a1410;
@@ -251,6 +253,32 @@ input, select, button { font-family: inherit; color: inherit; }
   background: rgba(212,154,92,.05);
   border-bottom: 1px solid var(--line-soft);
   color: var(--accent-3);
+}
+
+/* Animation d'ouverture/fermeture du contenu (technique ::details-content + interpolate-size) */
+.nim-help::details-content,
+.info-help::details-content {
+  block-size: 0;
+  overflow: clip;
+  opacity: 0;
+  transition:
+    block-size .28s ease,
+    opacity .22s ease,
+    content-visibility .28s allow-discrete;
+}
+.nim-help[open]::details-content,
+.info-help[open]::details-content {
+  block-size: auto;
+  opacity: 1;
+}
+/* Fallback pour browsers sans support : show instantly when open */
+@supports not (interpolate-size: allow-keywords) {
+  .nim-help::details-content,
+  .info-help::details-content {
+    block-size: auto;
+    opacity: 1;
+    transition: none;
+  }
 }
 .nim-help ol,
 .info-help ol,
