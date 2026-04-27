@@ -1728,7 +1728,9 @@
         <div class="level-cell">${niv}</div>
         <div class="price-cell"><input data-recipe-price="${pid != null ? pid : ''}" value="${priceVal}" placeholder="—" class="${priceVal ? '' : 'empty'}" ${pid == null ? 'disabled' : ''}></div>
         <div class="subtotal ${sub != null ? '' : 'missing'}">${sub != null ? fmtKamas(sub) : '— manquant'}</div>
-        <button class="ocr-btn" data-recipe-ocr="${pid != null ? pid : ''}" ${pid == null ? 'disabled' : ''} title="OCR pour combler ce prix">📷</button>
+        <button class="ocr-btn" data-recipe-ocr="${pid != null ? pid : ''}" ${pid == null ? 'disabled' : ''} title="OCR pour combler ce prix" aria-label="Lancer OCR pour cet ingrédient">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round"><path d="M3.5 4 L4.5 2.5 L9.5 2.5 L10.5 4 L12 4 Q13 4 13 5 L13 11 Q13 12 12 12 L2 12 Q1 12 1 11 L1 5 Q1 4 2 4 Z"/><circle cx="7" cy="8" r="2.5"/></svg>
+        </button>
       </div>`;
     }).join('');
 
@@ -1756,27 +1758,28 @@
       </div>
       <div class="recipe-rows">${rowsHtml}</div>
       <div class="recipe-foot">
-        <div class="ft-block">
-          <div class="lbl">COÛT INGRÉDIENTS</div>
-          <div class="val total ${approx ? 'approx' : ''}">${approx ? '~' : ''}${fmtKamas(total) || '0'}</div>
-          ${approx ? `<div class="sub warn">${missing} manquant${missing>1?'s':''} sur ${it.ing.length}</div>` : ''}
+        <div class="ft-block ft-block-cost">
+          <div class="lbl">Coût total ingrédients</div>
+          <div class="ft-cost-row">
+            <div class="val total ${approx ? 'approx' : ''}">${approx ? '~' : ''}${fmtKamas(total) || '0'}</div>
+            ${approx ? `<span class="ft-pill warn" title="${missing} prix manquant${missing>1?'s':''} sur ${it.ing.length} ingrédient${it.ing.length>1?'s':''}">${missing} manquant${missing>1?'s':''} · estimation incomplète</span>` : ''}
+          </div>
         </div>
-        <div class="ft-block">
-          <div class="lbl">PRIX HDV (à l'unité)</div>
+        <div class="ft-block ft-block-hdv">
+          <div class="lbl">Prix HDV (à l'unité)</div>
           <div class="hdv-row">
             <input id="recipe-hdv" type="text" value="${hdvStr}" placeholder="—" inputmode="text">
             <span class="unit">/u</span>
           </div>
         </div>
-        <div class="ft-block">
-          <div class="lbl">MARGE NETTE</div>
+        <div class="ft-block ft-block-margin">
+          <div class="lbl">Marge nette</div>
           <div class="val margin ${marginCls}">${marginVal == null ? '—' : (approx ? '~' : '') + (marginVal >= 0 ? '+' : '') + fmtKamas(marginVal)}</div>
-          ${marginVal != null && approx ? `<div class="sub warn">estimation</div>` : ''}
         </div>
         <div class="spacer"></div>
         <div class="ft-actions">
           ${savedCraft ? `<button class="btn-mini" id="recipe-untrack">retirer du suivi</button>` : ''}
-          <button class="btn-primary" id="recipe-save">${savedCraft ? 'mettre à jour' : 'suivre ce craft'} →</button>
+          <button class="btn-primary" id="recipe-save">${savedCraft ? 'Mettre à jour' : 'Suivre ce craft'}</button>
         </div>
       </div>
     `;

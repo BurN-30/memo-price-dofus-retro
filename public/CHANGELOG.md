@@ -2,6 +2,18 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.5.3] — modale Craft footer dramatique · 2026-04-27
+
+### Changé
+- **Coût total** : agrandi de 22px à **30px** (font-size), placé en position dominante. C'est l'info principale, elle se lit en premier.
+- **Pill « X manquants · estimation incomplète »** rouge discrète, en ligne avec le coût total (au lieu d'une `sub` perdue en dessous). Ne s'affiche que si l'estimation est incomplète.
+- **Footer avec gradient** subtil `--bg-elev` → `--bg`, padding plus aéré (18×22 vs 14×18), gap 24px entre blocs.
+- **Bouton primary** : `Suivre ce craft` / `Mettre à jour` (sans flèche `→` superflue), height 42px, padding 22px (plus présent).
+- **Bouton OCR par ingrédient** : emoji `📷` remplacé par SVG camera inline (cohérent palette, rendu OS-agnostique).
+
+### Corrigé
+- Étiquettes en SMALL CAPS plus serrées (letter-spacing .12em vs .1em) et mieux espacées des valeurs (gap 4px vs 2px).
+
 ## [0.5.2] — carte résultat OCR refaite · 2026-04-27
 
 ### Corrigé
