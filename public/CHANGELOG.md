@@ -2,6 +2,11 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.6.1] — fix débordement summary dropdown · 2026-04-27
+
+### Corrigé
+- **Summary des dropdowns d'aide débordait à droite** quand le texte du titre était long (« Comment récupérer une clé NVIDIA NIM (gratuit, ~5 min) » par exemple). Cause : `display: flex` + text-node anonyme + chevron en margin-left auto = pas de shrink correct, le texte sortait du conteneur. Fix : passé en `display: block` avec chevron en `position: absolute` à droite. Le texte wrap naturellement sur plusieurs lignes si nécessaire, le chevron reste centré verticalement à droite.
+
 ## [0.6.0] — synchronisation entre appareils · 2026-04-27
 
 ### Ajouté

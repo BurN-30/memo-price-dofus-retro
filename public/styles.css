@@ -213,33 +213,34 @@ input, select, button { font-family: inherit; color: inherit; }
 
 .nim-help summary, .info-help summary {
   cursor: pointer;
-  padding: 13px 16px;
+  padding: 13px 38px 13px 16px;
   font-size: 13px;
   font-weight: 600;
   color: var(--text);
   letter-spacing: .005em;
   list-style: none;
   user-select: none;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+  display: block;
+  line-height: 1.4;
   transition: color .15s, background .15s;
   position: relative;
 }
 .nim-help summary::-webkit-details-marker,
 .info-help summary::-webkit-details-marker { display: none; }
-/* Chevron SVG à droite, rotation 180° à l'ouverture */
+/* Chevron SVG en position absolue à droite (le texte peut wrapper naturellement) */
 .nim-help summary::after,
 .info-help summary::after {
   content: '';
+  position: absolute;
+  right: 16px;
+  top: 50%;
   width: 14px;
   height: 14px;
-  margin-left: auto;
+  margin-top: -7px;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23d49a5c' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><polyline points='4 6 8 10.5 12 6'/></svg>");
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  flex-shrink: 0;
   transition: transform .22s ease, opacity .15s;
   opacity: .85;
 }
