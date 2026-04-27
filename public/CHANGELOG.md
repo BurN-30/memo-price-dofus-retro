@@ -2,6 +2,12 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.6.2] — fix sidebar footer (icon-only, vrai cog) · 2026-04-27
+
+### Corrigé
+- **Boutons réglages/export/import débordaient** la sidebar (240px) avec SVG + label texte. Passage en **icon-only** : juste le SVG (16×16), label retiré, signification dans le `title` (tooltip natif). Beaucoup plus compact, lisible immédiatement, hover en cuivre.
+- **Icône réglages** : mon ancien SVG (cercle + 8 traits radiaux) ressemblait à un soleil. Remplacé par un **vrai engrenage Lucide-style** (cercle central + path 8 dents). Sans ambiguïté.
+
 ## [0.6.1] — fix débordement summary dropdown · 2026-04-27
 
 ### Corrigé

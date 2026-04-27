@@ -131,11 +131,17 @@ input, select, button { font-family: inherit; color: inherit; }
 /* Chevron du btn-collapse : flip 180° en mode collapsed pour pointer vers la droite */
 .btn-collapse svg { transition: transform .22s ease; display: block; margin: auto; }
 .sidebar-collapsed .btn-collapse svg { transform: rotate(180deg); }
-/* Boutons sidebar foot : icône SVG + label inline */
-.side-foot .btn-mini { display: inline-flex; align-items: center; gap: 6px; }
-.side-foot .btn-mini .bm-ic { display: inline-flex; flex-shrink: 0; }
+/* Boutons sidebar foot : icon-only (label retiré, info dans le title) */
+.side-foot .btn-mini {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  height: 36px;
+}
+.side-foot .btn-mini .bm-ic { display: inline-flex; flex-shrink: 0; color: var(--text-soft); transition: color .15s; }
+.side-foot .btn-mini:hover .bm-ic { color: var(--accent); }
 .side-foot .btn-mini .bm-ic svg { display: block; }
-.side-foot .btn-mini .bm-lb { line-height: 1; }
 /* Bouton renommer (header dossier) : SVG centré */
 #btn-rename svg { display: block; margin: auto; }
 .brand .logo {
