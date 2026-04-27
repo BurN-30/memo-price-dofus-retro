@@ -2,6 +2,12 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.4.5] — dropdowns mutuellement exclusifs · 2026-04-27
+
+### Ajouté
+- **Attribut `name="onboarding-faq"`** sur les 4 `<details>` de l'onboarding : ouvrir un dropdown ferme automatiquement les autres (pure HTML natif, supporté par tous les browsers modernes depuis 2024). Plus besoin de scroller dans la modale, l'expérience reste compacte.
+- **`max-height: calc(100vh - 40px)` + `overflow-y: auto`** sur la card d'onboarding au cas où le contenu dépasse encore l'écran (petits écrans, dropdown très long).
+
 ## [0.4.4] — UX dropdowns onboarding · 2026-04-27
 
 ### Changé
