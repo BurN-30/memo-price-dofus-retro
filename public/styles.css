@@ -125,15 +125,19 @@ input, select, button { font-family: inherit; color: inherit; }
   height: 32px;
   flex: none;
 }
-.sidebar-collapsed .side-foot .btn-mini::first-letter { font-size: 14px; }
-.sidebar-collapsed .side-foot .btn-mini::before {
-  font-size: 16px;
-  display: block;
-  text-align: center;
-}
-.sidebar-collapsed #btn-settings::before { content: '⚙'; }
-.sidebar-collapsed #btn-export::before { content: '⇩'; }
-.sidebar-collapsed #btn-import::before { content: '⇧'; }
+.sidebar-collapsed .side-foot .btn-mini { display: flex; align-items: center; justify-content: center; gap: 0; }
+.sidebar-collapsed .side-foot .btn-mini .bm-lb { display: none; }
+.sidebar-collapsed .side-foot .btn-mini .bm-ic { display: inline-flex; }
+/* Chevron du btn-collapse : flip 180° en mode collapsed pour pointer vers la droite */
+.btn-collapse svg { transition: transform .22s ease; display: block; margin: auto; }
+.sidebar-collapsed .btn-collapse svg { transform: rotate(180deg); }
+/* Boutons sidebar foot : icône SVG + label inline */
+.side-foot .btn-mini { display: inline-flex; align-items: center; gap: 6px; }
+.side-foot .btn-mini .bm-ic { display: inline-flex; flex-shrink: 0; }
+.side-foot .btn-mini .bm-ic svg { display: block; }
+.side-foot .btn-mini .bm-lb { line-height: 1; }
+/* Bouton renommer (header dossier) : SVG centré */
+#btn-rename svg { display: block; margin: auto; }
 .brand .logo {
   font-size: 28px;
   color: var(--accent);
@@ -609,12 +613,16 @@ kbd {
   position: relative;
 }
 .search-wrap::before {
-  content: "⌕";
+  content: "";
   position: absolute;
   left: 12px; top: 50%;
   transform: translateY(-50%);
-  color: var(--text-mute);
-  font-size: 16px;
+  width: 14px;
+  height: 14px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 14 14' fill='none' stroke='%237a6450' stroke-width='1.5' stroke-linecap='round'><circle cx='6' cy='6' r='4'/><line x1='9' y1='9' x2='12' y2='12'/></svg>");
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
 }
 #search {
   width: 100%;

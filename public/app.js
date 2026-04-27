@@ -2103,12 +2103,10 @@
   function applySidebarState() {
     const collapsed = localStorage.getItem(SIDE_KEY) === 'collapsed';
     document.body.classList.toggle('sidebar-collapsed', collapsed);
-    document.getElementById('btn-collapse').textContent = collapsed ? '›' : '‹';
   }
   document.getElementById('btn-collapse').addEventListener('click', () => {
     const isCol = document.body.classList.toggle('sidebar-collapsed');
     localStorage.setItem(SIDE_KEY, isCol ? 'collapsed' : 'expanded');
-    document.getElementById('btn-collapse').textContent = isCol ? '›' : '‹';
   });
   applySidebarState();
 

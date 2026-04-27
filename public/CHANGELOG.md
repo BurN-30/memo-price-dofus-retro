@@ -2,6 +2,21 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.5.1] — glyphes Unicode → SVG inline · 2026-04-27
+
+### Changé
+Remplacement systématique des glyphes Unicode peu lisibles par des SVG inline propres :
+
+- **`‹` btn-collapse** → SVG chevron-left avec rotation 180° au repli (CSS pur, plus de manipulation `textContent` côté JS).
+- **`⚙` réglages** → SVG cog (cercle + 8 traits radiaux).
+- **`⇩` export** → SVG flèche bas + ligne (style "download to disk").
+- **`⇧` import** → SVG flèche haut + ligne (style "upload from disk").
+- **`✎` renommer** (header dossier) → SVG crayon, identique au bouton edit des Crafts.
+- **`⌕` loupe** dans le champ de recherche → SVG inline via `data:image/svg+xml`, couleur `--text-mute`.
+- **`⚙ Réglages`** dans le titre de la modale → simplement `Réglages` (le SVG du bouton suffit).
+
+Bénéfices : rendu identique sur tous les OS (plus de variations Windows/Mac/Linux selon la police de fallback), aliasing propre en haute résolution, couleurs via `currentColor` cohérentes avec la palette.
+
 ## [0.5.0] — vue Crafts suivis stylée · 2026-04-27
 
 ### Ajouté
