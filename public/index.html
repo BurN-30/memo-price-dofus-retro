@@ -233,14 +233,17 @@ kriptonite 30/u
     </label>
     <p class="hint">Obtiens une clé sur <a href="https://build.nvidia.com" target="_blank" rel="noopener noreferrer">build.nvidia.com</a>. Stockée localement dans ton navigateur (jamais sur le serveur Pénates).</p>
     <details class="nim-help">
-      <summary>Comment récupérer une clé NVIDIA NIM ? (gratuit, ~2 min)</summary>
+      <summary>Comment récupérer une clé NVIDIA NIM ? (gratuit, ~5 min)</summary>
+      <p class="nim-help-warning"><b>Vérification téléphone requise.</b> NVIDIA exige un numéro de téléphone. Serveurs souvent saturés — si la vérif SMS échoue, retry plus tard.</p>
       <ol>
-        <li>Va sur <a href="https://build.nvidia.com" target="_blank" rel="noopener noreferrer">build.nvidia.com</a> et crée un compte gratuit (n'importe quel mail).</li>
-        <li>Ouvre le modèle <a href="https://build.nvidia.com/meta/llama-3.2-11b-vision-instruct" target="_blank" rel="noopener noreferrer">meta/llama-3.2-11b-vision-instruct</a>.</li>
-        <li>En haut à droite, clique <b>Get API Key</b>. La clé s'affiche au format <code>nvapi-…</code> — copie-la (elle ne se ré-affiche pas).</li>
+        <li>Va sur <a href="https://build.nvidia.com/?modal=signin" target="_blank" rel="noopener noreferrer">build.nvidia.com</a>, saisis ton email.</li>
+        <li>Confirme l'email (code reçu) + <b>vérifie ton numéro</b> (SMS avec OTP).</li>
+        <li>Crée le compte NVIDIA Cloud : nom au choix (ex. <code>perso</code>).</li>
+        <li>Va sur <a href="https://build.nvidia.com/settings/api-keys" target="_blank" rel="noopener noreferrer">build.nvidia.com/settings/api-keys</a> → <b>Generate API Key</b>.</li>
+        <li>Donne un nom (ex. <code>penates</code>), copie la clé <code>nvapi-…</code> — elle ne se ré-affiche pas.</li>
         <li>Reviens ici, colle-la, clique <b>Tester</b> puis <b>Enregistrer</b>.</li>
       </ol>
-      <p class="nim-help-note">Quota gratuit ~1000 OCR/mois. Aucune carte de crédit demandée.</p>
+      <p class="nim-help-note">Clé stockée uniquement dans ton navigateur (<code>localStorage</code>). Pénates ne la voit pas, sauf le temps d'un OCR (forward à NIM, jamais stockée). <a href="https://github.com/BurN-30/memo-price-dofus-retro" target="_blank" rel="noopener noreferrer">Code source consultable</a>.</p>
     </details>
     <label>Modèle vision
       <select id="set-nim-model-pick" class="set-model-pick">
@@ -321,15 +324,34 @@ kriptonite 30/u
     <h2>Bienvenue dans Pénates</h2>
     <p class="onboarding-tagline"><i>Préserve la connaissance des prix.</i></p>
     <p class="onboarding-intro">Outil minimaliste pour mémoriser les prix HDV de Dofus Retro entre tes sessions. Tes données restent dans ton navigateur — personne d'autre ne les voit.</p>
+
+    <div class="info-card">
+      <div class="info-card-head">
+        <span class="info-card-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <rect x="3" y="2" width="12" height="14" rx="1" stroke="currentColor" stroke-width="1.4"/>
+            <path d="M5.5 6 L12.5 6 M5.5 9 L12.5 9 M5.5 12 L10 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <h3>L'OCR, c'est quoi ?</h3>
+      </div>
+      <p>Imagine que tu prends une photo d'un panneau écrit. <b>L'OCR, c'est l'outil qui lit ce panneau pour toi</b> et recopie le texte automatiquement, comme un assistant qui regarderait l'image à ta place.</p>
+      <p>Dans Pénates : tu fais une <b>capture d'écran d'une fiche d'item à l'HDV</b> (sélection puis screenshot), tu la déposes dans l'app, et l'IA lit pour toi le nom, le niveau et les prix x1/x10/x100. Plus besoin de tout retaper à la main.</p>
+      <p class="info-card-note"><b>L'IA n'est utilisée QUE pour ça.</b> Pas de génération de texte, pas d'analyse de tes données, pas de suggestion automatique. Juste reconnaître les chiffres sur les captures que tu déposes. Sans clé NIM, l'app marche pareil — tu rentres juste tes prix à la main.</p>
+    </div>
+
     <details class="nim-help">
-      <summary>Activer l'OCR : récupérer une clé NVIDIA NIM (gratuit, ~2 min)</summary>
+      <summary>Activer l'OCR : récupérer une clé NVIDIA NIM (gratuit, ~5 min)</summary>
+      <p class="nim-help-warning"><b>Vérification téléphone requise.</b> NVIDIA exige un numéro de téléphone pour activer l'API. Les serveurs NVIDIA sont souvent saturés — si la vérif SMS échoue, retry quelques minutes plus tard.</p>
       <ol>
-        <li>Va sur <a href="https://build.nvidia.com" target="_blank" rel="noopener noreferrer">build.nvidia.com</a> et crée un compte gratuit.</li>
-        <li>Ouvre le modèle <a href="https://build.nvidia.com/meta/llama-3.2-11b-vision-instruct" target="_blank" rel="noopener noreferrer">llama-3.2-11b-vision-instruct</a>.</li>
-        <li>Clique <b>Get API Key</b> (en haut à droite), copie la clé <code>nvapi-…</code>.</li>
+        <li>Va sur <a href="https://build.nvidia.com/?modal=signin" target="_blank" rel="noopener noreferrer">build.nvidia.com</a>, saisis ton email pour te connecter ou créer un compte.</li>
+        <li>Confirme ton email (code reçu par mail) puis <b>vérifie ton numéro de téléphone</b> (SMS avec OTP).</li>
+        <li>Crée ton compte NVIDIA Cloud : un nom au choix (ex. <code>perso</code> ou <code>moi</code>, ça n'a pas d'importance).</li>
+        <li>Va sur <a href="https://build.nvidia.com/settings/api-keys" target="_blank" rel="noopener noreferrer">build.nvidia.com/settings/api-keys</a> et clique <b>Generate API Key</b>.</li>
+        <li>Donne un nom à la clé (ex. <code>penates</code>), valide. Copie la clé <code>nvapi-…</code> affichée — <b>elle ne se ré-affiche pas</b>.</li>
         <li>Reviens ici, clique <b>J'ai une clé</b> ci-dessous, colle-la dans Réglages.</li>
       </ol>
-      <p class="nim-help-note">Quota ~1000 OCR/mois. Aucune carte de crédit. L'OCR est optionnel : sans clé, tu peux quand même rentrer tes prix à la main.</p>
+      <p class="nim-help-note">Quota ~1000 OCR/mois, aucune carte de crédit. <b>Sécurité</b> : ta clé est stockée uniquement dans ton navigateur (<code>localStorage</code>) — Pénates ne la voit jamais sauf le temps d'un OCR (forwardée à NIM, jamais stockée serveur). Code source <a href="https://github.com/BurN-30/memo-price-dofus-retro" target="_blank" rel="noopener noreferrer">consultable sur GitHub</a>.</p>
     </details>
     <div class="onboarding-actions">
       <button type="button" id="onb-go-settings" class="btn-primary">J'ai une clé → Réglages</button>

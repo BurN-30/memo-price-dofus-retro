@@ -2,6 +2,18 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.4.2] — onboarding pédagogique · 2026-04-27
+
+### Ajouté
+- **Fiche "C'est quoi l'OCR ?"** dans l'onboarding : explication simple ("photo d'un panneau lue automatiquement"), exemple concret du flow Pénates (capture HDV → OCR → prix remplis), et précision explicite sur l'usage UNIQUE de l'IA (pas de génération texte, pas d'analyse données, juste lecture des chiffres sur captures).
+- **Avertissement vérification téléphone** dans le tuto NVIDIA (encart rouge discret) : le numéro de téléphone est requis et les serveurs NVIDIA sont parfois saturés.
+- **Mention sécurité enrichie** : clé en `localStorage` browser, jamais stockée serveur, lien vers le code source GitHub pour vérification.
+
+### Changé
+- **Tuto NVIDIA réécrit** avec la procédure réelle 2026 : `build.nvidia.com/?modal=signin` (plus de page "modèle"), création compte NVIDIA Cloud (nom au choix), vérification téléphone, page `/settings/api-keys`, génération API Key avec nom au choix. Plus de mention obsolète de "Get API Key sur le modèle".
+- **Bouton primary** : gradient diagonal flashy → vertical doux, ombre divisée par 3, hover plus subtil. Plus aligné avec l'identité archive.
+- **Bouton onboarding** : fix conflit `height` vs `padding` qui décalait visuellement le contenu.
+
 ## [0.4.1] — identité Pénates · 2026-04-27
 
 ### Ajouté
