@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Pénates · Memo des prix HDV · Dofus Retro</title>
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
-<meta name="description" content="Memo des prix HDV pour Dofus Retro 1.29 — Confrérie des Pénates, préserve la connaissance des prix.">
+<meta name="description" content="Memo des prix HDV pour Dofus Retro 1.29. Confrérie des Pénates, préserve la connaissance des prix.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=EB+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
@@ -233,17 +233,17 @@ kriptonite 30/u
     </label>
     <p class="hint">Obtiens une clé sur <a href="https://build.nvidia.com" target="_blank" rel="noopener noreferrer">build.nvidia.com</a>. Stockée localement dans ton navigateur (jamais sur le serveur Pénates).</p>
     <details class="nim-help">
-      <summary>Comment récupérer une clé NVIDIA NIM ? (gratuit, ~5 min)</summary>
-      <p class="nim-help-warning"><b>Vérification téléphone requise.</b> NVIDIA exige un numéro de téléphone. Serveurs souvent saturés — si la vérif SMS échoue, retry plus tard.</p>
+      <summary>Comment récupérer une clé NVIDIA NIM (gratuit, environ 5 min)</summary>
+      <p class="nim-help-warning"><b>Vérification téléphone requise.</b> NVIDIA exige un numéro de téléphone. Serveurs parfois saturés. Si la vérification SMS échoue, réessayer plus tard.</p>
       <ol>
-        <li>Va sur <a href="https://build.nvidia.com/?modal=signin" target="_blank" rel="noopener noreferrer">build.nvidia.com</a>, saisis ton email.</li>
-        <li>Confirme l'email (code reçu) + <b>vérifie ton numéro</b> (SMS avec OTP).</li>
-        <li>Crée le compte NVIDIA Cloud : nom au choix (ex. <code>perso</code>).</li>
-        <li>Va sur <a href="https://build.nvidia.com/settings/api-keys" target="_blank" rel="noopener noreferrer">build.nvidia.com/settings/api-keys</a> → <b>Generate API Key</b>.</li>
-        <li>Donne un nom (ex. <code>penates</code>), copie la clé <code>nvapi-…</code> — elle ne se ré-affiche pas.</li>
-        <li>Reviens ici, colle-la, clique <b>Tester</b> puis <b>Enregistrer</b>.</li>
+        <li>Aller sur <a href="https://build.nvidia.com/?modal=signin" target="_blank" rel="noopener noreferrer">build.nvidia.com</a>, saisir l'email.</li>
+        <li>Confirmer l'email (code reçu), puis <b>vérifier le numéro</b> (SMS avec code).</li>
+        <li>Créer le compte NVIDIA Cloud, nom au choix (par exemple <code>perso</code>).</li>
+        <li>Ouvrir <a href="https://build.nvidia.com/settings/api-keys" target="_blank" rel="noopener noreferrer">build.nvidia.com/settings/api-keys</a>, cliquer <b>Generate API Key</b>.</li>
+        <li>Donner un nom (par exemple <code>penates</code>), copier la clé <code>nvapi-…</code>, <b>elle ne se ré-affiche pas</b>.</li>
+        <li>Coller la clé ici, cliquer <b>Tester</b> puis <b>Enregistrer</b>.</li>
       </ol>
-      <p class="nim-help-note">Clé stockée uniquement dans ton navigateur (<code>localStorage</code>). Pénates ne la voit pas, sauf le temps d'un OCR (forward à NIM, jamais stockée). <a href="https://github.com/BurN-30/memo-price-dofus-retro" target="_blank" rel="noopener noreferrer">Code source consultable</a>.</p>
+      <p class="nim-help-note">Clé stockée uniquement dans le navigateur (<code>localStorage</code>). Pénates ne la voit pas, sauf le temps d'un OCR (transmise à NIM, jamais stockée serveur). <a href="https://github.com/BurN-30/memo-price-dofus-retro" target="_blank" rel="noopener noreferrer">Code source consultable</a>.</p>
     </details>
     <label>Modèle vision
       <select id="set-nim-model-pick" class="set-model-pick">
@@ -323,35 +323,47 @@ kriptonite 30/u
     </span>
     <h2>Bienvenue dans Pénates</h2>
     <p class="onboarding-tagline"><i>Préserve la connaissance des prix.</i></p>
-    <p class="onboarding-intro">Outil minimaliste pour mémoriser les prix HDV de Dofus Retro entre tes sessions. Tes données restent dans ton navigateur — personne d'autre ne les voit.</p>
+    <p class="onboarding-intro">Outil minimaliste pour mémoriser les prix HDV de Dofus Retro entre les sessions. Les données restent dans le navigateur, personne d'autre n'y accède.</p>
 
-    <div class="info-card">
-      <div class="info-card-head">
-        <span class="info-card-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <rect x="3" y="2" width="12" height="14" rx="1" stroke="currentColor" stroke-width="1.4"/>
-            <path d="M5.5 6 L12.5 6 M5.5 9 L12.5 9 M5.5 12 L10 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
-          </svg>
-        </span>
-        <h3>L'OCR, c'est quoi ?</h3>
-      </div>
-      <p>Imagine que tu prends une photo d'un panneau écrit. <b>L'OCR, c'est l'outil qui lit ce panneau pour toi</b> et recopie le texte automatiquement, comme un assistant qui regarderait l'image à ta place.</p>
-      <p>Dans Pénates : tu fais une <b>capture d'écran d'une fiche d'item à l'HDV</b> (sélection puis screenshot), tu la déposes dans l'app, et l'IA lit pour toi le nom, le niveau et les prix x1/x10/x100. Plus besoin de tout retaper à la main.</p>
-      <p class="info-card-note"><b>L'IA n'est utilisée QUE pour ça.</b> Pas de génération de texte, pas d'analyse de tes données, pas de suggestion automatique. Juste reconnaître les chiffres sur les captures que tu déposes. Sans clé NIM, l'app marche pareil — tu rentres juste tes prix à la main.</p>
-    </div>
+    <details class="info-help">
+      <summary>Pourquoi Pénates ? (l'histoire derrière le projet et le nom)</summary>
+      <p><b>Le projet</b> est né d'un constat simple : en revenant sur Dofus Retro, l'HDV n'affiche pas de prix moyen sur les items, ce qui rend l'évaluation pénible et oblige à tout retenir de tête. Pénates est juste un bloc-note dédié, en mieux : catalogue intégré, calcul de craft, OCR, dossiers de farm, suivi de marges.</p>
+      <p><b>Le nom</b> vient de la mythologie romaine. Les <i>Pénates</i> sont les divinités protectrices du foyer, des provisions, et des biens domestiques. Le terme désigne aussi, par extension, ce qui appartient à un foyer (« regagner ses pénates »). Métaphore directe : garder chez soi la connaissance des prix.</p>
+      <p><b>Le clin d'œil Dofus.</b> Les <i>Pénates du Corbac</i> sont une zone du jeu en 1.29, qui abrite la Bibliothèque du Maître Corbac (donjon niveau 110). Selon le lore, ce lieu hébergeait jadis la <b>Confrérie des Pénates</b>, ordre dédié à la préservation de la connaissance. Et un peu plus loin, <i>Maître Corbac</i> rappelle évidemment Maître Corbeau de La Fontaine, qui perd son fromage faute d'en connaître la valeur. Mémoriser ses prix, c'est ne pas finir comme lui.</p>
+      <p class="info-help-note">Projet open source, sans collecte de données, sans publicité. Si quelqu'un trouve ça utile, tant mieux. Si ça inspire un meilleur outil, encore mieux.</p>
+    </details>
+
+    <details class="info-help">
+      <summary>L'OCR, qu'est-ce que c'est ?</summary>
+      <p>L'OCR (<i>Optical Character Recognition</i>) est une technologie qui extrait automatiquement le texte présent sur une image.</p>
+      <p>Dans le cas de Pénates, l'app reçoit une capture d'écran d'une fiche d'item à l'HDV. Un modèle d'IA de vision identifie le nom, le niveau, et les prix x1/x10/x100 affichés, puis remplit automatiquement ces champs dans l'app sans saisie manuelle.</p>
+      <p class="info-help-note"><b>L'IA est utilisée uniquement pour cette lecture des captures HDV.</b> Pas de génération de texte, pas d'analyse des données utilisateur, pas de suggestion automatique. Sans clé NIM, l'app fonctionne pareil, les prix sont simplement saisis à la main.</p>
+    </details>
+
+    <details class="info-help">
+      <summary>Quoi capturer, et comment (sans rien installer)</summary>
+      <p><b>Ce qu'il faut capturer</b> : la fenêtre d'un item dans l'HDV de Dofus, avec les 3 colonnes de prix (x1, x10, x100) lisibles. Pas besoin de tout l'écran, seulement la fiche.</p>
+      <p><b>Comment capturer</b>, en utilisant les outils intégrés au système d'exploitation :</p>
+      <ul class="capture-list">
+        <li><b>Windows 10/11</b> : <kbd>Win</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd>, sélectionner la zone, puis <kbd>Ctrl</kbd>+<kbd>V</kbd> sur la zone de drop.</li>
+        <li><b>macOS</b> : <kbd>Cmd</kbd>+<kbd>Shift</kbd>+<kbd>4</kbd>, sélectionner la zone, puis glisser le fichier généré sur la zone de drop.</li>
+        <li><b>Linux</b> : <kbd>Print Screen</kbd> ou outil intégré (gnome-screenshot, KSnip), même flow.</li>
+      </ul>
+      <p class="info-help-note">Pénates accepte trois modes d'entrée : drag-drop d'image, coller (<kbd>Ctrl</kbd>+<kbd>V</kbd>), sélection de fichier. Pas besoin de logiciel tiers (ShareX, etc.).</p>
+    </details>
 
     <details class="nim-help">
-      <summary>Activer l'OCR : récupérer une clé NVIDIA NIM (gratuit, ~5 min)</summary>
-      <p class="nim-help-warning"><b>Vérification téléphone requise.</b> NVIDIA exige un numéro de téléphone pour activer l'API. Les serveurs NVIDIA sont souvent saturés — si la vérif SMS échoue, retry quelques minutes plus tard.</p>
+      <summary>Activer l'OCR : récupérer une clé NVIDIA NIM (gratuit, environ 5 min)</summary>
+      <p class="nim-help-warning"><b>Vérification téléphone requise.</b> NVIDIA exige un numéro de téléphone pour activer l'API. Les serveurs NVIDIA sont parfois saturés. Si la vérification SMS échoue, réessayer plus tard.</p>
       <ol>
-        <li>Va sur <a href="https://build.nvidia.com/?modal=signin" target="_blank" rel="noopener noreferrer">build.nvidia.com</a>, saisis ton email pour te connecter ou créer un compte.</li>
-        <li>Confirme ton email (code reçu par mail) puis <b>vérifie ton numéro de téléphone</b> (SMS avec OTP).</li>
-        <li>Crée ton compte NVIDIA Cloud : un nom au choix (ex. <code>perso</code> ou <code>moi</code>, ça n'a pas d'importance).</li>
-        <li>Va sur <a href="https://build.nvidia.com/settings/api-keys" target="_blank" rel="noopener noreferrer">build.nvidia.com/settings/api-keys</a> et clique <b>Generate API Key</b>.</li>
-        <li>Donne un nom à la clé (ex. <code>penates</code>), valide. Copie la clé <code>nvapi-…</code> affichée — <b>elle ne se ré-affiche pas</b>.</li>
-        <li>Reviens ici, clique <b>J'ai une clé</b> ci-dessous, colle-la dans Réglages.</li>
+        <li>Aller sur <a href="https://build.nvidia.com/?modal=signin" target="_blank" rel="noopener noreferrer">build.nvidia.com</a>, saisir un email pour se connecter ou créer un compte.</li>
+        <li>Confirmer l'email (code reçu par mail), puis <b>vérifier le numéro de téléphone</b> (SMS avec code).</li>
+        <li>Créer un compte NVIDIA Cloud. Le nom du compte n'a pas d'importance (par exemple <code>perso</code>).</li>
+        <li>Ouvrir <a href="https://build.nvidia.com/settings/api-keys" target="_blank" rel="noopener noreferrer">build.nvidia.com/settings/api-keys</a> puis cliquer <b>Generate API Key</b>.</li>
+        <li>Donner un nom à la clé (par exemple <code>penates</code>), valider. Copier la clé <code>nvapi-…</code> affichée, <b>elle ne se ré-affiche pas</b>.</li>
+        <li>Revenir ici, cliquer <b>J'ai une clé</b> ci-dessous, coller la clé dans Réglages.</li>
       </ol>
-      <p class="nim-help-note">Quota ~1000 OCR/mois, aucune carte de crédit. <b>Sécurité</b> : ta clé est stockée uniquement dans ton navigateur (<code>localStorage</code>) — Pénates ne la voit jamais sauf le temps d'un OCR (forwardée à NIM, jamais stockée serveur). Code source <a href="https://github.com/BurN-30/memo-price-dofus-retro" target="_blank" rel="noopener noreferrer">consultable sur GitHub</a>.</p>
+      <p class="nim-help-note">Quota gratuit environ 1000 OCR par mois, aucune carte de crédit demandée. <b>Sécurité</b> : la clé est stockée uniquement dans le navigateur (<code>localStorage</code>), Pénates ne la voit pas, sauf le temps d'un OCR pour la transmettre à NIM (jamais stockée serveur). Code source <a href="https://github.com/BurN-30/memo-price-dofus-retro" target="_blank" rel="noopener noreferrer">consultable sur GitHub</a>.</p>
     </details>
     <div class="onboarding-actions">
       <button type="button" id="onb-go-settings" class="btn-primary">J'ai une clé → Réglages</button>

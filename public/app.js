@@ -701,7 +701,7 @@
         <div class="lvl">niv ${it.level || '?'}</div>
         <div>${added ? '<span class="add-tag">déjà</span>' : ''}</div>
       </div>`;
-    }).join('') + (pool.length > slice.length ? `<div class="pick-row" style="cursor:default;color:var(--text-mute);justify-content:center"><span></span><span style="grid-column:2/-1">+ ${pool.length - slice.length} autres résultats — affine la recherche</span></div>` : '');
+    }).join('') + (pool.length > slice.length ? `<div class="pick-row" style="cursor:default;color:var(--text-mute);justify-content:center"><span></span><span style="grid-column:2/-1">+ ${pool.length - slice.length} autres résultats, affiner la recherche</span></div>` : '');
     for (const row of $pickResults.querySelectorAll('[data-pick]')) {
       row.addEventListener('click', () => addItemToCurrent(+row.dataset.pick));
     }
@@ -1224,7 +1224,7 @@
         if (!r.ok || !j.ok) {
           q.status = 'error';
           q.error = j.error || 'inconnue';
-          if (j.details) q.error += ' — ' + (j.details.slice ? j.details.slice(0, 120) : '');
+          if (j.details) q.error += ' : ' + (j.details.slice ? j.details.slice(0, 120) : '');
         } else {
           q.status = 'ready';
           q.result = j.data;
@@ -1565,7 +1565,7 @@
     const presetModels = Array.from($modelPick.options).map(o => o.value).filter(v => v !== '__custom__');
     const hasKey = hasNimKey();
     $setKey.value = '';
-    $setKey.placeholder = hasKey ? '✓ clé déjà configurée — entre une nouvelle pour la remplacer' : 'nvapi-…';
+    $setKey.placeholder = hasKey ? '✓ clé déjà configurée, saisir une nouvelle pour la remplacer' : 'nvapi-…';
     const m = getNimModel();
     if (presetModels.includes(m)) {
       $modelPick.value = m;

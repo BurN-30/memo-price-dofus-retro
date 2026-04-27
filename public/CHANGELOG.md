@@ -2,6 +2,18 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.4.3] — onboarding humanisé et factuel · 2026-04-27
+
+### Ajouté
+- **Dropdown « Pourquoi Pénates ? »** dans l'onboarding : présente le projet (memo né d'un manque sur Retro), explique le nom (Pénates romains, divinités protectrices du foyer), et le clin d'œil Dofus (Pénates du Corbac, Confrérie de la connaissance, La Fontaine).
+- **Dropdown « Quoi capturer, et comment »** : explique précisément ce qu'il faut capturer (fenêtre de l'item HDV avec les 3 colonnes de prix), et comment, en utilisant les outils intégrés à Windows (`Win+Shift+S`), macOS (`Cmd+Shift+4`), Linux (`Print Screen`). Pas besoin d'outil tiers comme ShareX.
+- **Style `<kbd>`** pour les raccourcis clavier (encart relief discret).
+
+### Changé
+- **Fiche « L'OCR, qu'est-ce que c'est ? »** convertie en dropdown (collapsed par défaut). Définition factuelle, sans métaphore enfantine. Précision explicite : l'IA est utilisée uniquement pour la lecture des captures, aucun autre usage.
+- **Tuto NVIDIA NIM** : ton informatif et impersonnel, pas de tutoiement, plus de raccourcis (« retry », « ~5 min » remplacé par « réessayer », « environ 5 min »).
+- **Tirets cadratins (`—`)** retirés des contenus en prose (UI, messages, meta description). Conservés dans les placeholders d'inputs où ils servent d'indicateur d'absence de valeur.
+
 ## [0.4.2] — onboarding pédagogique · 2026-04-27
 
 ### Ajouté
