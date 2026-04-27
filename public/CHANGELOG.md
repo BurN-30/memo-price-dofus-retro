@@ -2,6 +2,20 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.4.1] — identité Pénates · 2026-04-27
+
+### Ajouté
+- **EB Garamond** chargé depuis Google Fonts pour le wordmark "Pénates" et les titres lore (style archive d'érudit, pas grimoire fantasy).
+- **Variables CSS Pénates** : `--seal #8b3a2f` (cire bordeaux), `--seal-deep #621f17`, `--seal-light #a0463a`, `--ink #1a0f08`.
+- **Logo sceau de cire** maturé : gradient radial, double bordure (cuivre extérieur + intérieur sombre), "P" en EB Garamond italique. Versions 32px (sidebar) et 72px (onboarding).
+- **Favicon** : sceau bordeaux + monogramme "P" en SVG.
+- **Meta description** pour le partage social.
+
+### Changé
+- **Wordmark "Pénates"** dans la sidebar : Inter → EB Garamond italique 22px.
+- **Tagline "Préserve la connaissance des prix"** : EB Garamond italique, contraste légèrement remonté.
+- **Glyphes Unicode → SVG inline** sur les éléments les plus visibles : header de dossier (◇ → losange ornemental), zone de drop OCR (⤓ → flèche upload), widget OCR réduit (⌗ → document). Plus consistent cross-OS.
+
 ## [0.4.0] — cloud edition · 2026-04-27
 
 ### Changé

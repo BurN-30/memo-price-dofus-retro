@@ -4,18 +4,28 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Pénates · Memo des prix HDV · Dofus Retro</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<meta name="description" content="Memo des prix HDV pour Dofus Retro 1.29 — Confrérie des Pénates, préserve la connaissance des prix.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&family=EB+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <aside id="sidebar">
   <header class="brand">
     <span class="logo" aria-hidden="true">
-      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-        <circle cx="14" cy="14" r="12" fill="#8b3a2f" stroke="#d49a5c" stroke-width="1.5"/>
-        <text x="14" y="18.5" text-anchor="middle" font-family="Georgia, serif" font-size="14" font-weight="700" fill="#e8b97a">P</text>
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <defs>
+          <radialGradient id="seal-sm" cx="38%" cy="32%" r="68%">
+            <stop offset="0%" stop-color="#a0463a"/>
+            <stop offset="55%" stop-color="#8b3a2f"/>
+            <stop offset="100%" stop-color="#621f17"/>
+          </radialGradient>
+        </defs>
+        <circle cx="16" cy="16" r="13" fill="url(#seal-sm)" stroke="#d49a5c" stroke-width="1.4"/>
+        <circle cx="16" cy="16" r="11" fill="none" stroke="#621f17" stroke-width="0.6" opacity="0.65"/>
+        <text x="16" y="21.5" text-anchor="middle" font-family="EB Garamond, Georgia, serif" font-size="17" font-weight="600" font-style="italic" fill="#e8b97a">P</text>
       </svg>
     </span>
     <div class="brand-text">
@@ -43,7 +53,12 @@
 <main id="main">
   <header class="topbar">
     <div class="folder-head">
-      <span id="folder-icon" class="fhead-icon">◇</span>
+      <span id="folder-icon" class="fhead-icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+          <path d="M9 1.5 L16.5 9 L9 16.5 L1.5 9 Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+          <circle cx="9" cy="9" r="1.4" fill="currentColor"/>
+        </svg>
+      </span>
       <h2 id="folder-name">Tous mes prix</h2>
       <button id="btn-rename" class="btn-mini" title="Renommer">✎</button>
       <button id="btn-delete-folder" class="btn-mini danger" title="Supprimer le dossier" hidden>×</button>
@@ -183,7 +198,12 @@ kriptonite 30/u
     <div class="ocr-body">
       <div id="ocr-drop" class="ocr-drop">
         <div class="ocr-drop-inner">
-          <div class="ocr-drop-icon">⤓</div>
+          <div class="ocr-drop-icon" aria-hidden="true">
+            <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+              <path d="M18 4 L18 24 M10 16 L18 24 L26 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6 28 L6 31 Q6 32 7 32 L29 32 Q30 32 30 31 L30 28" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
           <div>Dépose <b>une ou plusieurs</b> captures, <b>colle (Ctrl+V)</b>, ou <label class="lnk" for="ocr-file">choisis un/des fichier(s)</label></div>
           <input type="file" id="ocr-file" accept="image/*" multiple hidden>
         </div>
@@ -240,7 +260,12 @@ kriptonite 30/u
 
 <!-- Mini OCR widget (visible quand modal réduit) -->
 <div id="ocr-mini" class="ocr-mini" hidden>
-  <div class="ocr-mini-icon">⌗</div>
+  <div class="ocr-mini-icon" aria-hidden="true">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <rect x="3.5" y="2.5" width="13" height="15" rx="1" stroke="currentColor" stroke-width="1.4"/>
+      <path d="M6.5 7 L13.5 7 M6.5 10 L13.5 10 M6.5 13 L11 13" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+    </svg>
+  </div>
   <div class="ocr-mini-info">
     <div class="ocr-mini-title">Session OCR</div>
     <div class="ocr-mini-status" id="ocr-mini-status">…</div>
@@ -273,9 +298,24 @@ kriptonite 30/u
 <div id="onboarding" class="onboarding-overlay" hidden>
   <div class="onboarding-card">
     <span class="logo logo-large" aria-hidden="true">
-      <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
-        <circle cx="32" cy="32" r="28" fill="#8b3a2f" stroke="#d49a5c" stroke-width="2"/>
-        <text x="32" y="42" text-anchor="middle" font-family="Georgia, serif" font-size="32" font-weight="700" fill="#e8b97a">P</text>
+      <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+        <defs>
+          <radialGradient id="seal-lg" cx="38%" cy="32%" r="68%">
+            <stop offset="0%" stop-color="#a0463a"/>
+            <stop offset="55%" stop-color="#8b3a2f"/>
+            <stop offset="100%" stop-color="#621f17"/>
+          </radialGradient>
+          <filter id="seal-shadow" x="-20%" y="-20%" width="140%" height="140%">
+            <feGaussianBlur in="SourceAlpha" stdDeviation="1.5"/>
+            <feOffset dx="0" dy="2" result="offsetblur"/>
+            <feFlood flood-color="#621f17" flood-opacity="0.5"/>
+            <feComposite in2="offsetblur" operator="in"/>
+            <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <circle cx="36" cy="36" r="30" fill="url(#seal-lg)" stroke="#d49a5c" stroke-width="2" filter="url(#seal-shadow)"/>
+        <circle cx="36" cy="36" r="25" fill="none" stroke="#621f17" stroke-width="1" opacity="0.7"/>
+        <text x="36" y="48" text-anchor="middle" font-family="EB Garamond, Georgia, serif" font-size="40" font-weight="600" font-style="italic" fill="#e8b97a">P</text>
       </svg>
     </span>
     <h2>Bienvenue dans Pénates</h2>
