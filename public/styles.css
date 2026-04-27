@@ -439,6 +439,27 @@ kbd {
   transition: color .15s, border-color .15s;
 }
 .onboarding-actions .btn-ghost:hover { color: var(--accent); border-color: var(--accent); }
+/* Lien discret sous le CTA principal de l'onboarding */
+.onboarding-actions .btn-ghost-link {
+  background: transparent;
+  border: none;
+  color: var(--text-mute);
+  font-size: 11.5px;
+  cursor: pointer;
+  padding: 4px;
+  margin-top: 4px;
+  transition: color .15s;
+  font-family: inherit;
+}
+.onboarding-actions .btn-ghost-link:hover { color: var(--accent); }
+/* Sous-paragraphe d'intro pour l'OCR optionnel */
+.onboarding-card .onboarding-intro-sub {
+  margin: 0 0 14px;
+  color: var(--text-mute);
+  font-size: 12px;
+  line-height: 1.55;
+}
+.onboarding-card .onboarding-intro-sub b { color: var(--text-soft); }
 
 .changelog-body {
   padding: 18px 22px 22px;

@@ -359,7 +359,8 @@ kriptonite 30/u
     </span>
     <h2>Bienvenue dans Pénates</h2>
     <p class="onboarding-tagline"><i>Préserve la connaissance des prix.</i></p>
-    <p class="onboarding-intro">Outil minimaliste pour mémoriser les prix HDV de Dofus Retro entre les sessions. Les données restent dans le navigateur, personne d'autre n'y accède.</p>
+    <p class="onboarding-intro">Outil minimaliste pour mémoriser les prix HDV de Dofus Retro entre les sessions. <b>Fonctionne directement, aucune inscription.</b> Les données restent dans le navigateur, personne d'autre n'y accède.</p>
+    <p class="onboarding-intro-sub">L'OCR (saisie auto des prix depuis une capture) est <b>optionnel</b> et nécessite une clé NVIDIA NIM, configurable plus tard à tout moment dans Réglages.</p>
 
     <details class="info-help" name="onboarding-faq">
       <summary>Pourquoi Pénates ? (le projet et le nom)</summary>
@@ -373,6 +374,13 @@ kriptonite 30/u
       <summary>L'OCR, qu'est-ce que c'est ?</summary>
       <p>L'OCR (<i>Optical Character Recognition</i>) est une technologie qui lit automatiquement le texte d'une image. Dans Pénates : une capture d'écran d'une fiche d'item HDV est envoyée à un modèle d'IA de vision qui identifie nom, niveau, prix x1/x10/x100, puis remplit ces champs dans l'app sans saisie manuelle.</p>
       <p class="info-help-note"><b>L'IA n'est utilisée que pour ça.</b> Pas de génération de texte, pas d'analyse des données utilisateur, pas de suggestion. Sans clé NIM, l'app fonctionne pareil, les prix sont saisis à la main.</p>
+    </details>
+
+    <details class="info-help" name="onboarding-faq">
+      <summary>Sur plusieurs appareils ?</summary>
+      <p>Pénates ne demande aucune inscription, donc <b>aucune synchronisation automatique entre appareils</b>. Les prix saisis sur le PC fixe ne sont pas visibles sur le portable.</p>
+      <p>Pour transférer ses données, utiliser les boutons <b>export</b> et <b>import</b> en bas de la sidebar : un fichier JSON est généré, à recopier ou à envoyer sur l'autre appareil, puis importer.</p>
+      <p class="info-help-note">Une synchronisation cloud avec code de partage est envisagée à terme. Pour l'instant, l'export/import manuel reste le plus sûr (pas de fuite, pas de tiers).</p>
     </details>
 
     <details class="info-help" name="onboarding-faq">
@@ -400,8 +408,8 @@ kriptonite 30/u
       <p class="nim-help-note">Quota ~1000 OCR/mois, aucune CB. Clé stockée en <code>localStorage</code>, jamais sur le serveur Pénates. <a href="https://github.com/BurN-30/memo-price-dofus-retro" target="_blank" rel="noopener noreferrer">Code source consultable</a>.</p>
     </details>
     <div class="onboarding-actions">
-      <button type="button" id="onb-go-settings" class="btn-primary">J'ai une clé → Réglages</button>
-      <button type="button" id="onb-skip" class="btn-ghost">Continuer sans OCR</button>
+      <button type="button" id="onb-skip" class="btn-primary">Commencer</button>
+      <button type="button" id="onb-go-settings" class="btn-ghost-link">J'ai déjà une clé NVIDIA NIM, configurer maintenant →</button>
     </div>
   </div>
 </div>

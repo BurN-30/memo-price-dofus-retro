@@ -2,6 +2,15 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.5.6] — onboarding clarifié + multi-device documenté · 2026-04-27
+
+### Changé
+- **CTA principal de l'onboarding inversé** : « Commencer » devient l'action primaire (bouton doré), « J'ai déjà une clé NVIDIA NIM, configurer maintenant » devient un lien discret en dessous. Avant, l'emphase sur « J'ai une clé → Réglages » faisait penser que la clé était obligatoire pour utiliser l'app.
+- **Intro de l'onboarding enrichie** : précise explicitement que Pénates fonctionne directement sans inscription, et que l'OCR n'est qu'une option configurable plus tard.
+
+### Ajouté
+- **Nouveau dropdown « Sur plusieurs appareils ? »** dans l'onboarding : explique que les données sont par navigateur, sans synchronisation automatique. Pointe vers les boutons export / import existants. Mentionne qu'une sync cloud avec code de partage est envisagée à terme.
+
 ## [0.5.5] — polish UI : tooltip, modale, parchemin, lore · 2026-04-27
 
 ### Ajouté
