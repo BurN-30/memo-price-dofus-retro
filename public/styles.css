@@ -191,36 +191,67 @@ input, select, button { font-family: inherit; color: inherit; }
 
 /* Accordéon "Comment récupérer une clé NIM" */
 .nim-help, .info-help {
-  margin: 8px 18px 0;
-  background: var(--bg-elev2);
+  margin: 0 0 10px;
+  background: linear-gradient(180deg, var(--bg-elev2), var(--bg-elev));
   border: 1px solid var(--line);
   border-radius: var(--radius-sm);
   padding: 0;
   overflow: hidden;
+  transition: border-color .18s, box-shadow .18s;
 }
+.nim-help:hover, .info-help:hover { border-color: var(--accent-2); }
+.nim-help[open], .info-help[open] {
+  border-color: var(--accent-2);
+  box-shadow: 0 4px 14px rgba(0,0,0,.3);
+}
+
 .nim-help summary, .info-help summary {
   cursor: pointer;
-  padding: 10px 14px;
-  font-size: 12px;
-  color: var(--text-soft);
+  padding: 13px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: .005em;
   list-style: none;
   user-select: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   transition: color .15s, background .15s;
+  position: relative;
 }
 .nim-help summary::-webkit-details-marker,
 .info-help summary::-webkit-details-marker { display: none; }
-.nim-help summary::before,
-.info-help summary::before {
-  content: '▸';
-  display: inline-block;
-  margin-right: 8px;
-  color: var(--accent);
-  transition: transform .15s;
+/* Chevron SVG à droite, rotation 180° à l'ouverture */
+.nim-help summary::after,
+.info-help summary::after {
+  content: '';
+  width: 14px;
+  height: 14px;
+  margin-left: auto;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23d49a5c' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'><polyline points='4 6 8 10.5 12 6'/></svg>");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  flex-shrink: 0;
+  transition: transform .22s ease, opacity .15s;
+  opacity: .85;
 }
-.nim-help[open] summary::before,
-.info-help[open] summary::before { transform: rotate(90deg); }
+.nim-help summary:hover::after,
+.info-help summary:hover::after { opacity: 1; }
+.nim-help[open] summary::after,
+.info-help[open] summary::after { transform: rotate(180deg); }
 .nim-help summary:hover,
-.info-help summary:hover { color: var(--accent); background: var(--bg-hover); }
+.info-help summary:hover {
+  background: var(--bg-hover);
+  color: var(--accent-3);
+}
+.nim-help[open] summary,
+.info-help[open] summary {
+  background: rgba(212,154,92,.05);
+  border-bottom: 1px solid var(--line-soft);
+  color: var(--accent-3);
+}
 .nim-help ol,
 .info-help ol,
 .info-help ul {

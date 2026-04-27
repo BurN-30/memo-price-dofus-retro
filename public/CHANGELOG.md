@@ -2,6 +2,17 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.4.4] — UX dropdowns onboarding · 2026-04-27
+
+### Changé
+- **Dropdowns onboarding refondus** pour être visiblement cliquables :
+  - Summary plus présent : font-weight 600, font-size 13px, color `--text` (au lieu de `--text-soft`).
+  - Padding 13px 16px (vs 10px 14px).
+  - Chevron SVG (cuivre) à droite, animation rotation 180° à l'ouverture (vs petit `▸` à gauche peu visible).
+  - Container : gradient subtle bg-elev2 → bg-elev pour donner du relief.
+  - Hover : border passe en `--accent-2`, background `--bg-hover`, color `--accent-3`, chevron passe à opacity 1.
+  - State open : border `--accent-2`, ombre douce, séparateur sous le summary, fond légèrement teinté cuivre.
+
 ## [0.4.3] — onboarding humanisé et factuel · 2026-04-27
 
 ### Ajouté
