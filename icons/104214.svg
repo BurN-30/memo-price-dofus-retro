@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 32.945 39.152" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(-279.02 -184.78)">
+<use transform="matrix(-1,0,0,1,311.95,184.8)" width="32.900002" height="39.099998" xlink:href="#a"/>
+</g>
+<defs>
+<g id="a" transform="translate(45.75,31.5)">
+<use transform="translate(-45.75,-31.5)" width="32.900002" height="39.099998" xlink:href="#b"/>
+</g>
+<g id="b" transform="translate(45.75,31.5)">
+<path d="m-24.85-18.5q-5-4.95-10.15-8.8l-6.2-4.2q-0.65 8.45 0.25 11.55 1.2 3.4 6.85 8.5 3.15 2.9 10.15 6.25 6.5 3 11.1 7.75-8.1-15.85-12-21.05m-1.4 5.3q4.55 3.9 7.9 9.05-3.35-5.15-7.9-9.05-3.7-3.5-6.95-7.1l-5.15-6.35 5.15 6.35q3.25 3.6 6.95 7.1l-7.95-3.1 7.95 3.1" fill="#fff024" fill-rule="evenodd"/>
+<path d="m-38.35-26.65 5.15 6.35q3.25 3.6 6.95 7.1l-7.95-3.1m15.85 12.15q-3.35-5.15-7.9-9.05" fill="none" stroke="#ff910b" stroke-linecap="round" stroke-linejoin="round" stroke-width=".05"/>
+<path d="m-24.85-18.5q-5-4.95-10.15-8.8l-6.2-4.2q-0.65 8.45 0.25 11.55 1.2 3.4 6.85 8.5 3.15 2.9 10.15 6.25 6.5 3 11.1 7.75" fill="none" stroke="#ff910b" stroke-linecap="round" stroke-linejoin="round" stroke-width=".05"/>
+<path d="m-40.4-1.35 4.65 2.85 7.25 0.25q4.35-0.2 8.75 1.1-4.4-1.3-8.75-1.1l-7.25-0.25-4.65-2.85m9.6-1q-8.2-0.25-14.95 1.5 4.5 5.75 6.6 7.1 2.5 1.45 8 1.35 3.15-0.05 8.25-2.1 4.75-1.95 9.5-1.7-12.65-5.25-17.4-6.15m-3.1 6.9 5.4-2.8-5.4 2.8m-1.85-3.05-5.9-0.95 5.9 0.95" fill="#fff024" fill-rule="evenodd"/>
+<path d="m-19.75 2.85q-4.4-1.3-8.75-1.1l-7.25-0.25-4.65-2.85m-1.25 1.9 5.9 0.95m7.25 0.25-5.4 2.8" fill="none" stroke="#ff910b" stroke-linecap="round" stroke-linejoin="round" stroke-width=".05"/>
+<path d="m-30.8-2.35q-8.2-0.25-14.95 1.5 4.5 5.75 6.6 7.1 2.5 1.45 8 1.35 3.15-0.05 8.25-2.1 4.75-1.95 9.5-1.7" fill="none" stroke="#ff910b" stroke-linecap="round" stroke-linejoin="round" stroke-width=".05"/>
+</g>
+</defs>
+</svg>

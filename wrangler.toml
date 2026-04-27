@@ -1,0 +1,11 @@
+name = "penates"
+main = "src/index.js"
+compatibility_date = "2026-04-01"
+compatibility_flags = ["nodejs_compat"]
+
+[assets]
+directory = "./"
+binding = "ASSETS"
+
+[observability]
+enabled = true

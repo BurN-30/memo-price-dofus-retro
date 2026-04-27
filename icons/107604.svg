@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 160.53 176.58" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(-188.63 -23.488)">
+<use transform="matrix(-5.9304 0 0 5.9304 329.33 23.633)" width="23.700001" height="26.85" xlink:href="#c"/>
+<use transform="matrix(-5.9304 0 0 5.9304 349.01 27.063)" width="24.549999" height="29.15" xlink:href="#b"/>
+<use transform="matrix(-4.1415 0 0 4.1415 337.49 72.147)" width="21.1" height="26.799999" xlink:href="#a"/>
+</g>
+<defs>
+<g id="c" transform="translate(11.85,13.4)">
+<path d="m1.9 12.85-0.8 0.35q-1.9 0.65-4.2-0.35-3.65-1.6-6.25-6.25-2.55-4.65-2.5-9.65-0.05-5.05 2.5-7.45 1.65-1.55 3.7-1.45 1.2 0 2.55 0.6 2.8 1.2 5 4.3l1.15 1.9q1.35 2.4 2 4.9 0.6 2.35 0.6 4.8 0 3-0.9 5.05-0.65 1.4-1.7 2.35l-1.15 0.9" fill="#133c3c" fill-rule="evenodd"/>
+<path d="m8.1 9.6-2.45 1.55-3.75 1.7 1.15-0.9q1.05-0.95 1.7-2.35h3.35" fill="#475801" fill-rule="evenodd"/>
+<path d="m1.2-13.35 7.05 3.65h-5.5l-1.55-3.65m10.65 8.75v8.05l-2.5-3.7 2.5-4.35" fill="#399" fill-rule="evenodd"/>
+<path d="m8.25-9.7 3.6 5.05v0.05l-2.5 4.35h-4.3q-0.65-2.5-2-4.9l-1.15-1.9 0.85-2.65h5.5" fill="#215249" fill-rule="evenodd"/>
+<path d="m-5.65-11.95 6.85-1.45v0.05l1.55 3.65-0.85 2.65q-2.2-3.1-5-4.3-1.35-0.6-2.55-0.6m17.5 15.4-3.7 6.15h-3.4q0.9-2.05 0.9-5.05 0-2.45-0.6-4.8h4.3l2.5 3.7" fill="#2d8887" fill-rule="evenodd"/>
+<path d="m-5.65-11.95 6.85-1.45v0.05" fill="none" stroke="#504f23" stroke-linecap="round" stroke-linejoin="round" stroke-width=".05"/>
+<path d="m1.2-13.35 7.05 3.65 3.6 5.05v8.1l-3.7 6.15h-0.05l-2.45 1.55-3.75 1.7" fill="none" stroke="#504f23" stroke-linecap="round" stroke-linejoin="round" stroke-width=".05"/>
+</g>
+<g id="b" transform="translate(12.1,14.55)">
+<path d="m7.2-9.65-4.95 2.75-9.75-4.85 5.05-2.8 9.65 4.9m-7.65-3.35 6.1 3.2-6.1-3.2" fill="#d7cba2" fill-rule="evenodd"/>
+<path d="m10.5-1.85-3.4-6 3.4 6m-8.25-5.05 4.95-2.75q3.15 3.8 4.95 9.7l-5.25 2.4q-1-6.25-4.65-9.35" fill="#d0c493" fill-rule="evenodd"/>
+<path d="m6.9 2.45 5.25-2.4q0.65 2.95 0 5.9l-5.25 3.75q1.3-3.2 0-7.25m4.5 1-0.1-2.3 0.1 2.3" fill="#bfae6a" fill-rule="evenodd"/>
+<path d="m12.15 5.95q-1.05 3.95-4.75 5.8l-5 2.85q2.8-1.9 4.5-4.9l5.25-3.75" fill="#b6a254" fill-rule="evenodd"/>
+<path d="m-7.5-11.75 9.75 4.85q3.65 3.1 4.65 9.35 1.3 4.05 0 7.25-1.7 3-4.5 4.9l-10.85-5.4-3.65-8.75v-6.9l4.6-5.3" fill="#897741" fill-rule="evenodd"/>
+<path d="m7.1-7.85 3.4 6" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width=".05"/>
+<path d="m11.3 1.15 0.1 2.3m-5.75-13.25-6.1-3.2" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width=".05"/>
+<path d="m7.2-9.65-9.65-4.9-5.05 2.8m19.65 11.8q-1.8-5.9-4.95-9.7m4.95 9.7q0.65 2.95 0 5.9-1.05 3.95-4.75 5.8l-5 2.85-10.85-5.4-3.65-8.75v-6.9l4.6-5.3" fill="none" stroke="#504f23" stroke-linecap="round" stroke-linejoin="round" stroke-width=".05"/>
+</g>
+<g id="a" transform="translate(9.15,13.8)">
+<path d="m8.85 11.9-4.6 1.1q-6.15-0.7-10.15-5.6l-0.15-0.2 2.55-1.15q2.65 4.4 8.65 5.35h0.1l3.6 0.45v0.05m-14.8-23.25-0.45-0.25 0.5 0.2h0.05v0.05h-0.1" fill="#594e2b" fill-rule="evenodd"/>
+<path d="m1.9-12.05q3.6 2.1 9.25 6.9 2.35 12.65-2.25 17h-0.05l-3.6-0.45h-0.1q-6-0.95-8.65-5.35-0.9-1.45-1.4-3.25-1.95-5.75 2.3-12.25l0.15-0.05q1.05-2.15 4.35-2.55m-7.75 0.7-0.1 0.05v-0.05h0.1" fill="#4a4024" fill-rule="evenodd"/>
+<path d="m8.9 11.85-0.05 0.05v-0.05h0.05" fill="#61542e" fill-rule="evenodd"/>
+<path d="m-6.05 7.2q-3.85-4.85-2.9-10.75 0.75-4.85 2.9-7.65l0.2-0.15v-0.05l0.15 0.05 0.5-0.1 1.05-1.25q0.85-2.5 6.05 0.65-3.3 0.4-4.35 2.55l-0.15 0.05q-4.25 6.5-2.3 12.25 0.5 1.8 1.4 3.25l-2.55 1.15" fill="#78693a" fill-rule="evenodd"/>
+</g>
+</defs>
+</svg>

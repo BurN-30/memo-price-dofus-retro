@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 77.191 79.846" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(-254 -200.95)">
+<use transform="translate(259.5,226.3)" width="48.650002" height="54.5" xlink:href="#c"/>
+<use transform="matrix(.2318 .0914 -.0914 .2318 288.75 227.15)" width="69.400002" height="69.400002" xlink:href="#b"/>
+<use transform="matrix(.3532 .1944 -.1944 .3532 309.95 204.3)" width="5.75" height="99.050003" xlink:href="#a"/>
+<use transform="matrix(-.3532 -.1944 .1848 -.3358 273.55 275.3)" width="5.75" height="99.050003" xlink:href="#a"/>
+<use transform="matrix(-.1944 .3532 -.3532 -.1944 327.55 259.6)" width="5.75" height="99.050003" xlink:href="#a"/>
+<use transform="matrix(.1944 -.3532 .3358 .1848 256.55 223.15)" width="5.75" height="99.050003" xlink:href="#a"/>
+<use transform="matrix(.3873 -.1123 .1123 .3873 279.1 201.6)" width="5.75" height="99.050003" xlink:href="#a"/>
+<use transform="matrix(-.3873 .1123 -.1067 -.3681 303.5 277.5)" width="5.75" height="99.050003" xlink:href="#a"/>
+<use transform="matrix(.1123 .3873 -.3873 .1123 330.55 228.25)" width="5.75" height="99.050003" xlink:href="#a"/>
+<use transform="matrix(-.1123 -.3873 .3681 -.1067 254.65 252.7)" width="5.75" height="99.050003" xlink:href="#a"/>
+</g>
+<defs>
+<g id="c" transform="translate(-43.05,-48.5)">
+<path d="m80.6 51.1-2.85 18.7-0.15 0.85-13.85 5.9-20.65-3.95q0.25-1.95-0.05-6.35l1.05-3.15q0.7-2.65 3.4-9.55 5.3-2.7 8.95-3.15l8.65-0.5 13.55-1.4 1.95 2.6m-5.15 10q-5.1 6.5-12.4 13 4.35-0.65 7.95-2.4 2.75-1.35 5.15-3.35l0.95-9.45-1.65 2.2m1.2 17.55 0.45 4.45q-2.2-0.25-4.45 0l-0.5-0.65q0.85-2.85 3.85-3.8h0.65" fill="#fc0" fill-rule="evenodd"/>
+<path d="m77.75 69.8 11.75 24.65q-0.8 2.1-4.05 3l-5.4-9.8-3.05 6.9-1.65-1.75-1.85 7.7-9.2 2.3-3.85-8.85-2 5.85-6.1-3.25-2.55-8.5-2.5 5.75-1.5-0.8q3.3-15.45-2.7-20.4l20.65 3.95 13.85-5.9 0.15-0.85m-1.1 8.85h-0.65q-3 0.95-3.85 3.8l0.5 0.65q2.25-0.25 4.45 0l-0.45-4.45" fill="#c09501" fill-rule="evenodd"/>
+<path d="m75.45 61.1 1.65-2.2-0.95 9.45q-2.4 2-5.15 3.35-3.6 1.75-7.95 2.4 7.3-6.5 12.4-13" fill="#fff" fill-rule="evenodd"/>
+<path d="m80.6 51.1q2.05 2.95 10.3 17.25l-1.2 24.35-0.2 1.75-11.75-24.65 2.85-18.7m4.85 46.35-0.9 0.2-11.05 2.85 1.85-7.7 1.65 1.75 3.05-6.9 5.4 9.8m-21.15 5.35-0.2 0.05-5.65-3.05 2-5.85 3.85 8.85m-11.95-6.25-5.05-2.75 2.5-5.75 2.55 8.5" fill="#8b6c01" fill-rule="evenodd"/>
+<path d="m90.1 66.65 1.6 2.85-1.75 16.2q-0.1 7.05 0.35 10.15l-25.4 7.15-20.45-8.55 1.5-1.75 17.5 7.3 25.4-7.1q-0.45-3.8-0.4-10.2l1.65-16.05" fill="#774a02" fill-rule="evenodd"/>
+</g>
+<g id="b">
+<path d="m59.2 10.15q10.2 10.2 10.2 24.55t-10.2 24.5q-10.15 10.2-24.5 10.2t-24.55-10.2q-10.15-10.15-10.15-24.5t10.15-24.55q10.2-10.15 24.55-10.15t24.5 10.15" fill="url(#e)" fill-rule="evenodd"/>
+</g>
+<radialGradient id="e" cx="0" cy="0" r="819.2" gradientTransform="matrix(.0435 0 0 .0435 34.7 34.7)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#ffc" stop-opacity=".47059" offset=".11373"/>
+<stop stop-color="#ffc" stop-opacity="0" offset="1"/>
+</radialGradient>
+<g id="a">
+<path d="m5.75 0v99.05h-5.75v-99.05h5.75" fill="url(#d)" fill-rule="evenodd"/>
+</g>
+<linearGradient id="d" x1="-819.2" x2="819.2" gradientTransform="matrix(0 -.0327 .0035 0 2.85 50.75)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#ffc" stop-opacity=".47059" offset=".11373"/>
+<stop stop-color="#ffc" stop-opacity="0" offset="1"/>
+</linearGradient>
+</defs>
+</svg>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 220.78 205.35" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(-149.5,-66.7)">
+<use transform="translate(149.5,89.8)" width="218" height="182.25" xlink:href="#b"/>
+<use transform="matrix(.7088 0 0 .7088 276.65 98.85)" width="89.300003" height="97.300003" xlink:href="#a"/>
+<use transform="matrix(.914 0 0 .914 206.2 151.6)" width="89.300003" height="97.300003" xlink:href="#a"/>
+<use transform="matrix(.4628 0 0 .4628 328.95 179.8)" width="89.300003" height="97.300003" xlink:href="#a"/>
+<use transform="matrix(.4398 0 0 .4398 245.95 66.7)" width="89.300003" height="97.300003" xlink:href="#a"/>
+<use transform="matrix(.4398 0 0 .4398 186.65 123.95)" width="89.300003" height="97.300003" xlink:href="#a"/>
+<use transform="matrix(.3722 0 0 .3722 282.7 207.95)" width="89.300003" height="97.300003" xlink:href="#a"/>
+</g>
+<defs>
+<g id="b" transform="translate(0 .25)">
+<use transform="translate(0 -.25)" width="218" height="182.25" xlink:href="#d"/>
+</g>
+<g id="d" transform="translate(0 .25)">
+<path d="m136.45 16 22 29.1-38 3.9 16-33" fill="#fff" fill-rule="evenodd"/>
+<path d="m168.5 80.5 23.5 15 5.5 18-45 27.5-41.5-32-23.5-11-8.5-6h39l50.5-11.5m-119.5-8.5 7-35.5 59.5-36.5 20.95 16-16 33-9.95 9-43.4 9.9-18.1 4.1" fill="#c4c7ad" fill-rule="evenodd"/>
+<path d="m158.45 45.1 10.05 35.4-50.5 11.5-8-19.5 0.5-14.5-0.5 14.5-42.9-4.6 43.4-9.9 9.95-9 38-3.9" fill="#94996a" fill-rule="evenodd"/>
+<path d="m55 78.5-6-6.5 18.1-4.1 42.9 4.6 8 19.5h-46.5l-16.5-13.5" fill="#606343" fill-rule="evenodd"/>
+<path d="m147.5 179.5h-71.5l-41.5-28 46-13.5 10-16.5 20.5-12.5 41.5 32-5 38.5" fill="#7e845b" fill-rule="evenodd"/>
+<path d="m212.5 116.5-20.5 55-44.5 8 5-38.5 45-27.5 15 3" fill="#92996a" fill-rule="evenodd"/>
+<path d="m192 95.5 20.5 21-15-3-5.5-18m-157.5 56v-48.5l20.5-24.5 16.5 13.5h7.5l8.5 6 3 23.5-10 16.5-46 13.5" fill="#868a5e" fill-rule="evenodd"/>
+<path d="m87.5 98 23.5 11-20.5 12.5-3-23.5" fill="#f0f1eb" fill-rule="evenodd"/>
+<path d="m136.45 16 22 29.1 10.05 35.4 23.5 15 20.5 21-20.5 55-44.5 8h-71.5l-41.5-28v-48.5l20.5-24.5-6-6.5 7-35.5 59.5-36.5 20.95 16-16 33 38-3.9m-47.95 12.9-0.5 14.5 8 19.5 50.5-11.5m-57.5 28.5 41.5 32 45-27.5-5.5-18m20.5 21-15-3m-130.4-45.6 43.4-9.9 9.95-9m-41.45 43 8.5 6 23.5 11-20.5 12.5-10 16.5-46 13.5m44.5-59.5h-7.5l-16.5-13.5m-6-6.5 18.1-4.1 42.9 4.6m-19.5 49-3-23.5m30.5-6h-39m73.5 49-5 38.5" fill="none" stroke="#3c4648" stroke-linecap="round" stroke-linejoin="round" stroke-width=".5"/>
+<path d="m128.55 41.6 8.2 1.75-9.55 0.95 1.35-2.7m-11.35 4.95-8.6 7.8-54.45 12.4 2.75-13.8q23.35-12.95 52.1-12.95l11.15 0.5-2.95 6.05m-11.05 21.55-14.85-1.6 17.3-6.45-2.45 8.05m87.9 23.95-22.1-14.1-6.35-22.4q10.85 6.75 20.45 16.35 16.75 16.75 24.7 37.1l-15.65-16.05-1.05-0.9m23.95 56.95q0 17.5-4.8 33h-56.95l36.45-6.55 3.05-2.55 19.1-51.1q3.15 12.95 3.15 27.2m-186.1-77.1q7.5-7.45 15.7-13.15l-2.45 12.3 4.5 7.6-18.2 21.8-0.95 2.55v48.45l1.9 3.45 40.15 27.1h-67.75q-4.8-15.5-4.8-33 0-29.9 14-54 7.15-12.3 17.9-23.1" fill="url(#h)" fill-rule="evenodd"/>
+<path d="m148.2 51.4q-28.15 12.35-26.65 29.35l-5.45-7.55 0.6-14.3 4.9-2.95 26.6-4.55" fill="#8b8f61" fill-rule="evenodd"/>
+<path d="m156.7 78.1q-7.35 4-14.7 3.9-3.85-0.05-6.95-1.05 0.3-0.5 5.25-0.95 4.9-0.5 8.9-8.7 3.95-8.25 5.65-14.8 1.65-6.65 5.4 5.5 3.75 12.1-3.55 16.1" fill="url(#g)" fill-rule="evenodd"/>
+<path d="m92.7 96h24.95l1.55-0.15 48.55-11.05 20.85 13.3 4.2 13.6-39 8.45-40.35-14.3-1-0.6-19.75-9.25" fill="#dcdecf" fill-rule="evenodd"/>
+<path d="m112.05 88h-39.1l-15.1-12.35-1.2-1.25 10.7-2.45 25.35 4.8 19.35 11.25" fill="#6b6f4a" fill-rule="evenodd"/>
+<path d="m93.7 114.9-1.3-10.15 10.15 4.75-8.85 5.4" fill="#fff" fill-rule="evenodd"/>
+<path d="m103 119.6 47.25 21.95-6.25 33.95h-66.75l-23.7-23.05 28.1-10.6 2.3-1.75 9.5-15.7 9.55-4.8" fill="#8b8f63" fill-rule="evenodd"/>
+<path d="m207.1 119.5-18.05 48.5-36.85 6.6 13.8-35.7 32.25-21.15 8.85 1.75" fill="#9aa074" fill-rule="evenodd"/>
+<path d="m69 95.1 8.75 0.9 6 4.25 2.6 20.4-8.45 13.95-39.4 11.55v-41.65l17.05-20.4 13.45 11" fill="url(#f)" fill-rule="evenodd"/>
+<path d="m114.7 47.95-37.35 10.7-17.9-7.3-0.9-12.85 8.55-4.15 5.95-4.35 43.55 5.65-1.9 12.3m15.25-31.1-40 9.9 23.75-20.75 16.25 10.85m-74.6 48.7 1.45-9.3 12.7 5.65-14.15 3.65" fill="#adb18d" fill-rule="evenodd"/>
+<path d="m147.85 94.15 16.4-4.15 5.25 13.25-8.65 2.4-13-11.5m-31.1 5.3 19.65-1.45 6.5 16.7-26.15-15.25m62.3 22.55-15.7-3 14.05-12.45 10 1.9-8.35 13.55" fill="#ced0bb" fill-rule="evenodd"/>
+<path d="m75.2 105.2-18.5 6.5-7.9-3.5-0.6-7.2 0.65-1.9 5.45-8.05 20.9 14.15" fill="#8d9263" fill-rule="evenodd"/>
+<path d="m41.6 140.3 1.4-21.7q9.15 14.25 34.3 13.45-13.4 3.4-35.7 8.25m115.85 30.8q26.65-13.05 36.85-36.1l-9.1 28.5-27.75 7.6" fill="#8b8f63" fill-rule="evenodd"/>
+<path d="m88.65 147 5.1 23.35-22.3-3.45-9.7-12.85 26.9-7.05" fill="#7e845b" fill-rule="evenodd"/>
+</g>
+<radialGradient id="h" cx="0" cy="0" r="819.2" gradientTransform="matrix(.1346 0 0 .1346 109 149)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#fff" offset="0"/>
+<stop stop-color="#fff" offset=".098039"/>
+<stop stop-color="#e0fcef" stop-opacity=".45098" offset=".11765"/>
+<stop stop-color="#c7fff2" stop-opacity="0" offset="1"/>
+</radialGradient>
+<radialGradient id="g" cx="0" cy="0" r="819.2" gradientTransform="matrix(.0877 0 0 .0877 121.9 122.1)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#fff" offset="0"/>
+<stop stop-color="#979c70" offset=".26667"/>
+<stop stop-color="#979c70" offset="1"/>
+</radialGradient>
+<radialGradient id="f" cx="0" cy="0" r="819.2" gradientTransform="matrix(.1346 0 0 .1346 109 149)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#fff" offset="0"/>
+<stop stop-color="#979c70" offset=".26667"/>
+<stop stop-color="#979c70" offset="1"/>
+</radialGradient>
+<g id="a">
+<use width="89.300003" height="97.300003" xlink:href="#c"/>
+</g>
+<g id="c">
+<path d="m39.85 16.85q4.5 21.65 6.6 21.65 2.05 0 4.85 3.7 2.8 3.65 38 9.65l-17.5-0.25-18.5 3.95q0.95 1.25-2.8 4.95-3.65 3.7-5.35 36.8l-3.7-25-3.7-8q-1.75-0.05-5.5-3.8-3.55-3.55-32.25-9.05l28.95-3.5q0.8-3.2 3.3-5.7 3.5-3.45 6.85-42.25l0.75 16.85" fill="url(#e)" fill-rule="evenodd"/>
+</g>
+<radialGradient id="e" cx="0" cy="0" r="819.2" gradientTransform="matrix(.0624 0 0 .0624 41.5 51.05)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#fff" offset="0"/>
+<stop stop-color="#fff" stop-opacity=".24314" offset=".6"/>
+<stop stop-color="#fff" stop-opacity=".11373" offset=".92157"/>
+<stop stop-color="#fff" stop-opacity="0" offset="1"/>
+</radialGradient>
+</defs>
+</svg>

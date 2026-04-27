@@ -5,10 +5,9 @@ config.json
 secrets.*
 *.key
 
-# Assets téléchargés au premier lancement (cf. serve.py bootstrap)
-icons/
-item-icons/
-mob-icons/
+# Cloudflare Workers / Node
+.wrangler/
+node_modules/
 
 # Artefacts intermédiaires
 *-raw.json
@@ -22,7 +21,7 @@ desktop.ini
 .idea/
 *.swp
 
-# Python
+# Python (legacy, en cours de suppression)
 __pycache__/
 *.pyc
 .venv/

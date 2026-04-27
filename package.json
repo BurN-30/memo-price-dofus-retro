@@ -1,0 +1,18 @@
+{
+  "name": "penates",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "description": "Memo des prix HDV Dofus Retro · Cloudflare Workers",
+  "scripts": {
+    "dev": "wrangler dev --port 8787",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  },
+  "dependencies": {
+    "@google/stitch-sdk": "^0.1.0"
+  }
+}

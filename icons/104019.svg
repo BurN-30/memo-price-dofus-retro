@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 97.963 117.79" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(-70.188 -46.423)">
+<use transform="matrix(.7692 -.6365 .6365 .7692 58.397 59.084)" width="35" height="151" xlink:href="#a"/>
+</g>
+<defs>
+<g id="a" transform="translate(.5 .5)">
+<path d="m17 0.05 0.5-0.05q6.85 0 11.65 20.95 3.2 13.9 4.3 31.6l-16.45 16.45v-68.95m0 47.85 1 1.1-1-1.1m1-6.9-1-1.6 1 1.6" fill="url(#g)" fill-rule="evenodd"/>
+<path d="m3.55 33.05q0.9-6.15 2.15-11.7l0.1-0.4q4.65-20.2 11.2-20.9v47.85l-13.45-14.85m2.15-11.7 11.3 18.05-11.3-18.05m11.3 66.65v20l-15.3-15.3q-0.7-10-0.7-21.2l0.05-3.25 15.95 19.75" fill="#6cc" fill-opacity=".36078" fill-rule="evenodd"/>
+<path d="m17 47.9v24.1h-1 1v16l-15.95-19.75q0.15-19.55 2.5-35.2l13.45 14.85" fill="url(#f)" fill-rule="evenodd"/>
+<path d="m33.45 52.55q0.55 9 0.55 18.95v0.5h-17v-3l16.45-16.45" fill="url(#e)" fill-rule="evenodd"/>
+<path d="m34 72q-0.05 24.65-3.45 43.3l-13.55 11.7v-55h17m-16 37-1-1 1 1" fill="url(#d)" fill-rule="evenodd"/>
+<path d="m30.55 115.3-1.4 6.75q-4.8 20.95-11.65 20.95h-0.5v-16l13.55-11.7" fill="url(#c)" fill-rule="evenodd"/>
+<path d="m1.7 92.7 15.3 15.3v35q-6.55-0.75-11.2-20.95-3-13-4.1-29.35" fill="url(#b)" fill-rule="evenodd"/>
+<path d="m17 0.05 0.5-0.05q6.85 0 11.65 20.95 3.2 13.9 4.3 31.6 0.55 9 0.55 18.95v0.5q-0.05 24.65-3.45 43.3l-1.4 6.75q-4.8 20.95-11.65 20.95h-0.5q-6.55-0.75-11.2-20.95-3-13-4.1-29.35m1.85-59.65q0.9-6.15 2.15-11.7l0.1-0.4q4.65-20.2 11.2-20.9m-15.95 68.2-0.05 3.25q0 11.2 0.7 21.2m-0.65-24.45q0.15-19.55 2.5-35.2" fill="none" stroke="#699" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="m17 143v7m0-149.95v39.35l1 1.6m0 8-1-1.1v21.1l16.45-16.45m-16.45-4.65v-8.5l-11.3-18.05m-2.15 11.7 13.45 14.85m0 24.1v-3m-1 3h18m-17 0v36l1 1m-1-21-15.95-19.75-1.05-1.25m1.7 25.7 15.3 15.3v19l13.55-11.7m-13.55 11.7v16" fill="none" stroke="#699" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<linearGradient id="g" x1="-819.2" x2="819.2" gradientTransform="matrix(.0036 -.0036 .021 .021 18.2 33.25)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#c8eded" offset="0"/>
+<stop stop-color="#fff" offset="1"/>
+</linearGradient>
+<linearGradient id="f" x1="-819.2" x2="819.2" gradientTransform="matrix(-.0024 -.0073 .0125 -.0041 7.2 52.6)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#c8eded" offset="0"/>
+<stop stop-color="#fff" offset="1"/>
+</linearGradient>
+<linearGradient id="e" x1="-819.2" x2="819.2" gradientTransform="matrix(.0121 -.0027 .0025 .0114 25.65 64.05)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#c8eded" offset="0"/>
+<stop stop-color="#fff" offset="1"/>
+</linearGradient>
+<linearGradient id="d" x1="-819.2" x2="819.2" gradientTransform="matrix(.0037 -.0018 .0134 .0269 32.2 91.9)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#c8eded" offset="0"/>
+<stop stop-color="#fff" offset="1"/>
+</linearGradient>
+<linearGradient id="c" x1="-819.2" x2="819.2" gradientTransform="matrix(.0043 6e-4 -.0025 .0177 25.9 129.4)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#c8eded" offset="0"/>
+<stop stop-color="#fff" offset="1"/>
+</linearGradient>
+<linearGradient id="b" x1="-819.2" x2="819.2" gradientTransform="matrix(-.0073 6e-4 -.0026 -.0313 7 118.05)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#c8eded" offset="0"/>
+<stop stop-color="#fff" offset="1"/>
+</linearGradient>
+</defs>
+</svg>

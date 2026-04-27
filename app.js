@@ -2,7 +2,17 @@
   'use strict';
 
   const STORAGE_KEY = 'memo-price-state-v1';
+  const STORAGE_KEY_NIM = 'penates.nim_key';
+  const STORAGE_KEY_MODEL = 'penates.nim_model';
+  const STORAGE_KEY_ONBOARDING = 'penates.onboarding_dismissed';
+  const DEFAULT_MODEL = 'meta/llama-3.2-11b-vision-instruct';
   const iconUrl = it => 'icons/' + (it.img || '').split('/').pop();
+
+  function getNimKey() { return localStorage.getItem(STORAGE_KEY_NIM) || ''; }
+  function setNimKey(k) { if (k) localStorage.setItem(STORAGE_KEY_NIM, k); else localStorage.removeItem(STORAGE_KEY_NIM); }
+  function getNimModel() { return localStorage.getItem(STORAGE_KEY_MODEL) || DEFAULT_MODEL; }
+  function setNimModel(m) { localStorage.setItem(STORAGE_KEY_MODEL, m || DEFAULT_MODEL); }
+  function hasNimKey() { return !!getNimKey(); }
 
   // --- catalog (resources + items)
   const CATALOG = window.RESOURCES || [];
@@ -138,7 +148,6 @@
   let state = loadState();
   let currentFolderId = state.currentFolderId || 'all';
   let editingFolderId = null;
-  let serverHasOcr = false;
 
   function defaultState() {
     const now = Date.now();
@@ -1019,8 +1028,9 @@
   let toastTimer = null;
 
   function openOcr() {
-    if (!serverHasOcr) {
-      alert('OCR indisponible. Lance l\'app via "python serve.py" puis ajoute ta clé NIM dans Réglages.');
+    if (!hasNimKey()) {
+      alert('OCR indisponible. Ouvre Réglages et entre ta clé NVIDIA NIM.');
+      openSettings();
       return;
     }
     // Si une session existe déjà (minimisée), on ré-ouvre sans reset
@@ -1208,7 +1218,7 @@
         const r = await fetch('/api/ocr', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ image_b64: q.image.b64, mime: q.image.mime })
+          body: JSON.stringify({ image_b64: q.image.b64, mime: q.image.mime, model: getNimModel(), nim_key: getNimKey() })
         });
         const j = await r.json();
         if (!r.ok || !j.ok) {
@@ -1542,76 +1552,75 @@
     }
   }
 
-  // --- settings modal
+  // --- settings modal (clé NIM en localStorage, plus de /api/config serveur)
   const $setModal = document.getElementById('modal-settings');
   const $setKey = document.getElementById('set-nim-key');
   const $setModel = document.getElementById('set-nim-model');
   const $setStatus = document.getElementById('set-status');
 
-  async function openSettings() {
+  function openSettings() {
     $setStatus.textContent = '';
     $setStatus.className = 'hint';
     const $modelPick = document.getElementById('set-nim-model-pick');
     const presetModels = Array.from($modelPick.options).map(o => o.value).filter(v => v !== '__custom__');
-    try {
-      const r = await fetch('/api/config');
-      if (!r.ok) throw new Error('serveur indisponible');
-      const j = await r.json();
-      $setKey.value = '';
-      $setKey.placeholder = j.has_key ? '✓ clé déjà configurée — entre une nouvelle pour la remplacer' : 'nvapi-…';
-      const m = j.model || 'meta/llama-3.2-11b-vision-instruct';
-      if (presetModels.includes(m)) {
-        $modelPick.value = m;
-        $setModel.hidden = true;
-      } else {
-        $modelPick.value = '__custom__';
-        $setModel.hidden = false;
-        $setModel.value = m;
-      }
-      serverHasOcr = j.has_key;
-    } catch (e) {
-      $setStatus.className = 'hint error';
-      $setStatus.textContent = `Serveur Python pas démarré → "python serve.py"`;
-      $setKey.placeholder = 'nvapi-…';
-      $modelPick.value = 'meta/llama-3.2-11b-vision-instruct';
+    const hasKey = hasNimKey();
+    $setKey.value = '';
+    $setKey.placeholder = hasKey ? '✓ clé déjà configurée — entre une nouvelle pour la remplacer' : 'nvapi-…';
+    const m = getNimModel();
+    if (presetModels.includes(m)) {
+      $modelPick.value = m;
       $setModel.hidden = true;
+    } else {
+      $modelPick.value = '__custom__';
+      $setModel.hidden = false;
+      $setModel.value = m;
     }
     $setModal.hidden = false;
     setTimeout(() => $setKey.focus(), 50);
   }
   function closeSettings() { $setModal.hidden = true; }
 
-  async function saveSettings() {
+  function saveSettings() {
     const $modelPick = document.getElementById('set-nim-model-pick');
-    const payload = {};
-    if ($setKey.value.trim()) payload.nim_key = $setKey.value.trim();
+    if ($setKey.value.trim()) setNimKey($setKey.value.trim());
     const pickedModel = $modelPick.value === '__custom__' ? $setModel.value.trim() : $modelPick.value;
-    if (pickedModel) payload.model = pickedModel;
-    try {
-      const r = await fetch('/api/config', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      const j = await r.json();
-      if (!r.ok || !j.ok) throw new Error(j.error || 'erreur');
-      $setStatus.className = 'hint success';
-      $setStatus.textContent = '✓ Réglages enregistrés';
-      serverHasOcr = j.has_key;
-      setTimeout(closeSettings, 600);
-    } catch (e) {
-      $setStatus.className = 'hint error';
-      $setStatus.textContent = `Erreur : ${e.message}`;
-    }
+    if (pickedModel) setNimModel(pickedModel);
+    $setStatus.className = 'hint success';
+    $setStatus.textContent = '✓ Réglages enregistrés';
+    setTimeout(closeSettings, 600);
   }
 
-  async function probeServer() {
+  // Test une clé NIM via le Worker. NIM peut renvoyer 502 (image 1×1 illisible) — on traite ça comme "clé valide".
+  const TINY_PIXEL_B64 = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII=';
+  async function testNimKey() {
+    const candidate = ($setKey.value || '').trim() || getNimKey();
+    if (!candidate) {
+      $setStatus.className = 'hint error';
+      $setStatus.textContent = '✗ Aucune clé à tester';
+      return;
+    }
+    $setStatus.className = 'hint';
+    $setStatus.textContent = '⌛ Test en cours…';
     try {
-      const r = await fetch('/api/config', { method: 'GET' });
-      if (!r.ok) return;
-      const j = await r.json();
-      serverHasOcr = !!j.has_key;
-    } catch { serverHasOcr = false; }
+      const r = await fetch('/api/ocr', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ image_b64: TINY_PIXEL_B64, mime: 'image/png', nim_key: candidate, model: DEFAULT_MODEL, no_fallback: true })
+      });
+      // 200 ou 502 → la clé a été acceptée par NIM (502 = NIM répond mais ne parse pas le 1×1, c'est normal)
+      // 401/403 → clé invalide. 429 → rate limit. Autres → erreur réseau / proxy.
+      if (r.status === 200 || r.status === 502) {
+        $setStatus.className = 'hint success';
+        $setStatus.textContent = '✓ Clé valide';
+      } else {
+        const j = await r.json().catch(() => ({}));
+        $setStatus.className = 'hint error';
+        $setStatus.textContent = `✗ ${j.error || 'Clé invalide (HTTP ' + r.status + ')'}`;
+      }
+    } catch (e) {
+      $setStatus.className = 'hint error';
+      $setStatus.textContent = `✗ Erreur réseau : ${e.message}`;
+    }
   }
 
   // --- recipe modal
@@ -1845,7 +1854,7 @@
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `memo-price-${new Date().toISOString().slice(0,10)}.json`;
+    a.download = `penates-${new Date().toISOString().slice(0,10)}.json`;
     a.click();
     URL.revokeObjectURL(url);
   }
@@ -2029,119 +2038,6 @@
     $btnChangelog.textContent = 'v' + APP_VERSION;
   }).catch(() => { $btnChangelog.textContent = 'v?'; });
 
-  // Vérifie une update au démarrage (silencieux, en différé)
-  let updateInfo = null;
-  setTimeout(async () => {
-    try {
-      const r = await fetch('/api/check-update');
-      const j = await r.json();
-      if (j.has_update) {
-        updateInfo = j;
-        document.getElementById('update-dot').hidden = false;
-      }
-    } catch {}
-  }, 3000);
-
-  document.getElementById('update-dot').addEventListener('click', e => {
-    e.stopPropagation();
-    if (updateInfo) openUpdateModal();
-  });
-
-  const $updateModal = document.getElementById('modal-update');
-  const $updateBody = document.getElementById('update-body');
-
-  function openUpdateModal() {
-    if (!updateInfo) return;
-    const u = updateInfo;
-    const commits = u.commits || [];
-    const dirtyHtml = u.dirty
-      ? `<div class="danger-box">
-          <b>Modifs locales détectées</b> dans le repo. L'auto-update est bloqué pour éviter d'écraser ton travail.<br>
-          Soit tu commit / stash tes modifs, soit tu fais l'update à la main : <code>git stash && git pull && git stash pop</code>.
-        </div>`
-      : '';
-    $updateBody.innerHTML = `
-      <div class="row1">
-        <span class="ver">v${APP_VERSION} · ${escapeHtml(u.local || '?')}</span>
-        <span class="arrow">→</span>
-        <span class="ver new">${escapeHtml(u.remote || '?')} (${u.commit_count} commit${u.commit_count>1?'s':''})</span>
-      </div>
-      <div class="commits">
-        ${commits.length
-          ? commits.map(c => `<div class="commit"><span class="sha">${escapeHtml(c.sha)}</span><span class="subj" title="${escapeHtml(c.subject)} · ${escapeHtml(c.author)}">${escapeHtml(c.subject)}</span></div>`).join('')
-          : '<div style="color:var(--text-mute)">(détail des commits indisponible)</div>'}
-      </div>
-      <div class="warn">
-        <b>Conseil sécurité :</b> avant d'accepter, jette un œil au diff complet sur GitHub —
-        <a href="${escapeHtml(u.compare_url)}" target="_blank" rel="noopener">voir les modifs sur GitHub</a>.
-        L'auto-update lance un <code>git pull</code> puis redémarre le serveur. Tes prix
-        (<code>localStorage</code>) et ta clé NIM (<code>config.json</code>) ne sont pas touchés.
-      </div>
-      ${dirtyHtml}
-      <div class="actions">
-        <button class="btn-mini" data-close>Plus tard</button>
-        <button id="update-apply" class="btn-primary" ${u.dirty ? 'disabled' : ''}>Mettre à jour maintenant</button>
-      </div>
-    `;
-    $updateModal.hidden = false;
-    for (const el of $updateBody.querySelectorAll('[data-close]')) {
-      el.addEventListener('click', () => $updateModal.hidden = true);
-    }
-    document.getElementById('update-apply').addEventListener('click', performUpdate);
-  }
-  function closeUpdateModal() { $updateModal.hidden = true; }
-  $updateModal.addEventListener('click', e => { if (e.target === $updateModal) closeUpdateModal(); });
-
-  const $restartOverlay = document.getElementById('restart-overlay');
-  const $restartTitle = document.getElementById('restart-title');
-  const $restartStatus = document.getElementById('restart-status');
-
-  async function performUpdate() {
-    closeUpdateModal();
-    $restartOverlay.querySelector('.restart-card').classList.remove('error', 'success');
-    $restartTitle.textContent = 'Mise à jour en cours…';
-    $restartStatus.textContent = 'git pull sur le repo local…';
-    $restartOverlay.hidden = false;
-    try {
-      const r = await fetch('/api/update', { method: 'POST' });
-      const j = await r.json();
-      if (!r.ok || !j.ok) {
-        $restartOverlay.querySelector('.restart-card').classList.add('error');
-        $restartTitle.textContent = 'Échec de la mise à jour';
-        $restartStatus.textContent = j.error || 'Erreur inconnue';
-        document.querySelector('.restart-hint').textContent = 'Tu peux fermer cet écran (F5) et réessayer manuellement.';
-        return;
-      }
-      $restartStatus.textContent = 'Pull réussi · redémarrage du serveur…';
-      // Attend la connection retour
-      setTimeout(waitForServerThenReload, 1500);
-    } catch (e) {
-      // Le serveur peut avoir déjà redémarré et coupé la connection — c'est OK
-      $restartStatus.textContent = 'Serveur en redémarrage… (connection coupée, attente du retour)';
-      setTimeout(waitForServerThenReload, 1000);
-    }
-  }
-
-  async function waitForServerThenReload(attempt = 0) {
-    if (attempt > 40) {
-      $restartOverlay.querySelector('.restart-card').classList.add('error');
-      $restartTitle.textContent = 'Le serveur ne répond plus';
-      $restartStatus.textContent = "Relance lancer.bat manuellement, puis recharge cette page.";
-      return;
-    }
-    try {
-      const r = await fetch('/api/health', { cache: 'no-store' });
-      if (r.ok) {
-        $restartOverlay.querySelector('.restart-card').classList.add('success');
-        $restartTitle.textContent = 'Mise à jour OK';
-        $restartStatus.textContent = 'Rechargement de la page…';
-        setTimeout(() => location.reload(), 800);
-        return;
-      }
-    } catch {}
-    setTimeout(() => waitForServerThenReload(attempt + 1), 700);
-  }
-
   function mdToHtml(md) {
     // mini-parseur markdown : titres, listes, gras, code, liens, blockquote
     const lines = md.split(/\r?\n/);
@@ -2207,7 +2103,22 @@
   });
   applySidebarState();
 
+  // --- onboarding première fois
+  const $onboarding = document.getElementById('onboarding');
+  function hideOnboarding() { if ($onboarding) $onboarding.hidden = true; }
+  document.getElementById('onb-go-settings')?.addEventListener('click', () => {
+    hideOnboarding();
+    openSettings();
+  });
+  document.getElementById('onb-skip')?.addEventListener('click', () => {
+    localStorage.setItem(STORAGE_KEY_ONBOARDING, '1');
+    hideOnboarding();
+  });
+  document.getElementById('set-test')?.addEventListener('click', testNimKey);
+
   // --- init
   render();
-  probeServer();
+  if ($onboarding && !hasNimKey() && !localStorage.getItem(STORAGE_KEY_ONBOARDING)) {
+    $onboarding.hidden = false;
+  }
 })();

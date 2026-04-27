@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Memo Price · Dofus Retro</title>
+<title>Pénates · Memo des prix HDV · Dofus Retro</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
@@ -12,10 +12,16 @@
 <body>
 <aside id="sidebar">
   <header class="brand">
-    <span class="logo">⟡</span>
+    <span class="logo" aria-hidden="true">
+      <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+        <circle cx="14" cy="14" r="12" fill="#8b3a2f" stroke="#d49a5c" stroke-width="1.5"/>
+        <text x="14" y="18.5" text-anchor="middle" font-family="Georgia, serif" font-size="14" font-weight="700" fill="#e8b97a">P</text>
+      </svg>
+    </span>
     <div class="brand-text">
-      <h1>Memo Price</h1>
-      <span class="sub">Dofus Retro · <button class="link-version" id="btn-changelog" title="Voir le changelog">v—</button><span class="update-dot" id="update-dot" hidden title="Mise à jour disponible — clique"></span></span>
+      <h1>Pénates</h1>
+      <span class="sub">Memo des prix · Dofus Retro · <button class="link-version" id="btn-changelog" title="Voir le changelog">v—</button></span>
+      <p class="tagline">Préserve la connaissance des prix.</p>
     </div>
     <button id="btn-collapse" class="btn-collapse" title="Réduire la sidebar">‹</button>
   </header>
@@ -200,9 +206,22 @@ kriptonite 30/u
       <button class="btn-close" data-close>×</button>
     </header>
     <label>Clé API NVIDIA NIM
-      <input id="set-nim-key" type="password" placeholder="nvapi-…" autocomplete="off">
+      <div class="key-row">
+        <input id="set-nim-key" type="password" placeholder="nvapi-…" autocomplete="off">
+        <button type="button" id="set-test" class="btn-secondary">Tester</button>
+      </div>
     </label>
-    <p class="hint">Obtiens une clé sur <span class="lnk-static">build.nvidia.com</span>. Stockée en local dans <code>config.json</code>.</p>
+    <p class="hint">Obtiens une clé sur <a href="https://build.nvidia.com" target="_blank" rel="noopener noreferrer">build.nvidia.com</a>. Stockée localement dans ton navigateur (jamais sur le serveur Pénates).</p>
+    <details class="nim-help">
+      <summary>Comment récupérer une clé NVIDIA NIM ? (gratuit, ~2 min)</summary>
+      <ol>
+        <li>Va sur <a href="https://build.nvidia.com" target="_blank" rel="noopener noreferrer">build.nvidia.com</a> et crée un compte gratuit (n'importe quel mail).</li>
+        <li>Ouvre le modèle <a href="https://build.nvidia.com/meta/llama-3.2-11b-vision-instruct" target="_blank" rel="noopener noreferrer">meta/llama-3.2-11b-vision-instruct</a>.</li>
+        <li>En haut à droite, clique <b>Get API Key</b>. La clé s'affiche au format <code>nvapi-…</code> — copie-la (elle ne se ré-affiche pas).</li>
+        <li>Reviens ici, colle-la, clique <b>Tester</b> puis <b>Enregistrer</b>.</li>
+      </ol>
+      <p class="nim-help-note">Quota gratuit ~1000 OCR/mois. Aucune carte de crédit demandée.</p>
+    </details>
     <label>Modèle vision
       <select id="set-nim-model-pick" class="set-model-pick">
         <option value="meta/llama-3.2-11b-vision-instruct">Llama 3.2 11B Vision · rapide (~1s)</option>
@@ -250,24 +269,32 @@ kriptonite 30/u
   </div>
 </div>
 
-<!-- Modal: update -->
-<div id="modal-update" class="modal" hidden>
-  <div class="modal-card">
-    <header>
-      <h3>Mise à jour disponible</h3>
-      <button class="btn-close" data-close>×</button>
-    </header>
-    <div class="update-body" id="update-body"></div>
-  </div>
-</div>
-
-<!-- Overlay: restart in progress -->
-<div id="restart-overlay" class="restart-overlay" hidden>
-  <div class="restart-card">
-    <div class="restart-spinner"></div>
-    <h3 id="restart-title">Mise à jour en cours…</h3>
-    <p id="restart-status">Récupération des changements depuis GitHub.</p>
-    <p class="restart-hint">La page se rechargera automatiquement quand le serveur sera relancé.</p>
+<!-- Onboarding première fois -->
+<div id="onboarding" class="onboarding-overlay" hidden>
+  <div class="onboarding-card">
+    <span class="logo logo-large" aria-hidden="true">
+      <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="28" fill="#8b3a2f" stroke="#d49a5c" stroke-width="2"/>
+        <text x="32" y="42" text-anchor="middle" font-family="Georgia, serif" font-size="32" font-weight="700" fill="#e8b97a">P</text>
+      </svg>
+    </span>
+    <h2>Bienvenue dans Pénates</h2>
+    <p class="onboarding-tagline"><i>Préserve la connaissance des prix.</i></p>
+    <p class="onboarding-intro">Outil minimaliste pour mémoriser les prix HDV de Dofus Retro entre tes sessions. Tes données restent dans ton navigateur — personne d'autre ne les voit.</p>
+    <details class="nim-help">
+      <summary>Activer l'OCR : récupérer une clé NVIDIA NIM (gratuit, ~2 min)</summary>
+      <ol>
+        <li>Va sur <a href="https://build.nvidia.com" target="_blank" rel="noopener noreferrer">build.nvidia.com</a> et crée un compte gratuit.</li>
+        <li>Ouvre le modèle <a href="https://build.nvidia.com/meta/llama-3.2-11b-vision-instruct" target="_blank" rel="noopener noreferrer">llama-3.2-11b-vision-instruct</a>.</li>
+        <li>Clique <b>Get API Key</b> (en haut à droite), copie la clé <code>nvapi-…</code>.</li>
+        <li>Reviens ici, clique <b>J'ai une clé</b> ci-dessous, colle-la dans Réglages.</li>
+      </ol>
+      <p class="nim-help-note">Quota ~1000 OCR/mois. Aucune carte de crédit. L'OCR est optionnel : sans clé, tu peux quand même rentrer tes prix à la main.</p>
+    </details>
+    <div class="onboarding-actions">
+      <button type="button" id="onb-go-settings" class="btn-primary">J'ai une clé → Réglages</button>
+      <button type="button" id="onb-skip" class="btn-ghost">Continuer sans OCR</button>
+    </div>
   </div>
 </div>
 

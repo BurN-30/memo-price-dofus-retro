@@ -1,6 +1,27 @@
 # Changelog
 
-Toutes les modifs notables de Memo Price. Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
+Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
+
+## [0.4.0] — cloud edition · 2026-04-27
+
+### Changé
+- **Rebrand** : Memo Price devient **Pénates**, en référence à la *Confrérie des Pénates* du lore Dofus, organisation dédiée à la préservation de la connaissance.
+- **Migration cloud** : l'app n'est plus servie par un serveur Python local, mais hébergée sur Cloudflare Workers. Plus besoin de lancer `lancer.bat` / `python serve.py` — accès direct via le site.
+- **Clé NIM côté browser** : la clé NVIDIA NIM est désormais dans le `localStorage` du navigateur (et non plus dans `config.json` côté serveur). Chaque utilisateur garde sa clé sur sa machine ; le Worker la transmet à NIM uniquement le temps de l'OCR.
+
+### Ajouté
+- **Onboarding première fois** : à la première visite (sans clé NIM), un écran d'accueil propose de configurer NIM ou de continuer sans OCR.
+- **Bouton « Tester la clé »** dans Réglages : valide la clé en envoyant un appel minimal à NIM, retour visuel ✓ vert / ✗ rouge.
+- **Accordéon guide NIM** : marche à suivre détaillée pour récupérer une clé gratuite sur `build.nvidia.com`.
+- **Logo sceau de cire** : le `⟡` est remplacé par un sceau circulaire monogramme `P` (cire bordeaux + bordure cuivre), plus aligné avec l'identité « archive de la confrérie ».
+- **Tagline** « Préserve la connaissance des prix. » sous le titre.
+- **Rate-limit IP** côté Worker (60 req/min) pour éviter les abus.
+
+### Supprimé
+- Auto-update intégrée (`/api/check-update`, `/api/update`) — remplacée par auto-deploy Cloudflare au push GitHub.
+- Endpoint `/api/config` (clé NIM serveur) — remplacé par `localStorage` browser.
+- Scripts de lancement local (`lancer.bat`, `lancer.sh`, `stop.bat`, `stop.sh`).
+- Modal « Mise à jour disponible » et overlay de redémarrage.
 
 ## [0.3.0] — 2026-04-26
 

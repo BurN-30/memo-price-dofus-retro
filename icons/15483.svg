@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 165 208.85" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(-179.8 -67.099)">
+<use transform="translate(180.3,251.95)" width="158.14999" height="24" xlink:href="#d"/>
+<use transform="translate(179.8,105.45)" width="165" height="165" xlink:href="#a"/>
+<use transform="matrix(.991 .131 -.1605 1.214 269.16 62.88)" width="66.849998" height="100.45" xlink:href="#b"/>
+</g>
+<defs>
+<g id="d" transform="translate(-180.3,-251.95)">
+<path d="m315.3 272.4q-23.15 3.55-55.9 3.55-32.8 0-55.95-3.55-23.15-3.5-23.15-8.45t23.15-8.5q23.15-3.5 55.95-3.5 32.75 0 55.9 3.5 23.15 3.55 23.15 8.5t-23.15 8.45" fill="url(#f)" fill-rule="evenodd"/>
+</g>
+<radialGradient id="f" cx="0" cy="0" r="819.2" gradientTransform="matrix(.1004 0 0 .1004 258.4 252.85)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#484848" stop-opacity=".38039" offset="0"/>
+<stop stop-color="#fff" stop-opacity="0" offset="1"/>
+<stop stop-color="#fff" offset="1"/>
+<stop stop-color="#7b651c" offset="1"/>
+<stop stop-color="#fff" offset="1"/>
+<stop stop-color="#fff" stop-opacity="0" offset="1"/>
+</radialGradient>
+<g id="a" transform="translate(.5 .5)">
+<use transform="translate(-.5 -.5)" width="165" height="165" xlink:href="#c"/>
+</g>
+<g id="c" transform="translate(.5 .5)">
+<path d="m164 82q0 33.95-24.05 57.95-24 24.05-57.95 24.05t-58-24.05q-24-24-24-57.95t24-58q24.05-24 58-24t57.95 24q24.05 24.05 24.05 58" fill="url(#e)" fill-rule="evenodd"/>
+<path d="m164 82q0 33.95-24.05 57.95-24 24.05-57.95 24.05t-58-24.05q-24-24-24-57.95t24-58q24.05-24 58-24t57.95 24q24.05 24.05 24.05 58z" fill="none" stroke="#b6a529" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<radialGradient id="e" cx="0" cy="0" r="819.2" gradientTransform="matrix(.1376 0 0 .1376 102.4 60.3)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#fff" offset="0"/>
+<stop stop-color="#f3f372" offset="0"/>
+<stop stop-color="#eff477" offset=".11373"/>
+<stop stop-color="#edec61" offset=".36078"/>
+<stop stop-color="#cbb32e" offset=".84706"/>
+<stop stop-color="#7b651c" offset=".98824"/>
+</radialGradient>
+<g id="b" transform="translate(33.4,50.2)">
+<path d="m-6.3 50.25-3.6-36.1-23.5-2.7 23.9-3.4 8.3-58.25 4 58.95 30.65 0.95-30.25 3.6-9.5 36.95" fill="#fff" fill-opacity=".64706" fill-rule="evenodd"/>
+</g>
+</defs>
+</svg>

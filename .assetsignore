@@ -1,0 +1,29 @@
+# Worker source — ne pas servir comme asset
+src/
+wrangler.toml
+package.json
+package-lock.json
+node_modules/
+.wrangler/
+
+# Python legacy (en cours de suppression)
+*.py
+config.json
+config.example.json
+lancer.bat
+lancer.sh
+stop.bat
+stop.sh
+
+# Dev tooling
+stitch-mockups/
+.git/
+.github/
+.gitignore
+.assetsignore
+.claude/
+.vscode/
+.idea/
+
+# Documentation hors-ligne (CHANGELOG.md reste servable pour le bouton "voir le changelog")
+LICENSE

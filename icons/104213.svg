@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 36.295 40.552" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(-265.88 -182.33)">
+<use transform="matrix(-1,0,0,1,302.15,182.35)" width="36.25" height="40.5" xlink:href="#a"/>
+</g>
+<defs>
+<g id="a" transform="translate(35.95,33.95)">
+<use transform="translate(-35.95,-33.95)" width="36.25" height="40.5" xlink:href="#b"/>
+</g>
+<g id="b" transform="translate(35.95,33.95)">
+<path d="m0.3-4.5-0.1-0.1h0.05l0.05 0.1m-2.25 6.45q-4.95-4.95-11.9-8.15-7.6-3.5-11-6.5-6.1-5.4-7.3-9-0.75-2.25-0.6-7.05l0.25-5.2 6.7 4.45 1.05 0.75q5 3.8 9.9 8.55 4.2 5.45 12.95 22.15h-0.05m0.95 0.55q-5.2-0.25-10.3 1.75-5.55 2.25-8.9 2.3-5.95 0.1-8.65-1.45-2.35-1.4-7.1-7.45l5.6-1.15 10.45-0.5q5.15 1 18.9 6.5m-24.15-2.45-5.2-3.55 5.2 3.55 7.8 0.3-5.85 2.95 5.85-2.95-7.8-0.3-6.45-0.95 6.45 0.95m7.8 0.3q4.65-0.2 9.45 1.1-4.8-1.3-9.45-1.1m-12-29.1q2.6 3.35 5.55 6.6l7.5 7.5q4.85 4.15 8.5 9.6-3.65-5.45-8.5-9.6l-8.6-3.25 8.6 3.25-7.5-7.5q-2.95-3.25-5.55-6.6" fill="#ba8e48" fill-rule="evenodd"/>
+<path d="m0.3-4.5-0.1-0.1m-15.05-15.6q-4.9-4.75-9.9-8.55l-1.05-0.75-6.7-4.45-0.25 5.2q-0.15 4.8 0.6 7.05 1.2 3.6 7.3 9 3.4 3 11 6.5 6.95 3.2 11.9 8.15m0.95 0.55q-5.2-0.25-10.3 1.75-5.55 2.25-8.9 2.3-5.95 0.1-8.65-1.45-2.35-1.4-7.1-7.45l5.6-1.15 10.45-0.5" fill="none" stroke="#634727" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".50196" stroke-width=".05"/>
+<path d="m-7.8-5.05q-3.65-5.45-8.5-9.6l-8.6-3.25m8.6 3.25-7.5-7.5q-2.95-3.25-5.55-6.6m6.15 32.05 5.85-2.95-7.8-0.3-6.45-0.95m23.7 2.35q-4.8-1.3-9.45-1.1m-13-3.85 5.2 3.55" fill="none" stroke="#634727" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".50196" stroke-width=".05"/>
+</g>
+</defs>
+</svg>

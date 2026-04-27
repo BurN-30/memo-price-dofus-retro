@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 174.62 230.36" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(-199.45 -82.649)">
+<use transform="matrix(-.0363 -.5937 .3616 -.1412 202.05 276.51)" width="72.550003" height="107.75" xlink:href="#a"/>
+<use transform="matrix(.2654 -.5323 .5547 .0846 186.2 240.34)" width="72.550003" height="107.75" xlink:href="#a"/>
+<use transform="matrix(.5378 -.5849 .638 .5145 175.59 178.18)" width="72.550003" height="107.75" xlink:href="#a"/>
+<use transform="matrix(.7729 -.0473 -.0544 -.4986 274.74 316.39)" width="72.550003" height="107.75" xlink:href="#a"/>
+<use transform="matrix(-.6855 -.5431 .6885 -.8784 342.29 312.55)" width="104.85" height="40.049999" xlink:href="#b"/>
+<use transform="matrix(-.8652 -.1276 .2908 -1.0853 362.87 259.63)" width="104.85" height="40.049999" xlink:href="#b"/>
+<use transform="matrix(1.1956 .2432 -.1479 .9586 270.31 127.7)" width="72.550003" height="107.75" xlink:href="#a"/>
+<use transform="matrix(1 0 .0955 1.3508 232.45 82.649)" width="72.550003" height="107.75" xlink:href="#a"/>
+</g>
+<defs>
+<g id="a" transform="translate(35.75,55.45)">
+<use transform="translate(-35.75,-55.45)" width="72.550003" height="107.75" xlink:href="#d"/>
+</g>
+<g id="d" transform="translate(35.75,55.45)">
+<path d="m7-27.55v0.05-0.05" fill="#587500" fill-rule="evenodd"/>
+<path d="m-32.8 50.85 0.7-4.4q7.05-38.85 39.1-73.95l-0.6 26.15-0.15 0.55q-0.15 17.9-7.4 34.15-8.9 10.05-20.65 16.2-2.85 1.5-5.85 2.75-0.6-0.45-1.3-0.8l-0.8-0.35-1.9 0.35-1.2-0.3 0.05-0.35" fill="#592d59" fill-rule="evenodd"/>
+<path d="m7-27.5q-32.05 35.1-39.1 73.95l-0.7 4.4-0.05 0.35-1.65-0.3-0.3-1.35-0.65-4.15q-1.7-15.9 6.55-36.5l0.1-0.15q13.1-19.95 35.8-36.25" fill="#673c67" fill-rule="evenodd"/>
+<path d="m-1.15 33.35q7.25-16.25 7.4-34.15l0.15-0.55 0.6-26.15v-0.05q12.5-13.75 28.8-26.9-10.15 18.45-14.4 39.9-6.75 30.1-22.55 47.9" fill="#935800" fill-rule="evenodd"/>
+<path d="m7-27.55v0.05q-22.7 16.3-35.8 36.25 19.25-39.05 64.6-63.2-16.3 13.15-28.8 26.9" fill="#936725" fill-rule="evenodd"/>
+<path d="m7-27.5q-32.05 35.1-39.1 73.95l-0.7 4.4m68.6-105.3q-16.3 13.15-28.8 26.9" fill="none" stroke="#8f920d" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".49804" stroke-width="2"/>
+<path d="m-28.8 8.75-0.1 0.15q-8.25 20.6-6.55 36.5m56.85-59.95q4.25-21.45 14.4-39.9-45.35 24.15-64.6 63.2" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".2902" stroke-width=".05"/>
+<path d="m-21.8 49.55q11.75-6.15 20.65-16.2 15.8-17.8 22.55-47.9" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".2902" stroke-width=".05"/>
+</g>
+<g id="b" transform="translate(54.65,20)">
+<use transform="translate(-54.65,-20)" width="104.85" height="40.049999" xlink:href="#c"/>
+</g>
+<g id="c" transform="translate(54.65,20)">
+<path d="m-53.65 18.45h-0.1l0.1-0.1v0.1" fill="#6a8e00" fill-rule="evenodd"/>
+<path d="m-11.6 10.25q31.2-8.55 60.1-24.15l1.7-0.9-0.15 3.45q-9.7 12.45-24 20l-0.25 0.1q-23.55 5.5-37.4 1.5" fill="#7d487d" fill-rule="evenodd"/>
+<path d="m47.65-17.85 2.55 2.6v0.45l-1.7 0.9q-28.9 15.6-60.1 24.15 4-18.45 24.1-29.35 16.8-2.3 35.15 1.25" fill="#713971" fill-rule="evenodd"/>
+<path d="m25.8 8.75q-29.75 15.5-79.45 9.7v-0.1q20.65-2.4 40.35-7.65l1.7-0.45q13.85 4 37.4-1.5" fill="#b27d2c" fill-rule="evenodd"/>
+<path d="m12.5-19.1q-20.1 10.9-24.1 29.35l-1.7 0.45q-19.7 5.25-40.35 7.65 29.5-32.5 66.15-37.45" fill="#b26a00" fill-rule="evenodd"/>
+<path d="m47.65-17.85q-18.35-3.55-35.15-1.25m37.55 7.75q-9.7 12.45-24 20m-0.25 0.1q-29.75 15.5-79.45 9.7h-0.1l0.1-0.1q29.5-32.5 66.15-37.45" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".4" stroke-width=".05"/>
+<path d="m-11.6 10.25q31.2-8.55 60.1-24.15m-61.8 24.6q-19.7 5.25-40.35 7.65" fill="none" stroke="#adb010" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".49804" stroke-width="2"/>
+</g>
+</defs>
+</svg>

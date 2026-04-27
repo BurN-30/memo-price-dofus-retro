@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 96.468 53.055" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(-15.278 -22.422)">
+<use transform="matrix(.4821 0 0 .4821 15.29 22.434)" width="200.05" height="110" xlink:href="#a"/>
+</g>
+<defs>
+<g id="a" transform="translate(100,55)">
+<path d="m-44.35 42.2h0.05l0.1 0.1-0.15-0.1" fill="#9e7601" fill-rule="evenodd"/>
+<path d="m-49.95 49.05v0.65h-0.6l0.6-0.65" fill="#8b6801" fill-rule="evenodd"/>
+<path d="m-50.55 49.7-0.1-0.15 0.7-0.5-0.6 0.65" fill="#febe01" fill-rule="evenodd"/>
+<path d="m-100 20q53.55-42.25 150.05-75l8.85 4.45-16.05 8.65 16.05-8.65 41.15 20.55q-58.75 38-144.35 72.2h-0.05l-11.7-0.25-3.05-1.5-40.9-20.45m61.8 9.9-20.9 10.55 20.9-10.55m130.8-62.1-42.25 21.55 42.25-21.55m-35.65-4.85-54.6 27.3 54.6-27.3m-143.6 62.95 67.4-33.45-67.4 33.45" fill="#cfac5f" fill-rule="evenodd"/>
+<path d="m100.05-30v10q-57.1 37.5-150 75v-5.95l5.75-6.75-0.1-0.1q85.6-34.2 144.35-72.2" fill="#b18b34" fill-rule="evenodd"/>
+<path d="m-100 20 40.9 20.45 3.05 1.5 5.4 7.6 0.1 0.15h0.6v5.3l-50.05-25v-10" fill="#795f24" fill-rule="evenodd"/>
+<path d="m-56.05 41.95 11.7 0.25 0.15 0.1-5.75 6.75-0.7 0.5-5.4-7.6" fill="#e6d3aa" fill-rule="evenodd"/>
+<path d="m58.9-50.55-8.85-4.45q-96.5 32.75-150.05 75m158.9-70.55 41.15 20.55v10q-57.1 37.5-150 75l-50.05-25v-10" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width=".05"/>
+<path d="m-59.1 40.45 20.9-10.55m81.05-71.8 16.05-8.65m-56.55 40.8 54.6-27.3m-6.6 26.4 42.25-21.55m-111.85 24.65-67.4 33.45" fill="none" stroke="#8c6701" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".52157" stroke-width=".05"/>
+</g>
+</defs>
+</svg>

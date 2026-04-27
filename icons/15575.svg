@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 83.15 36.509" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(-341.28 -169.02)">
+<use transform="translate(341.3,169.05)" width="83.099998" height="36.450001" xlink:href="#a"/>
+</g>
+<defs>
+<g id="a" transform="translate(-341.3,-169.05)">
+<path d="m345.05 186.3h0.15v0.2l-0.15-0.2" fill="#a25c37" fill-rule="evenodd"/>
+<path d="m367.1 204.9q-7.7-1.35-14.95-3.85-7.3-2.5-10.85-6.6l0.15-13q0.85 2.75 3.6 4.85l0.15 0.2q6.2 4.55 21.75 5.8l0.15 12.6m-22.55-11.85 0.65-6.55-0.65 6.55" fill="#855e2a" fill-rule="evenodd"/>
+<path d="m357.15 172.05q7.1-2.05 17.05-2.75l12.1 11.15-19.15 11.85h-0.2q-15.55-1.25-21.75-5.8v-0.2l41.1-5.85-29.15-8.4" fill="#eabd88" fill-rule="evenodd"/>
+<path d="m341.45 181.45q4.55-6.35 15.7-9.4l29.15 8.4-41.1 5.85h-0.15q-2.75-2.1-3.6-4.85m32.75-12.15q5.1-0.3 11.05-0.25 21.35 0.1 30.8 5.6 6.15 3.5 7.2 9.4-3.05 2.15-7.25 3.8-4.8 1.9-11.15 3.1h-0.35l-18.2-10.5 11.3 11.45-20.6 0.75-9.85-0.35 19.15-11.85-12.1-11.15m41.85 5.35-20.2 2.95 20.2-2.95" fill="#daa854" fill-rule="evenodd"/>
+<path d="m423.25 184.05 1.15 9.95q-2.6 4.15-8.45 6.55-5.85 2.35-13.5 3.4l-16.8 1.45q-9.15 0.35-18.55-0.5l-0.15-12.6h0.2l9.85 0.35 20.6-0.75h0.15l4.7 6.2 2.4-7.15q6.35-1.2 11.15-3.1 4.2-1.65 7.25-3.8m-5.7 12.75-1.55-8.95 1.55 8.95" fill="#a67835" fill-rule="evenodd"/>
+<path d="m397.6 191.9-11.3-11.45 18.2 10.5h0.35l-2.4 7.15-4.7-6.2h-0.15" fill="#80552b" fill-rule="evenodd"/>
+<path d="m367.1 204.9q-7.7-1.35-14.95-3.85-7.3-2.5-10.85-6.6l0.15-13q4.55-6.35 15.7-9.4 7.1-2.05 17.05-2.75 5.1-0.3 11.05-0.25 21.35 0.1 30.8 5.6 6.15 3.5 7.2 9.4l1.15 9.95q-2.6 4.15-8.45 6.55-5.85 2.35-13.5 3.4l-16.8 1.45q-9.15 0.35-18.55-0.5m-0.15-12.6q-15.55-1.25-21.75-5.8l-0.65 6.55m-3.1-11.6q0.85 2.75 3.6 4.85l0.15 0.2v-0.2m21.75 6h0.2l9.85 0.35 20.6-0.75m7.25-0.95q6.35-1.2 11.15-3.1 4.2-1.65 7.25-3.8m-7.25 3.8 1.55 8.95m-21.7-19.2 20.2-2.95" fill="none" stroke="#54473b" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".6" stroke-width=".05"/>
+<path d="m404.5 190.95h0.35m-7.25 0.95h0.15" fill="none" stroke="#54473b" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".6" stroke-width=".05"/>
+</g>
+</defs>
+</svg>

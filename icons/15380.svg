@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 29.105 17.7" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(-285 -222.78)">
+<use transform="translate(285,222.8)" width="29.1" height="17.65" xlink:href="#a"/>
+</g>
+<defs>
+<g id="a" transform="translate(-285,-222.8)">
+<path d="m297.1 232.8v0.05q1 3.45-0.15 7.55h-0.05q-5.4-1.35-11.2-5.3-1.15-4.1-0.35-7.75l0.05-0.05q5.95 1.15 11.7 5.5" fill="#30b85c" fill-rule="evenodd"/>
+<path d="m303.25 234.5q-0.3 0.25-0.25 0.6-0.05 0.35 0.25 0.6l0.65 0.25 0.65-0.25 0.3-0.6-0.3-0.6-0.65-0.25q-0.4 0-0.65 0.25m-6.15-1.65h0.05q8.05-4.4 16.5-6h0.05q0.7 3.25 0.1 6.55-8.35 4.4-16.85 7 1.15-4.1 0.15-7.55m5 4.85 0.55-1.05-0.55-1.1q-0.45-0.45-1.15-0.45t-1.2 0.45q-0.45 0.45-0.45 1.1 0 0.6 0.45 1.05 0.5 0.5 1.2 0.5t1.15-0.5" fill="#55d27d" fill-rule="evenodd"/>
+<path d="m297.15 232.85-0.05-0.05q-5.75-4.35-11.7-5.5 9.2-3.4 18.05-4.5 5.9 1.2 10.2 4.05-8.45 1.6-16.5 6m-4.95-5.55 0.4-0.15 0.2-0.4-0.2-0.35-0.4-0.2-0.45 0.2-0.15 0.35 0.15 0.4 0.45 0.15" fill="#78dc99" fill-rule="evenodd"/>
+<path d="m303.25 234.5q0.25-0.25 0.65-0.25l0.65 0.25 0.3 0.6-0.3 0.6-0.65 0.25-0.65-0.25q-0.3-0.25-0.25-0.6-0.05-0.35 0.25-0.6m-11.05-7.2-0.45-0.15-0.15-0.4 0.15-0.35 0.45-0.2 0.4 0.2 0.2 0.35-0.2 0.4-0.4 0.15m9.9 10.4q-0.45 0.5-1.15 0.5t-1.2-0.5q-0.45-0.45-0.45-1.05 0-0.65 0.45-1.1 0.5-0.45 1.2-0.45t1.15 0.45l0.55 1.1-0.55 1.05" fill="#dcf5e4" fill-rule="evenodd"/>
+<path d="m297.1 232.8v0.05h0.05l-0.05-0.05q-5.75-4.35-11.7-5.5l-0.05 0.05q-0.8 3.65 0.35 7.75 5.8 3.95 11.2 5.3h0.05q1.15-4.1 0.15-7.55m-11.7-5.55h-0.05v0.05m11.6 13.05v0.05l-0.05-0.05m-11.5-13.1q9.2-3.4 18.05-4.5 5.9 1.2 10.2 4.05h0.05q0.7 3.25 0.1 6.55-8.35 4.4-16.85 7m16.7-13.55h0.05m-16.55 6q8.05-4.4 16.5-6" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".30196" stroke-width=".05"/>
+</g>
+</defs>
+</svg>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 29.341 20.656" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(-143.54 -187.42)">
+<use transform="translate(144.4,199.35)" width="1.55" height="1.25" xlink:href="#c"/>
+<use transform="matrix(2.6 0 0 2.6 143.61 187.53)" width="9.5500002" height="5.1999998" xlink:href="#a"/>
+<use transform="matrix(1.6319 -.5117 0 2.6 157.26 195.19)" width="9.5500002" height="5.1999998" xlink:href="#a"/>
+</g>
+<defs>
+<g id="c" transform="translate(-144.4,-199.35)">
+<path d="m145.85 200.5h-0.55l-0.8-1.05" fill="none" stroke="#390" stroke-linecap="round" stroke-linejoin="round" stroke-width=".25"/>
+</g>
+<g id="a" transform="translate(9.4,1.7)">
+<use transform="translate(-9.4,-1.7)" width="9.5500002" height="5.1999998" xlink:href="#b"/>
+</g>
+<g id="b" transform="translate(9.4,1.7)">
+<path d="m-7.95 1.55 1.05-1.3q2-2.15 4.05-1.95 2.1 0.2 3 2.45" fill="none" stroke="#68390b" stroke-linecap="round" stroke-linejoin="round" stroke-width=".05"/>
+<path d="m-6.9 1.9q0 0.5-0.35 0.95l-0.9 0.6-0.9-0.15q-0.35-0.3-0.35-0.8 0-0.55 0.35-1t0.9-0.55l0.9 0.1q0.35 0.3 0.35 0.85" fill="#0c0" fill-rule="evenodd"/>
+<path d="m-6.9 1.9q0 0.5-0.35 0.95l-0.9 0.6-0.9-0.15q-0.35-0.3-0.35-0.8 0-0.55 0.35-1t0.9-0.55l0.9 0.1q0.35 0.3 0.35 0.85z" fill="none" stroke="#ffb945" stroke-linecap="round" stroke-linejoin="round" stroke-width=".05"/>
+</g>
+</defs>
+</svg>

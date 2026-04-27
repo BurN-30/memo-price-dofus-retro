@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 58.609 113.53" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(-308.58 -131.97)">
+<use transform="translate(308.6,132)" width="58.549999" height="113.5" xlink:href="#a"/>
+</g>
+<defs>
+<g id="a" transform="translate(-308.6,-132)">
+<path d="m318.95 225.25q5.75 19.35 1.55 20.1h-0.1q-2.8-0.6-3.55-2.9-1.55-5.1-0.45-10 0.4-2.05 2.55-7.2" fill="#f30" fill-rule="evenodd"/>
+<path d="m320.5 245.35q4.2-0.75-1.55-20.1l0.35-0.8q5.75 14.25 4.35 19.65-0.45 1.8-3.15 1.25" fill="#bf2600" fill-rule="evenodd"/>
+<path d="m320.5 245.35q2.7 0.55 3.15-1.25 1.4-5.4-4.35-19.65l-0.35 0.8q-2.15 5.15-2.55 7.2-1.1 4.9 0.45 10 0.75 2.3 3.55 2.9z" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".39216" stroke-width=".05"/>
+<path d="m327.2 142.1q6.35-5 14.8-6.2l15.95-1.1q2.3-0.25 5.05-1.65 2.35-1.2 2.55-1.15 1.15 0.45 1.5 4.2 0.45 4-0.95 6.85l-22.15 34.6-19.9 42.05-3.55 6.45-0.25 0.2-0.45 0.35v0.1l-4.55-0.65 1.2-1.9 1.55-4.75 1.55-5.95 0.25-5.6q0.2-4.65 0.7-5.5l-0.25-29.25 0.25-0.1-0.25-0.35 6.95-30.65m5.75 25.3h0.45v-0.1l-0.45 0.1" fill="#c4836a" fill-rule="evenodd"/>
+<path d="m327.2 142.1-6.95 30.65v0.45l0.25 29.25q-0.5 0.85-0.7 5.5l-0.25 5.6-1.55 5.95-1.55 4.75-1.2 1.9h-0.2l-6.45-0.9v-7l1.75-7.7 0.45-25.25 0.1-4.1-0.4-23.5 0.1-0.55q2.55-3.15 7.95-7.65 3.85-3.65 8.65-7.4" fill="#bb7053" fill-rule="evenodd"/>
+<path d="m319.8 226.8v-0.1 0.1" fill="#7d3e3e" fill-rule="evenodd"/>
+<path d="m319.8 226.7 0.45-0.35 0.25-0.2 3.55-6.45 19.9-42.05 22.15-34.6q1.4-2.85 0.95-6.85-0.35-3.75-1.5-4.2-0.2-0.05-2.55 1.15-2.75 1.4-5.05 1.65l-15.95 1.1q-8.45 1.2-14.8 6.2l-6.95 30.65m0 0.45 0.25 29.25m-5.25 23.7 4.55 0.65m0-0.1v0.1m7.4-84.7q-4.8 3.75-8.65 7.4-5.4 4.5-7.95 7.65l-0.1 0.55 0.4 23.5m-0.1 4.1-0.45 25.25-1.75 7.7v7l6.45 0.9h0.2m5-52.95v-0.45" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".39216" stroke-width=".05"/>
+<path d="m336.85 146.8q-0.7 1.3-2.2 1.8l-2.8-0.1q-1.35-0.55-1.8-1.85t0.3-2.55q0.65-1.3 2.15-1.8l2.85 0.1q1.25 0.55 1.75 1.85 0.4 1.3-0.25 2.55" fill="#9e593f" fill-rule="evenodd"/>
+<path d="m336.85 146.8q-0.7 1.3-2.2 1.8l-2.8-0.1q-1.35-0.55-1.8-1.85t0.3-2.55q0.65-1.3 2.15-1.8l2.85 0.1q1.25 0.55 1.75 1.85 0.4 1.3-0.25 2.55z" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".30196" stroke-width=".05"/>
+<path d="m339.8 154.2q-0.3 0.6-0.95 0.85l-1.25-0.1q-0.6-0.2-0.8-0.8-0.2-0.55 0.15-1.1 0.3-0.6 0.95-0.8l1.25 0.05q0.55 0.25 0.75 0.8 0.2 0.6-0.1 1.1" fill="#9e593f" fill-rule="evenodd"/>
+<path d="m339.8 154.2q-0.3 0.6-0.95 0.85l-1.25-0.1q-0.6-0.2-0.8-0.8-0.2-0.55 0.15-1.1 0.3-0.6 0.95-0.8l1.25 0.05q0.55 0.25 0.75 0.8 0.2 0.6-0.1 1.1z" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".30196" stroke-width=".05"/>
+<path d="m338.45 170.55q-0.3 0.6-0.95 0.85l-1.25-0.1q-0.6-0.2-0.8-0.8-0.2-0.55 0.15-1.1 0.3-0.6 0.95-0.8l1.25 0.05q0.55 0.25 0.75 0.8 0.2 0.6-0.1 1.1" fill="#9e593f" fill-rule="evenodd"/>
+<path d="m338.45 170.55q-0.3 0.6-0.95 0.85l-1.25-0.1q-0.6-0.2-0.8-0.8-0.2-0.55 0.15-1.1 0.3-0.6 0.95-0.8l1.25 0.05q0.55 0.25 0.75 0.8 0.2 0.6-0.1 1.1z" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".30196" stroke-width=".05"/>
+<path d="m333.95 165.8q-0.45 0.9-1.5 1.25l-2-0.05q-0.95-0.4-1.25-1.3-0.35-0.95 0.2-1.8 0.4-0.9 1.5-1.3l2 0.1q0.9 0.4 1.3 1.3 0.25 0.95-0.25 1.8" fill="#9e593f" fill-rule="evenodd"/>
+<path d="m333.95 165.8q-0.45 0.9-1.5 1.25l-2-0.05q-0.95-0.4-1.25-1.3-0.35-0.95 0.2-1.8 0.4-0.9 1.5-1.3l2 0.1q0.9 0.4 1.3 1.3 0.25 0.95-0.25 1.8z" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".30196" stroke-width=".05"/>
+<path d="m348.45 150.9q-0.3 0.6-0.95 0.85l-1.25-0.1q-0.6-0.2-0.8-0.8-0.2-0.55 0.15-1.1 0.3-0.6 0.95-0.8l1.25 0.05q0.55 0.25 0.75 0.8 0.2 0.6-0.1 1.1" fill="#9e593f" fill-rule="evenodd"/>
+<path d="m348.45 150.9q-0.3 0.6-0.95 0.85l-1.25-0.1q-0.6-0.2-0.8-0.8-0.2-0.55 0.15-1.1 0.3-0.6 0.95-0.8l1.25 0.05q0.55 0.25 0.75 0.8 0.2 0.6-0.1 1.1z" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".30196" stroke-width=".05"/>
+</g>
+</defs>
+</svg>

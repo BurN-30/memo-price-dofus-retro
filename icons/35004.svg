@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg version="1.1" viewBox="0 0 104.88 67.644" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink">
+<metadata>
+<rdf:RDF>
+<cc:Work rdf:about="">
+<dc:format>image/svg+xml</dc:format>
+<dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+</cc:Work>
+</rdf:RDF>
+</metadata>
+<g transform="translate(-209.33 -167.58)">
+<use transform="matrix(1.072 -1.1612 1.2193 1.0598 196.14 223.31)" width="69.050003" height="41.75" xlink:href="#a"/>
+</g>
+<defs>
+<g id="a" transform="translate(53.95,31.6)">
+<path d="m-19.5-23.8h0.05v0.1l-0.05-0.1" fill="#491d37" fill-rule="evenodd"/>
+<path d="m-19.45-23.8q8.55-0.75 21.65 7.7 2.65 1.7 5.25 4.5l4.8 5.3 0.6-0.55q2.75 6.15 1.15 10.35l-0.2 0.4q-1.35 2.9-4.05 4.35l1.25-1.55q0.7-1.65 0.7-3.55-0.05-3.5-2.5-8-4.3-7.95-13.1-13.3-8.85-5.4-15.55-5.55v-0.1" fill="url(#g)" fill-rule="evenodd"/>
+<path d="m-52.6-21q11.65-0.3 22.1 6.45 3.35 2.15 9.4 7.9 5.95 5.65 12.05 9.6 11.3 7.3 20.75 0.2 0 1.9-0.7 3.55l-1.25 1.55q-3 1.6-7.8 1.4-8.35-0.4-16.45-5.65-1.55-1-8.45-7.4-7.05-6.5-10.45-8.7-8.1-5.25-19.25-8.25l0.05-0.65" fill="url(#f)" fill-rule="evenodd"/>
+<path d="m12.85-6.85-0.6 0.55-4.8-5.3q-2.6-2.8-5.25-4.5-13.1-8.45-21.65-7.7h-0.05l-0.5 0.1h0.55q6.7 0.15 15.55 5.55 8.8 5.35 13.1 13.3 2.45 4.5 2.5 8-9.45 7.1-20.75-0.2-6.1-3.95-12.05-9.6-6.05-5.75-9.4-7.9-10.45-6.75-22.1-6.45 12.7-6.95 24.15-9.2 11.75-2.4 19.95 1.7 8.15 4.05 10.35 6.45 3.8 3.35 7.9 9.65 1.95 2.95 3.1 5.55m-36-18.2q-2.3-1.25-5.7-1.4t-5.9 0.9q-2.5 1.1-2.65 2.75t2.15 2.95q2.3 1.25 5.7 1.4t5.9-0.9q2.5-1.1 2.65-2.75t-2.15-2.95" fill="url(#e)" fill-rule="evenodd"/>
+<path d="m-23.15-25.05q2.3 1.3 2.15 2.95t-2.65 2.75q-2.5 1.05-5.9 0.9t-5.7-1.4q-2.3-1.3-2.15-2.95t2.65-2.75q2.5-1.05 5.9-0.9t5.7 1.4m-2.5 3q1.35-0.55 1.3-1.25t-1.4-1.15l-3.35-0.3-3.3 0.65q-1.35 0.55-1.3 1.25t1.45 1.15l3.35 0.3q1.9-0.1 3.25-0.65" fill="url(#d)" fill-rule="evenodd"/>
+<path d="m-25.65-22.05q-1.35 0.55-3.25 0.65l-3.35-0.3q-1.4-0.45-1.45-1.15t1.3-1.25l3.3-0.65 3.35 0.3q1.35 0.45 1.4 1.15t-1.3 1.25" fill="url(#c)" fill-rule="evenodd"/>
+<path d="m-52.65-20.35-0.8-0.2 0.85-0.45-0.05 0.65" fill="url(#b)" fill-rule="evenodd"/>
+<path d="m12.85-6.85q-1.15-2.6-3.1-5.55-4.1-6.3-7.9-9.65m7.9 30.3q2.7-1.45 4.05-4.35l0.2-0.4q1.6-4.2-1.15-10.35m-65.5-13.5q11.15 3 19.25 8.25 3.4 2.2 10.45 8.7 6.9 6.4 8.45 7.4 8.1 5.25 16.45 5.65 4.8 0.2 7.8-1.4m-63.2-28.8 0.8 0.2" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".30196"/>
+<path d="m1.85-22.05q-2.2-2.4-10.35-6.45-8.2-4.1-19.95-1.7-11.45 2.25-24.15 9.2l-0.85 0.45" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".30196"/>
+<path d="m-23.15-25.05q2.3 1.3 2.15 2.95t-2.65 2.75q-2.5 1.05-5.9 0.9t-5.7-1.4q-2.3-1.3-2.15-2.95t2.65-2.75q2.5-1.05 5.9-0.9t5.7 1.4m-2.5 3q-1.35 0.55-3.25 0.65l-3.35-0.3q-1.4-0.45-1.45-1.15t1.3-1.25l3.3-0.65 3.35 0.3q1.35 0.45 1.4 1.15t-1.3 1.25" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-opacity=".30196" stroke-width="1.5"/>
+</g>
+<radialGradient id="g" cx="0" cy="0" r="819.2" gradientTransform="matrix(-.0256 -.0757 -.0672 .0158 -26.55 -47.05)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#c95203" offset="0"/>
+<stop stop-color="#f8d85c" offset=".98824"/>
+</radialGradient>
+<radialGradient id="f" cx="0" cy="0" r="819.2" gradientTransform="matrix(-.0302 -.0893 -.0793 .0186 7.9 24.8)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#c95203" offset="0"/>
+<stop stop-color="#f8d85c" offset=".98824"/>
+</radialGradient>
+<linearGradient id="e" x1="-819.2" x2="819.2" gradientTransform="matrix(-.036 -.0085 -.0012 .0203 -18.4 -14.6)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#813a26" offset="0"/>
+<stop stop-color="#d66038" offset="1"/>
+</linearGradient>
+<radialGradient id="d" cx="0" cy="0" r="819.2" gradientTransform="matrix(.0241 .001 -.0023 .0271 -17.75 -24.45)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#e9d527" offset=".031373"/>
+<stop stop-color="#fff" offset=".27059"/>
+<stop stop-color="#e9d527" offset=".61176"/>
+<stop stop-color="#d86a36" offset=".97647"/>
+</radialGradient>
+<radialGradient id="c" cx="0" cy="0" r="819.2" gradientTransform="matrix(.0585 .0231 -.0296 .0479 15.95 -39.9)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#e9d527" offset=".031373"/>
+<stop stop-color="#e9d527" offset=".61176"/>
+<stop stop-color="#d86a36" offset=".97647"/>
+</radialGradient>
+<linearGradient id="b" x1="-819.2" x2="819.2" gradientTransform="matrix(-.0355 -.0161 -.0019 .0072 -19.65 -4.35)" gradientUnits="userSpaceOnUse">
+<stop stop-color="#55251a" offset="0"/>
+<stop stop-color="#b74326" offset="1"/>
+</linearGradient>
+</defs>
+</svg>
