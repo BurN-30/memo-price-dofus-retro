@@ -2,6 +2,18 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.5.0] — vue Crafts suivis stylée · 2026-04-27
+
+### Ajouté
+- **Icône SVG enclume** pour le header de la vue « Crafts suivis » (remplace le glyphe Unicode `⚒` peu lisible).
+- **Icône SVG losange ornemental** pour le header de la vue « Tous mes prix » (cohérent avec le folder header de la sidebar).
+- **Stat global colorée** dans le header : flèche cuivre `→` entre coût et HDV, et marge colorée vert (`--good`) si positive ou rouge (`--danger`) si négative, le tout en JetBrains Mono.
+- **Boutons d'action SVG** sur chaque ligne de craft : crayon pour éditer, croix pour retirer (remplace les glyphes `⌗` et `×`).
+
+### Changé
+- **État vide « Aucun craft suivi »** reformulé en ton impersonnel et plus engageant.
+- **Bloc `.empty`** : padding plus généreux, max-width pour limiter la longueur de ligne, marge auto pour centrage propre.
+
 ## [0.4.9] — onboarding compact (zéro scroll) · 2026-04-27
 
 ### Changé

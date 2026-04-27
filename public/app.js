@@ -348,12 +348,16 @@
     </div>`;
   }
 
+  // Icônes SVG pour les folders spéciaux (all, crafts)
+  const ICON_DIAMOND_SVG = '<svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 1.5 L16.5 9 L9 16.5 L1.5 9 Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="9" cy="9" r="1.4" fill="currentColor"/></svg>';
+  const ICON_ANVIL_SVG = '<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 7 L13 7 Q15 7 15 9 L15 11 L17 11 L17 13 L13 13 L13 11 Q13 9 11 9 L5 9 L5 14 L3 14 Z M5 14 L13 14 L14 16 L4 16 Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" fill="none"/></svg>';
+
   function renderHeader() {
     const f = getCurrentFolder();
-    let icon = '◇', name = 'Tous mes prix';
-    if (currentFolderId === 'crafts') { icon = '⚒'; name = 'Crafts suivis'; }
-    else if (f) { icon = folderIconHtml(f.icon); name = f.name; }
-    document.getElementById('folder-icon').innerHTML = icon;
+    let iconHtml = ICON_DIAMOND_SVG, name = 'Tous mes prix';
+    if (currentFolderId === 'crafts') { iconHtml = ICON_ANVIL_SVG; name = 'Crafts suivis'; }
+    else if (f) { iconHtml = folderIconHtml(f.icon); name = f.name; }
+    document.getElementById('folder-icon').innerHTML = iconHtml;
     document.getElementById('folder-name').textContent = name;
     document.getElementById('btn-rename').hidden = !f || currentFolderId === 'crafts';
     document.getElementById('btn-delete-folder').hidden = !f || currentFolderId === 'crafts';
@@ -472,14 +476,15 @@
     const totalCost = enriched.reduce((s, x) => s + x.cc.cost, 0);
     const totalHdv = enriched.reduce((s, x) => s + (x.hdv || 0), 0);
     const totalMargin = enriched.reduce((s, x) => s + (x.margin || 0), 0);
+    const marginCls = totalMargin > 0 ? 'pos' : totalMargin < 0 ? 'neg' : '';
     document.getElementById('stat-count').textContent = enriched.length;
-    document.getElementById('stat-total').textContent = `${fmtKamas(totalCost) || '0'} → ${fmtKamas(totalHdv) || '0'} (${totalMargin >= 0 ? '+' : ''}${fmtKamas(totalMargin) || '0'})`;
+    document.getElementById('stat-total').innerHTML = `${fmtKamas(totalCost) || '0'} <span class="stat-arrow">→</span> ${fmtKamas(totalHdv) || '0'} <span class="stat-margin ${marginCls}">(${totalMargin >= 0 ? '+' : ''}${fmtKamas(totalMargin) || '0'})</span>`;
 
     if (!enriched.length) {
       $grid.innerHTML = '';
       $empty.hidden = false;
       $empty.innerHTML = state.crafts.length === 0
-        ? 'Aucun craft suivi. Ouvre <b>craft</b> dans la barre d\'outils pour chercher un item, puis sauvegarde-le.'
+        ? 'Aucun craft suivi pour le moment. Ouvrir <b>craft</b> dans la barre d\'outils, chercher un item, puis le sauvegarder pour qu\'il apparaisse ici.'
         : 'Aucun résultat.';
       return;
     }
@@ -521,8 +526,12 @@
         </div>
         <div class="margin ${marginCls}">${marginStr}</div>
         <div class="act">
-          <button data-craft-open="${c.itemId}" title="Voir / éditer la recette">⌗</button>
-          <button data-craft-remove="${c.itemId}" title="Retirer du suivi">×</button>
+          <button data-craft-open="${c.itemId}" title="Voir / éditer la recette" aria-label="Éditer">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M9.5 2 L12 4.5 L4.5 12 L1.5 12.5 L2 9.5 Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" stroke-linecap="round" fill="none"/></svg>
+          </button>
+          <button data-craft-remove="${c.itemId}" title="Retirer du suivi" aria-label="Retirer">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 3 L11 11 M11 3 L3 11" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </button>
         </div>
       </div>`;
     }).join('');

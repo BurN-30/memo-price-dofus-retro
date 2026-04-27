@@ -800,13 +800,16 @@ kbd {
 .empty {
   text-align: center;
   color: var(--text-mute);
-  padding: 60px 20px;
-  font-size: 14px;
+  padding: 50px 24px;
+  font-size: 13px;
+  line-height: 1.6;
   background: var(--bg-elev);
   border-radius: var(--radius);
   border: 1px dashed var(--line);
+  max-width: 520px;
+  margin: 20px auto;
 }
-.empty b { color: var(--accent); }
+.empty b { color: var(--accent); font-weight: 600; }
 
 /* ---------- TOOLTIP ---------- */
 .tip {
@@ -2016,6 +2019,13 @@ kbd {
 }
 .craft-row .act button:hover { color: var(--accent); border-color: var(--line); background: var(--bg-elev2); }
 .craft-row .act button[data-craft-remove]:hover { color: var(--danger); border-color: var(--danger); }
+.craft-row .act button svg { display: block; margin: auto; }
+
+/* Stat global header (vue Crafts) : flèche cuivre, marge colorée */
+.stat-arrow { color: var(--accent); font-weight: 700; margin: 0 2px; }
+.stat-margin { font-family: 'JetBrains Mono', monospace; }
+.stat-margin.pos { color: var(--good); }
+.stat-margin.neg { color: var(--danger); }
 
 .hint { margin: 8px 18px 0; font-size: 11px; color: var(--text-mute); line-height: 1.5; }
 .hint code { background: var(--bg-elev2); padding: 1px 5px; border-radius: 3px; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); }
