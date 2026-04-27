@@ -2052,6 +2052,8 @@
   fetch('version.json').then(r => r.json()).then(v => {
     APP_VERSION = v.version || '?';
     $btnChangelog.textContent = 'v' + APP_VERSION;
+    const $aboutVer = document.getElementById('about-version');
+    if ($aboutVer) $aboutVer.textContent = 'v' + APP_VERSION;
   }).catch(() => { $btnChangelog.textContent = 'v?'; });
 
   function mdToHtml(md) {
@@ -2129,6 +2131,11 @@
     hideOnboarding();
   });
   document.getElementById('set-test')?.addEventListener('click', testNimKey);
+  document.getElementById('about-changelog-link')?.addEventListener('click', e => {
+    e.preventDefault();
+    closeSettings();
+    openChangelog();
+  });
 
   // --- init
   render();

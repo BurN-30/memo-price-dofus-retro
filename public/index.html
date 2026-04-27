@@ -245,7 +245,7 @@ kriptonite 30/u
         <button type="button" id="set-test" class="btn-secondary">Tester</button>
       </div>
     </label>
-    <p class="hint">Obtiens une clé sur <a href="https://build.nvidia.com" target="_blank" rel="noopener noreferrer">build.nvidia.com</a>. Stockée localement dans ton navigateur (jamais sur le serveur Pénates).</p>
+    <p class="hint">Obtenir une clé sur <a href="https://build.nvidia.com" target="_blank" rel="noopener noreferrer">build.nvidia.com</a>. Stockée localement dans le navigateur (jamais sur le serveur Pénates).</p>
     <details class="nim-help">
       <summary>Comment récupérer une clé NVIDIA NIM (gratuit, environ 5 min)</summary>
       <p class="nim-help-warning"><b>Vérification téléphone requise.</b> NVIDIA exige un numéro de téléphone. Serveurs parfois saturés. Si la vérification SMS échoue, réessayer plus tard.</p>
@@ -269,6 +269,28 @@ kriptonite 30/u
       <input id="set-nim-model" placeholder="meta/llama-3.2-11b-vision-instruct" style="margin-top:6px" hidden>
     </label>
     <p id="set-status" class="hint"></p>
+
+    <details class="info-help" name="settings-faq">
+      <summary>À propos de Pénates</summary>
+      <p>Outil minimaliste de mémo des prix HDV pour Dofus Retro 1.29. Le projet est né d'une particularité du jeu en 1.29 : pas de prix moyen affiché sur l'HDV, contrairement à d'autres versions.</p>
+      <p>Le nom <i>Pénates</i> renvoie aux divinités romaines protectrices du foyer. Et aux <i>Pénates du Corbac</i> du jeu, qui hébergeaient jadis la Confrérie des Pénates, ordre voué à la préservation du savoir.</p>
+      <p class="info-help-note">Version <code id="about-version">v—</code> · projet open source, sans collecte de données. <a href="https://github.com/BurN-30/memo-price-dofus-retro" target="_blank" rel="noopener noreferrer">Code source</a> · <a href="#" id="about-changelog-link">Changelog</a></p>
+    </details>
+
+    <details class="info-help" name="settings-faq">
+      <summary>Confidentialité et sécurité</summary>
+      <p><b>Données utilisateur</b> (prix, dossiers, préférences, clé NIM) : stockées uniquement dans le <code>localStorage</code> du navigateur. Aucune donnée ne transite par le serveur Pénates en dehors d'un OCR.</p>
+      <p><b>Lors d'un OCR</b> : l'image et la clé NIM sont transmises au Worker, qui les forwarde à NVIDIA NIM puis renvoie la réponse. Le Worker ne stocke ni l'image ni la clé. Code source <a href="https://github.com/BurN-30/memo-price-dofus-retro/blob/main/src/index.js" target="_blank" rel="noopener noreferrer">consultable ici</a>.</p>
+      <p class="info-help-note">Aucun cookie de tracking, aucun analytics tiers, aucune publicité.</p>
+    </details>
+
+    <details class="info-help" name="settings-faq">
+      <summary>Crédits</summary>
+      <p>Catalogue (1492 ressources, 2203 items, 1451 monstres) et icônes SVG : <a href="https://dofusretrotools.com" target="_blank" rel="noopener noreferrer">Dofus Retro Tools</a> par <a href="https://x.com/Le__YAKUZA" target="_blank" rel="noopener noreferrer">YAKUZA</a>.</p>
+      <p>Univers et sprites Dofus : <a href="https://www.ankama.com" target="_blank" rel="noopener noreferrer">Ankama</a>. Modèles vision pour l'OCR : <a href="https://build.nvidia.com" target="_blank" rel="noopener noreferrer">NVIDIA NIM</a>.</p>
+      <p class="info-help-note">Projet non-officiel, non affilié à Ankama ni à Dofus Retro Tools. Code créateur Dofus de YAKUZA : <code>YAKUZA</code> (à spammer en jeu).</p>
+    </details>
+
     <footer>
       <button id="set-save" class="btn-primary">Enregistrer</button>
     </footer>

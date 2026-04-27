@@ -2,6 +2,24 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.5.5] — polish UI : tooltip, modale, parchemin, lore · 2026-04-27
+
+### Ajouté
+- **I4 État vide illustré** : sceau de cire 180px en filigrane à 3.5% d'opacité derrière le texte. Donne du caractère sans nuire à la lisibilité.
+- **I5 Tooltips harmonisés** : background gradient `bg-elev → bg-elev2`, ligne ornementale cuivre fade aux extrémités sous le nom, padding plus aéré, valeurs en JetBrains Mono. Étiquettes en SMALL CAPS.
+- **P1 Animation modale d'entrée** : scale .97 → 1 + fade .22s cubic-bezier ease-out. Subtil, pas de gimmick sceau qui se brise.
+- **P2 Texture parchemin** : noise SVG turbulence à 4.5% d'opacité en mix-blend overlay sur tous les `.modal-card`. Visible au focus, invisible au premier coup d'œil. Donne le grain « papier ancien ».
+- **P3 Utility `.ornament-divider`** : filet cuivre + losange central, prêt à l'emploi pour les futures sections lore. Disponible dans toute l'app.
+- **P5 Modale Réglages enrichie** : 3 nouveaux dropdowns mutuellement exclusifs :
+  - **À propos de Pénates** : projet, lore, version, lien GitHub et changelog.
+  - **Confidentialité et sécurité** : précise ce qui est en `localStorage`, ce qui transite, lien vers le code Worker.
+  - **Crédits** : YAKUZA, Dofus Retro Tools, Ankama, NVIDIA. Code créateur YAKUZA mis en avant.
+- Modale Réglages élargie de 420px à 480px pour accommoder.
+
+### Corrigé
+- « Obtiens une clé » → « Obtenir une clé » dans le hint Réglages (ton impersonnel).
+- « ton navigateur » → « le navigateur » (ton impersonnel).
+
 ## [0.5.4] — fix overlap OCR mini-widget vs toast · 2026-04-27
 
 ### Corrigé
