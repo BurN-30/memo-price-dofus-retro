@@ -2,6 +2,15 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
+## [0.4.8] — rédaction « Pourquoi Pénates ? » · 2026-04-27
+
+### Changé
+- **Dropdown « Pourquoi Pénates ? » réécrit** :
+  - Cadrage du projet recadré : ce n'est pas « en revenant sur Retro » (formulation imprécise), mais une particularité du jeu en 1.29 (pas de prix moyen sur l'HDV, contrairement à d'autres versions). Décrit clairement le pain point.
+  - Plus de tournures comme « en mieux » qui sonnaient pub.
+  - Section nom recadrée : remplacé « Métaphore directe » par une transition narrative qui lie les Pénates romains au memo de prix.
+  - Section Dofus : retiré « évidemment » qui supposait le savoir du lecteur, structuré en : (1) la zone, (2) le donjon, (3) le boss et la fable de La Fontaine.
+
 ## [0.4.7] — animation dropdowns · 2026-04-27
 
 ### Ajouté
