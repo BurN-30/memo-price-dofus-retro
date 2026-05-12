@@ -2,7 +2,17 @@
 
 Toutes les modifs notables de Pénates (anciennement Memo Price). Format inspiré de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/).
 
-## [0.6.2] — fix sidebar footer (icon-only, vrai cog) · 2026-04-27
+## [0.6.3] · support modèles reasoning (Nemotron Nano Omni) · 2026-05-01
+
+### Ajouté
+- **Nemotron 3 Nano Omni 30B-A3B Reasoning** ajouté dans la liste des modèles vision (Réglages). Modèle multimodal NVIDIA orienté reasoning, alternative aux Llama Vision.
+
+### Corrigé
+- **Parsing OCR robuste pour modèles reasoning** : le Worker strippe les balises `<think>...</think>` que Nemotron (et autres modèles type DeepSeek-R1, QwQ) émettent avant la réponse. Sans ça, le greedy regex précédent engloutissait des accolades du raisonnement et plantait le parse JSON.
+- **Scan d'objets JSON balancé** (avec respect des strings) qui prend le DERNIER bloc valide, parce que les modèles reasoning posent leur réponse finale après la chaîne de pensée.
+- **Paramètres adaptés par famille de modèle** : pour les reasoning, `temperature: 0.2` + `max_tokens: 2048` + `chat_template_kwargs.enable_thinking: false` envoyé à NIM (vLLM/SGLang forwardent ce flag au chat template). Llama et Phi gardent `temperature: 0` + `max_tokens: 600` qui marchait avant.
+
+## [0.6.2] · fix sidebar footer (icon-only, vrai cog) · 2026-04-27
 
 ### Corrigé
 - **Boutons réglages/export/import débordaient** la sidebar (240px) avec SVG + label texte. Passage en **icon-only** : juste le SVG (16×16), label retiré, signification dans le `title` (tooltip natif). Beaucoup plus compact, lisible immédiatement, hover en cuivre.

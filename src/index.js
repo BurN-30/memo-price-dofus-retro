@@ -64,19 +64,63 @@ function checkRateLimit(ip) {
 
 function extractJson(text) {
   if (!text) return null;
-  let cleaned = text.trim();
+  let cleaned = String(text).trim();
+
+  // Strip blocs <think>...</think> (modèles reasoning : Nemotron 3 Nano Omni, DeepSeek-R1, etc.)
+  cleaned = cleaned.replace(/<think>[\s\S]*?<\/think>/gi, '').trim();
+  // Cas où la balise d'ouverture manque (le tokenizer en a déjà mangé une partie)
+  const lateClose = cleaned.lastIndexOf('</think>');
+  if (lateClose >= 0) cleaned = cleaned.slice(lateClose + 8).trim();
+
+  // Strip fences markdown (```json ... ``` ou ``` ... ```)
   if (cleaned.startsWith('```')) {
-    cleaned = cleaned.replace(/^```(?:json)?\s*/, '').replace(/\s*```$/, '');
+    cleaned = cleaned.replace(/^```(?:json)?\s*/i, '').replace(/\s*```\s*$/, '').trim();
   }
+
+  // Fast path : le modèle a obéi et n'a renvoyé que le JSON
   try { return JSON.parse(cleaned); } catch {}
-  const match = cleaned.match(/\{[\s\S]*\}/);
-  if (match) {
-    try { return JSON.parse(match[0]); } catch {}
+
+  // Sinon scan des blocs {...} balancés (en respectant les strings) et on prend le DERNIER valide,
+  // car les modèles reasoning posent souvent leur réponse finale après le raisonnement.
+  const blocks = [];
+  let depth = 0, start = -1, inStr = false, esc = false;
+  for (let i = 0; i < cleaned.length; i++) {
+    const c = cleaned[i];
+    if (inStr) {
+      if (esc) { esc = false; continue; }
+      if (c === '\\') { esc = true; continue; }
+      if (c === '"') inStr = false;
+      continue;
+    }
+    if (c === '"') { inStr = true; continue; }
+    if (c === '{') {
+      if (depth === 0) start = i;
+      depth++;
+    } else if (c === '}') {
+      if (depth > 0) {
+        depth--;
+        if (depth === 0 && start >= 0) {
+          blocks.push(cleaned.slice(start, i + 1));
+          start = -1;
+        }
+      }
+    }
+  }
+  for (let i = blocks.length - 1; i >= 0; i--) {
+    try {
+      const p = JSON.parse(blocks[i]);
+      if (p && typeof p === 'object' && !Array.isArray(p)) return p;
+    } catch {}
   }
   return null;
 }
 
+function isReasoningModel(model) {
+  return /reasoning|nemotron-3|deepseek-r1|qwq|-thinking/i.test(model);
+}
+
 async function tryNim(b64, model, key, mime) {
+  const reasoning = isReasoningModel(model);
   const payload = {
     model,
     messages: [{
@@ -86,9 +130,14 @@ async function tryNim(b64, model, key, mime) {
         { type: 'image_url', image_url: { url: `data:${mime};base64,${b64}` } },
       ],
     }],
-    temperature: 0,
-    max_tokens: 600,
+    temperature: reasoning ? 0.2 : 0,
+    max_tokens: reasoning ? 2048 : 600,
   };
+  if (reasoning) {
+    // NIM forward ce bloc au chat_template (vLLM/SGLang). Coupe la chaîne de raisonnement
+    // pour économiser tokens/latence ; en backup, extractJson strippe les <think> restants.
+    payload.chat_template_kwargs = { enable_thinking: false };
+  }
 
   let resp;
   try {
